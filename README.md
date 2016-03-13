@@ -8,4 +8,4 @@
 4. [TravisCI](https://travis-ci.org)
 
 #### URL для коннекта к нашей ДБ
-mongodb://<dbuser>:<dbpassword>@ds011439.mlab.com:11439/photoquest
+mongodb://dbuser:dbpassword@ds011439.mlab.com:11439/photoquest
