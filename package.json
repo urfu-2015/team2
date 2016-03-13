@@ -1,9 +1,8 @@
 {
-  "name": "team2",
+  "name": "photoquest",
   "version": "1.0.0",
   "jscs": "2.2.1",
   "description": "photoquest",
-  "main": "index.js",
   "scripts": {
     "test": "mocha test",
     "lint:css": "stylelint **/*.css",
@@ -26,5 +25,14 @@
   "devDependencies": {
     "stylelint": "^5.0.1",
     "stylelint-config-standard": "^4.0.1"
-  }
+  },
+  "contributors": [
+    "Aksenova Natalia",
+    "Kuznecov Vasilii",
+    "Lopes Luis",
+    "Sorokin Vlad",
+    "Pestov Nikita",
+    "Rybalka Ekaterina",
+    "Latipova Ekaterina"
+  ]
 }
