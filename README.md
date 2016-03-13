@@ -1,7 +1,7 @@
 # Фотоквест
 ## by Team2
 
-### используемые сервисы:
+### Используемые сервисы:
 1. [Waffle](https://waffle.io/urfu-2015/team2)
 2. [mLab](https://mlab.com)
 3. [Heroku](https://www.heroku.com)
