@@ -1,10 +1,12 @@
 {
   "name": "team2",
   "version": "1.0.0",
+  "jscs": "2.2.1",
   "description": "photoquest",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha test",
+    "lint": "jscs ."
   },
   "repository": {
     "type": "git",
