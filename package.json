@@ -14,7 +14,10 @@
     "start:dev": "node app.js --NODE_ENV=development",
     "deploy:dynamic": "git push heroku master",
     "deploy:static": "surge -p ./public -d hackathonteam2.surge.sh",
-    "deploy": "npm-run-all deploy:*"
+    "deploy": "npm-run-all deploy:*",
+    "precommit": "npm run test & npm run lint",
+    "prepush": "npm run test & npm run lint",
+    "prepublish": "npm run test & npm run lint"
   },
   "repository": {
     "type": "git",
@@ -33,6 +36,7 @@
     "cssnano": "3.5.2",
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.8.5",
+    "husky": "0.11.3",
     "mocha": "2.4.5",
     "mockery": "1.4.1",
     "morgan": "1.7.0",
@@ -50,8 +54,8 @@
   "dependencies": {
     "express": "4.13.4",
     "hbs": "4.0.0",
-    "jscs": "^2.11.0",
-    "minimist": "^1.2.0"
+    "jscs": "2.11.0",
+    "minimist": "1.2.0"
   },
   "contributors": [
     "Aksenova Natalia",
@@ -60,7 +64,7 @@
     "Sorokin Vlad",
     "Pestov Nikita",
     "Rybalka Ekaterina",
-    "Latipova Ekaterina"
+    "Latypova Ekaterina"
   ],
   "engines": {
     "node": "4.4.0"
