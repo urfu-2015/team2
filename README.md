@@ -1,5 +1,4 @@
 # Фотоквест
-## by Team2
 
 ### Используемые сервисы:
 1. [Waffle](https://waffle.io/urfu-2015/team2)
@@ -9,3 +8,13 @@
 
 #### URL для коннекта к нашей ДБ
 mongodb://dbuser:dbpassword@ds011439.mlab.com:11439/photoquest
+
+#### Команда «Миникупоросы»
+
+@Dotokoto (Ванадиевый)
+@Lakate (Железный)
+@Nikit0s (Медный)
+@Mokoshka (Никелевый)
+@Valeriyan (Свинцовый)
+@VasiliiKuznecov (Кобальтовый)
+@sorovlad (Хромовый)
