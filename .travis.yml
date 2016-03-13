@@ -9,7 +9,7 @@ script:
 - npm test
 after_success:
 - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && npm run deploy'
-  deploy:
+deploy:
     skip_cleanup: true
     provider: heroku
     api_key:
