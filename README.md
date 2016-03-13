@@ -9,6 +9,9 @@
 #### URL для коннекта к нашей ДБ
 mongodb://dbuser:dbpassword@ds011439.mlab.com:11439/photoquest
 
+#### Команда для запуска тестов
+npm test
+
 #### Команда «Миникупоросы»
 
 - [@Dotokoto](https://github.com/Dotokoto) (Ванадиевый)
