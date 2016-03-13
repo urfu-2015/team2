@@ -12,6 +12,12 @@ mongodb://dbuser:dbpassword@ds011439.mlab.com:11439/photoquest
 #### Команда для запуска тестов
 npm test
 
+### Deploy приложения
+1. Установка [heroku](https://toolbelt.heroku.com)
+2. Авторизация `heroku login`
+3. `git push heroku master`
+4. Перейти по [ссылке](http://yahackteam2.herokuapp.com/)
+
 #### Команда «Миникупоросы»
 
 - [@Dotokoto](https://github.com/Dotokoto) (Ванадиевый)
