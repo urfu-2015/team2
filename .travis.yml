@@ -1,0 +1,17 @@
+sudo: false
+language: node_js
+node_js:
+- "4"
+install:
+- npm install
+script:
+- npm run lint
+- npm test
+after_success:
+  deploy:
+    skip_cleanup: true
+    provider: heroku
+    api_key:
+      secure: "K4o0zyT8y4EVAp3Zk34ujTSSC5CMkiKBLiweMv41Iwyjcm+rsys2DVmoz/V53iO9JlxR/G+V6mj5Sm16gDUFTUrqCnFxl9JKNJoSGXux/k82mTipl+NByOWwqAYNc9cI8JmVauyhK7eVDPuXmxGKHNFykdqs2uIojJZOjW77VaZMJYV4+KI/Bt63XetCNjNMrqOtR6VxRV9IHXcHdZSRvHKzir3B4wcHyVuLnWrdt362oaBKM+1vjZh+6ZKqvOeXBJYLNjRgkmpnLqKAm2OpPeQFQFE4rEe/rVYfUE423WVgJMi70kDSz9JF7DAl+SOzb/gtf2kEXQC5C9ej/XQGpgLviaJRF4NDvGo96d+y+dQG9HGk+d8Sesu1G5PqB+ECYf5HBxvdoXwKEpipN28MkHdtgMtzSVNcrMpMHTTDxE9sxK9/FaYrOrrpJNwbx7lUJx1CcK4GYA9LjFJrOXEzgQtV7zPwIrZAysQTBOzh0FFKU9BZQRGGB6xjCkSI2fmDjxo27Pv9nTJlQwrQchlnEYMxVpxFAyHj0yZUul7SSrQ5d8tsQ6gTKF4tIkmS7oOasCjV5El/kSGhZQrnUhBoS9HlX7oUF1ppfP9upQj49c3IL7xoA2cJ+hRJ+jyrro6xqRoLPUwzI1YMW7/eeqnTEB0M+pCAU8xyqbzvVN3OG7I="
+    on: master
+    app: team2
