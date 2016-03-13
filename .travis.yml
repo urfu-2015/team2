@@ -8,7 +8,7 @@ script:
 - npm run lint
 - npm test
 after_success:
-- '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && npm run deploy'
+- '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && npm run deploy:static'
 deploy:
     skip_cleanup: true
     provider: heroku
