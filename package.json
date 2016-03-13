@@ -24,15 +24,15 @@
   },
   "homepage": "https://github.com/urfu-2015/team2#readme",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^2.4.5",
-    "mockery": "^1.4.1",
-    "nock": "^7.2.2",
-    "npm-run-all": "^1.5.3",
-    "sinon": "^1.17.3",
-    "stylelint": "^5.0.1",
-    "stylelint-config-standard": "^4.0.1",
-    "surge": "^0.17.7"
+    "chai": "3.5.0",
+    "mocha": "2.4.5",
+    "mockery": "1.4.1",
+    "nock": "7.2.2",
+    "npm-run-all": "1.5.3",
+    "sinon": "1.17.3",
+    "stylelint": "5.0.1",
+    "stylelint-config-standard": "4.0.1",
+    "surge": "0.17.7"
   },
   "dependencies": {
     "express": "4.13.4",
