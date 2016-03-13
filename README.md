@@ -13,16 +13,22 @@ mongodb://dbuser:dbpassword@ds011439.mlab.com:11439/photoquest
 npm test
 
 ### Deploy приложения
+Приложение деплоится автоматически при merge в ветку master.
+
+### Deploy приложения (вручную)
 1. Установка [heroku](https://toolbelt.heroku.com)
 2. Авторизация `heroku login`
-3. `git push heroku master`
-4. Перейти по [ссылке](http://yahackteam2.herokuapp.com/)
+3. `heroku git:remote -a yahackteam2`
+4. `npm run deploy:dynamic`
+5. Перейти по [ссылке](http://yahackteam2.herokuapp.com)
+
 
 #### Команда «Миникупоросы»
 
 - [@Dotokoto](https://github.com/Dotokoto) (Ванадиевый)
 - [@Lakate](https://github.com/Lakate) (Железный)
-- [@Nikit0s](https://github.com/Nikit0s) (Медный)
+- [@Nikit0s](https://github.com
+/Nikit0s) (Медный)
 - [@Mokoshka](https://github.com/Mokoshka) (Никелевый)
 - [@Valeriyan](https://github.com/Valeriyan) (Свинцовый)
 - [@VasiliiKuznecov](https://github.com/VasiliiKuznecov) (Кобальтовый)
