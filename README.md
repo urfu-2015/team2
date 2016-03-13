@@ -11,10 +11,10 @@ mongodb://dbuser:dbpassword@ds011439.mlab.com:11439/photoquest
 
 #### Команда «Миникупоросы»
 
-@Dotokoto (Ванадиевый)
-@Lakate (Железный)
-@Nikit0s (Медный)
-@Mokoshka (Никелевый)
-@Valeriyan (Свинцовый)
-@VasiliiKuznecov (Кобальтовый)
-@sorovlad (Хромовый)
+- [@Dotokoto](https://github.com/Dotokoto) (Ванадиевый)
+- [@Lakate](https://github.com/Lakate) (Железный)
+- [@Nikit0s](https://github.com/Nikit0s) (Медный)
+- [@Mokoshka](https://github.com/Mokoshka) (Никелевый)
+- [@Valeriyan](https://github.com/Valeriyan) (Свинцовый)
+- [@VasiliiKuznecov](https://github.com/VasiliiKuznecov) (Кобальтовый)
+- [@sorovlad](https://github.com/sorovlad) (Хромовый)
