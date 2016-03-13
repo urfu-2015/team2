@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha test",
-    "lint": "jscs ."
+    "lint:css": "stylelint **/*.css",
+    "lint:js": "jscs .",
+    "lint": "npm run lint:css & npm run lint:js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +22,9 @@
   "homepage": "https://github.com/urfu-2015/team2#readme",
   "dependencies": {
     "jscs": "^2.11.0"
+  },
+  "devDependencies": {
+    "stylelint": "^5.0.1",
+    "stylelint-config-standard": "^4.0.1"
   }
 }
