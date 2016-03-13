@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Фотоквест</title>
+    </head>
+    <body>
+        <p>{{{ message }}}</p>
+        {{> header/header }}
+
+        {{> footer/footer }}
+
+        {{#if isDev}}
+            <script src="/main.js"></script>
+        {{else}}
+            <script src="//urfu2015-notes.surge.sh/main.js"></script>
+        {{/if}}
+    </body>
+</html>
