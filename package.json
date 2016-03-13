@@ -4,7 +4,7 @@
   "jscs": "2.2.1",
   "description": "photoquest",
   "scripts": {
-    "test": "mocha test",
+    "test": "mocha tests/*",
     "lint:css": "stylelint **/*.css",
     "lint:js": "jscs .",
     "lint": "npm run lint:css & npm run lint:js"
@@ -19,14 +19,19 @@
     "url": "https://github.com/urfu-2015/team2/issues"
   },
   "homepage": "https://github.com/urfu-2015/team2#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "mockery": "^1.4.1",
+    "nock": "^7.2.2",
+    "sinon": "^1.17.3",
+    "stylelint": "^5.0.1",
+    "stylelint-config-standard": "^4.0.1"
+  },
   "dependencies": {
     "express": "4.13.4",
     "hbs": "4.0.0",
     "jscs": "^2.11.0"
-  },
-  "devDependencies": {
-    "stylelint": "^5.0.1",
-    "stylelint-config-standard": "^4.0.1"
   },
   "contributors": [
     "Aksenova Natalia",
