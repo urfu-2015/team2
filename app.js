@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 
 const path = require('path');
+const argv = require('minimist')(process.argv.slice(2));
 
 const hbs = require('hbs');
 const morgan = require('morgan');
@@ -30,7 +31,7 @@ app.use((req, res, next) => {
         page: {
             title: 'PhotoQuest'
         },
-        isDev: true
+        isDev: argv.NODE_ENV === 'development'
     };
 
     next();

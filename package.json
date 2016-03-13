@@ -10,8 +10,8 @@
     "lint": "npm run lint:css & npm run lint:js",
     "build": "webpack",
     "dev": "webpack --config webpack.dev.config.js && npm run start:dev",
-    "start": "NODE_ENV=development node app.js",
-    "start:dev": "node app.js",
+    "start": "node app.js",
+    "start:dev": "node app.js --NODE_ENV=development",
     "deploy:dynamic": "git push heroku master",
     "deploy:static": "surge -p ./public -d hackathonteam2.surge.sh",
     "deploy": "npm-run-all deploy:*"
@@ -49,7 +49,8 @@
   "dependencies": {
     "express": "4.13.4",
     "hbs": "4.0.0",
-    "jscs": "^2.11.0"
+    "jscs": "^2.11.0",
+    "minimist": "^1.2.0"
   },
   "contributors": [
     "Aksenova Natalia",
