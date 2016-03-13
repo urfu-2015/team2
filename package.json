@@ -8,7 +8,10 @@
     "lint:css": "stylelint **/*.css",
     "lint:js": "jscs .",
     "lint": "npm run lint:css & npm run lint:js",
+    "build": "webpack",
+    "dev": "webpack --config webpack.dev.config.js && npm run start:dev",
     "start": "node app.js",
+    "start:dev": "node app.js --NODE_ENV=development",
     "deploy:dynamic": "git push heroku master",
     "deploy:static": "surge -p ./public -d hackathonteam2.surge.sh",
     "deploy": "npm-run-all deploy:*"
@@ -32,12 +35,22 @@
     "sinon": "1.17.3",
     "stylelint": "5.0.1",
     "stylelint-config-standard": "4.0.1",
-    "surge": "0.17.7"
+    "surge": "0.17.7",
+    "autoprefixer": "6.3.3",
+    "css-loader": "0.23.1",
+    "cssnano": "3.5.2",
+    "extract-text-webpack-plugin": "1.0.1",
+    "file-loader": "0.8.5",
+    "morgan": "1.7.0",
+    "postcss-loader": "0.8.2",
+    "style-loader": "0.13.0",
+    "webpack": "1.12.14"
   },
   "dependencies": {
     "express": "4.13.4",
     "hbs": "4.0.0",
-    "jscs": "^2.11.0"
+    "jscs": "^2.11.0",
+    "minimist": "^1.2.0"
   },
   "contributors": [
     "Aksenova Natalia",

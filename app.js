@@ -4,13 +4,19 @@ const express = require('express');
 const app = express();
 
 const path = require('path');
+const argv = require('minimist')(process.argv.slice(2));
 
 const hbs = require('hbs');
+const morgan = require('morgan');
 
 const viewsDir = path.join(__dirname, 'bundles');
+const publicDir = path.join(__dirname, 'public');
 
 app.set('views', viewsDir);
 app.set('view engine', 'hbs');
+
+app.use(morgan('dev'));
+app.use(express.static(publicDir));
 
 hbs.registerPartials(path.join(__dirname, 'blocks'));
 
@@ -25,7 +31,7 @@ app.use((req, res, next) => {
         page: {
             title: 'PhotoQuest'
         },
-        isDev: true
+        isDev: argv.NODE_ENV === 'development'
     };
 
     next();
