@@ -1,8 +1,7 @@
 {
-  "name": "team2",
+  "name": "photoquest",
   "version": "1.0.0",
   "description": "photoquest",
-  "main": "index.js",
   "scripts": {
     "test": "mocha test"
   },
@@ -10,10 +9,18 @@
     "type": "git",
     "url": "git+https://github.com/urfu-2015/team2.git"
   },
-  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/urfu-2015/team2/issues"
   },
-  "homepage": "https://github.com/urfu-2015/team2#readme"
+  "homepage": "https://github.com/urfu-2015/team2#readme",
+  "contributors": [
+    "Aksenova Natalia",
+    "Kuznecov Vasilii",
+    "Lopes Luis",
+    "Sorokin Vlad",
+    "Pestov Nikita",
+    "Rybalka Ekaterina",
+    "Latipova Ekaterina"
+  ]
 }
