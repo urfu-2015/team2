@@ -6,11 +6,16 @@ const app = express();
 const path = require('path');
 
 const hbs = require('hbs');
+const morgan = require('morgan');
 
 const viewsDir = path.join(__dirname, 'bundles');
+const publicDir = path.join(__dirname, 'public');
 
 app.set('views', viewsDir);
 app.set('view engine', 'hbs');
+
+app.use(morgan('dev'));
+app.use(express.static(publicDir));
 
 hbs.registerPartials(path.join(__dirname, 'blocks'));
 

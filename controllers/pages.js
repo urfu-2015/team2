@@ -1,6 +1,7 @@
 exports.index = (req, res) => {
     const data = {
-        message: 'Hello, World'
+        currentCity: 'Екатеринбург',
+        loggedIn: false
     };
     res.render('main/main', Object.assign(data, req.commonData));
 };
