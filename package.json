@@ -15,9 +15,8 @@
   },
   "homepage": "https://github.com/urfu-2015/team2#readme",
   "dependencies": {
-    "express": "^4.13.4",
-    "hbs": "^4.0.0",
-    "path": "^0.12.7"
+    "express": "4.13.4",
+    "hbs": "4.0.0"
   },
   "contributors": [
     "Aksenova Natalia",
