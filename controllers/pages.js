@@ -15,4 +15,10 @@ exports.logout = (req, res) => {
     res.redirect('/');
 };
 
+exports.login = (req, res) => {
+    if (!req.user) {
+        throw new Error('user null');
+    }
+    res.redirect('/quests');
+};
 exports.error404 = (req, res) => res.sendStatus(404);
