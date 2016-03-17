@@ -16,8 +16,7 @@
     "deploy:static": "surge -p ./public -d hackathonteam2.surge.sh",
     "deploy": "npm-run-all deploy:*",
     "precommit": "npm run test & npm run lint",
-    "prepush": "npm run test & npm run lint",
-    "prepublish": "npm run test & npm run lint"
+    "prepush": "npm run test & npm run lint"
   },
   "repository": {
     "type": "git",
@@ -46,9 +45,9 @@
     "postcss-loader": "0.8.2",
     "sinon": "1.17.3",
     "style-loader": "0.13.0",
-    "stylelint": "5.0.1",
+    "stylelint": "^5.0.1",
     "stylelint-config-standard": "4.0.1",
-    "supertest": "^1.2.0",
+    "supertest": "1.2.0",
     "surge": "0.17.7",
     "webpack": "1.12.14"
   },

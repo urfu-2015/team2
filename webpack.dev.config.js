@@ -1,3 +1,5 @@
+'use strict';
+
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
@@ -30,7 +32,5 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin('[name].css')
     ],
-    postcss: () => {
-        return [autoprefixer];
-    }
+    postcss: () => [autoprefixer]
 };
