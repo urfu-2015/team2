@@ -48,14 +48,18 @@
     "style-loader": "0.13.0",
     "stylelint": "5.0.1",
     "stylelint-config-standard": "4.0.1",
-    "supertest": "^1.2.0",
+    "supertest": "1.2.0",
     "surge": "0.17.7",
     "webpack": "1.12.14"
   },
   "dependencies": {
+    "cookie-parser": "1.4.1",
     "express": "4.13.4",
+    "express-session": "1.13.0",
     "hbs": "4.0.0",
-    "minimist": "1.2.0"
+    "minimist": "1.2.0",
+    "passport": "0.3.2",
+    "passport-auth0": "0.5.1"
   },
   "contributors": [
     "Aksenova Natalia",

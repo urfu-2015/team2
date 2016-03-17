@@ -1,10 +1,16 @@
 <header>
     <div class="city">
         <p>{{ currentCity }}</p>
-        <button name="chooseCity">выбрать город</button>
+        <button name="chooseCity">Выбрать город</button>
     </div>
 
     <div class="auth">
+        {{#if user}}
+            <div>{{user.displayName}}</div>
+            <a href="/logout">Выйти</a>
+        {{else}}
+            <a href="/login">Войти</a>
+        {{/if}}
     </div>
 
 </header>
