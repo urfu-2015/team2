@@ -1,4 +1,7 @@
 {
+  "preset": "airbnb",
+  "requireTrailingComma": false,
+  "validateLineBreaks": false,
   "excludeFiles": [
     "**/node_modules/**",
     "public/**"
