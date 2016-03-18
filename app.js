@@ -19,7 +19,7 @@ const viewsDir = path.join(__dirname, 'bundles');
 const publicDir = path.join(__dirname, 'public');
 
 app.use(cookieParser());
-app.use(session({secret: 'YOUR_SECRET_HERE', resave: false, saveUninitialized: false}));
+app.use(session({ secret: 'YOUR_SECRET_HERE', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 

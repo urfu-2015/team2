@@ -1,3 +1,5 @@
+'use strict';
+
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -32,7 +34,5 @@ module.exports = {
         new ExtractTextPlugin('[name].css'),
         new webpack.optimize.UglifyJsPlugin()
     ],
-    postcss: () => {
-        return [autoprefixer, cssnano];
-    }
+    postcss: () => [autoprefixer, cssnano]
 };
