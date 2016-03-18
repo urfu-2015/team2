@@ -2,6 +2,7 @@
   "preset": "airbnb",
   "requireTrailingComma": false,
   "validateLineBreaks": false,
+  "requirePaddingNewLinesAfterBlocks": false,
   "excludeFiles": [
     "**/node_modules/**",
     "public/**"
@@ -17,6 +18,7 @@
     "catch",
     "else"
   ],
+  "disallowVar": true,
   "disallowMixedSpacesAndTabs": true,
   "disallowMultipleSpaces": true,
   "disallowMultipleLineStrings": true,

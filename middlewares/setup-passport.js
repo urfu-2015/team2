@@ -1,7 +1,7 @@
-var passport = require('passport');
-var Auth0Strategy = require('passport-auth0');
+const passport = require('passport');
+const Auth0Strategy = require('passport-auth0');
 
-var strategy = new Auth0Strategy({
+const strategy = new Auth0Strategy({
     domain: 'yahackathonteam2.auth0.com',
     clientID: 'azroWxJIb8My71LFeqLWu3BGAKYp5UtC',
     clientSecret: 'ySKctUN_SIyD7encV4Oxss5yy3c-z4ig50YVaq-M0Umobvxc-0ZNryIGmvNbDSKT',
