@@ -1,4 +1,5 @@
 'use strict';
+const Promise = require('bluebird');
 
 const express = require('express');
 const url = require('url');
@@ -8,6 +9,7 @@ const path = require('path');
 const argv = require('minimist')(process.argv.slice(2));
 
 const hbs = require('hbs');
+const registerPartials = Promise.promisify(hbs.registerPartials.bind(hbs));
 
 const morgan = require('morgan');
 
@@ -18,8 +20,6 @@ const session = require('express-session');
 
 const viewsDir = path.join(__dirname, 'bundles');
 const publicDir = path.join(__dirname, 'public');
-
-const Promise = require('bluebird');
 
 app.use(cookieParser());
 app.use(session({ secret: 'YOUR_SECRET_HERE', resave: false, saveUninitialized: false }));
@@ -55,15 +55,9 @@ app.use((req, res, next) => {
 
 require('./routes.js')(app);
 
-let appPromise = new Promise((resolve, reject) => {
-    hbs.registerPartials(path.join(__dirname, 'blocks'), (error) => {
-        if (error) {
-            reject(error);
-        }
-        app.listen(app.get('port'),
-            () => console.log(`Listening on port ${app.get('port')}`));
-        resolve(app);
-    });
-});
-
-module.exports = appPromise;
+module.exports = registerPartials(path.join(__dirname, 'blocks'))
+        .then(() => {
+            app.listen(app.get('port'),
+                () => console.log(`Listening on port ${app.get('port')}`));
+            return app;
+        });
