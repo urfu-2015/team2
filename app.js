@@ -62,6 +62,6 @@ module.exports = registerPartials(path.join(__dirname, 'blocks'))
         return app;
     })
     .catch(error => {
-        console.log('Some error occurred ' + error);
+        console.error('Some error occurred ' + error);
     });
 
