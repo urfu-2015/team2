@@ -56,8 +56,12 @@ app.use((req, res, next) => {
 require('./routes.js')(app);
 
 module.exports = registerPartials(path.join(__dirname, 'blocks'))
-        .then(() => {
-            app.listen(app.get('port'),
-                () => console.log(`Listening on port ${app.get('port')}`));
-            return app;
-        });
+    .then(() => {
+        app.listen(app.get('port'),
+            () => console.log(`Listening on port ${app.get('port')}`));
+        return app;
+    })
+    .catch(error => {
+        console.log('Some error occurred ' + error);
+    });
+
