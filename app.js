@@ -59,12 +59,12 @@ require('./routes.js')(app);
 module.exports = registerPartials(path.join(__dirname, 'blocks'))
     .then(() => {
         listen(app.get('port'))
-            .then(() => {
-                console.log(`Listening on port ${app.get('port')}`);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+            .then(() =>
+                console.log(`Listening on port ${app.get('port')}`)
+            )
+            .catch(error =>
+                console.error(error)
+            );
         return app;
     })
     .catch(error => {
