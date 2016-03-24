@@ -4,6 +4,7 @@ const Promise = require('bluebird');
 const express = require('express');
 const url = require('url');
 const app = express();
+const listen = Promise.promisify(app.listen.bind(app));
 
 const path = require('path');
 const argv = require('minimist')(process.argv.slice(2));
@@ -62,6 +63,6 @@ module.exports = registerPartials(path.join(__dirname, 'blocks'))
         return app;
     })
     .catch(error => {
-        console.error('Some error occurred ' + error);
+        console.error(error);
     });
 
