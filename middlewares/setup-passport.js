@@ -1,10 +1,13 @@
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
+const fs = require('fs');
+const clientSecret = process.env.AUTH0_CLIENTSECRET;
+const clientID = JSON.parse(fs.readFileSync('./settings')).auth_clientID;
 
 const strategy = new Auth0Strategy({
     domain: 'yahackathonteam2.auth0.com',
-    clientID: 'azroWxJIb8My71LFeqLWu3BGAKYp5UtC',
-    clientSecret: 'ySKctUN_SIyD7encV4Oxss5yy3c-z4ig50YVaq-M0Umobvxc-0ZNryIGmvNbDSKT',
+    clientID: clientID,
+    clientSecret: clientSecret,
     callbackURL: '/login'
 }, function (accessToken, refreshToken, extraParams, profile, done) {
     // accessToken is the token to call Auth0 API (not needed in the most cases)

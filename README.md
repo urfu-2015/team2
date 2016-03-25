@@ -22,6 +22,11 @@ npm test
 4. `npm run deploy:dynamic`
 5. Перейти по [ссылке](http://yahackteam2.herokuapp.com)
 
+### Локальный запуск приложения
+0. Установака [heroku](https://toolbelt.heroku.com) (если еще не установлена), авторизация `heroku login`
+1. Сохранение локально переменного окружения heroku `heroku config --app yahackteam2 -s > .env`
+2. Запуск `heroku local:start web`
+
 
 #### Команда «Миникупоросы»
 
