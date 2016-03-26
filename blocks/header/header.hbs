@@ -7,6 +7,7 @@
     <div class="auth">
         {{#if user}}
             <div class="avatar">
+                <img src="{{ user.picture }}" width="100" height="100" alt="avatar {{user.displayName}}">
             </div>
             <div>{{user.displayName}}</div>
             <a href="/logout">Выйти</a>
