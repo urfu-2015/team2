@@ -17,7 +17,7 @@
     "deploy": "npm-run-all deploy:*",
     "precommit": "npm run test & npm run lint",
     "prepush": "npm run test & npm run lint",
-    "setVar": "node -e 'process.env.AUTH0_CLIENTSECRET=argv.NODE_ENV' --NODE_ENV=$AUTH0_CLIENTSECRET"
+    "setVar": "node setVar.js --AUTH0_CLIENTSECRET=$AUTH0_CLIENTSECRET"
   },
   "repository": {
     "type": "git",
