@@ -67,7 +67,7 @@ module.exports = registerPartials(path.join(__dirname, 'blocks'))
             );
         return app;
     })
-    .catch(error => {
-        console.error(error);
-    });
+    .catch(error =>
+        console.error(error)
+    );
 
