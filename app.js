@@ -4,13 +4,13 @@ const Promise = require('bluebird');
 const express = require('express');
 const url = require('url');
 const app = express();
-const listen = Promise.promisify(app.listen.bind(app));
+const listen = Promise.promisify(app.listen, {context: app});
 
 const path = require('path');
 const argv = require('minimist')(process.argv.slice(2));
 
 const hbs = require('hbs');
-const registerPartials = Promise.promisify(hbs.registerPartials.bind(hbs));
+const registerPartials = Promise.promisify(hbs.registerPartials, {context: hbs});
 
 const morgan = require('morgan');
 
@@ -57,17 +57,9 @@ app.use((req, res, next) => {
 require('./routes.js')(app);
 
 module.exports = registerPartials(path.join(__dirname, 'blocks'))
+    .then(() => listen(app.get('port')))
     .then(() => {
-        listen(app.get('port'))
-            .then(() =>
-                console.log(`Listening on port ${app.get('port')}`)
-            )
-            .catch(error =>
-                console.error(error)
-            );
+        console.log(`Listening on port ${app.get('port')}`);
         return app;
     })
-    .catch(error =>
-        console.error(error)
-    );
-
+    .catch(error => console.error(error));
