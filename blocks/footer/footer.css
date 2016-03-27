@@ -1,4 +1,5 @@
-.footer-block {
+.footer-block
+{
     border: 1px solid #666;
     box-shadow: 2px 2px 5px 2px #666;
     border-radius: 5px;
@@ -10,11 +11,13 @@
 }
 
 address,
-.footer-block p {
+.footer-block p
+{
     margin-bottom: 0;
 }
 
-a {
+a
+{
     color: #666;
     text-decoration: underline;
 }
