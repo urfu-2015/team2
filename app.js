@@ -4,13 +4,13 @@ const Promise = require('bluebird');
 const express = require('express');
 const url = require('url');
 const app = express();
-const listen = Promise.promisify(app.listen, {context: app});
+const listen = Promise.promisify(app.listen, { context: app });
 
 const path = require('path');
 const argv = require('minimist')(process.argv.slice(2));
 
 const hbs = require('hbs');
-const registerPartials = Promise.promisify(hbs.registerPartials, {context: hbs});
+const registerPartials = Promise.promisify(hbs.registerPartials, { context: hbs });
 
 const morgan = require('morgan');
 
