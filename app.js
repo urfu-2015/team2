@@ -2,6 +2,7 @@
 const Promise = require('bluebird');
 
 const express = require('express');
+const mongoose = require('mongoose');
 const url = require('url');
 const app = express();
 const listen = Promise.promisify(app.listen, { context: app });
@@ -21,6 +22,9 @@ const session = require('express-session');
 
 const viewsDir = path.join(__dirname, 'bundles');
 const publicDir = path.join(__dirname, 'public');
+
+mongoose.connect('mongodb://<login>:<password>@ds011439.mlab.com:11439/photoquest');
+mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 
 app.use(cookieParser());
 app.use(session({ secret: 'YOUR_SECRET_HERE', resave: false, saveUninitialized: false }));
