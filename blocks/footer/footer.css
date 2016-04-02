@@ -10,14 +10,7 @@
     align-items: center;
 }
 
-address,
-.footer-block p
-{
-    margin-bottom: 0;
-}
-
 a
 {
     color: #666;
-    text-decoration: underline;
 }

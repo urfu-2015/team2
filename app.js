@@ -36,7 +36,9 @@ app.use(express.static(publicDir));
 
 app.set('port', (process.env.PORT || 8080));
 
+let startBlocksData = require('./test.json');
 app.use((req, res, next) => {
+
     req.commonData = {
         meta: {
             description: 'Hahaton',
@@ -50,7 +52,8 @@ app.use((req, res, next) => {
             protocol: req.protocol,
             host: req.get('host')
         }),
-        isDev: argv.NODE_ENV === 'development'
+        isDev: argv.NODE_ENV === 'development',
+        common: startBlocksData
     };
 
     next();
