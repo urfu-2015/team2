@@ -14,4 +14,4 @@ questsDoneSchema.methods.getQuestsDone = cb => {
     });
 };
 
-module.exports = mongoose.model('QuestsDone' , questsDoneSchema);
+module.exports = mongoose.model('QuestsDone', questsDoneSchema);
