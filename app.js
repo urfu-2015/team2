@@ -2,7 +2,6 @@
 const Promise = require('bluebird');
 
 const express = require('express');
-const mongoose = require('mongoose');
 const url = require('url');
 const app = express();
 const listen = Promise.promisify(app.listen, { context: app });
