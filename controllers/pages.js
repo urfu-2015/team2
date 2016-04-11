@@ -1,9 +1,7 @@
 const fs = require('fs');
 const layouts = require('handlebars-layouts');
 
-// Так нужно сделать, так как внутри handlebars лежит внутренний нужный метод
-const hbs = require('hbs');
-const handlebars = hbs.handlebars;
+const handlebars = require('hbs').handlebars;
 
 // Register helpers
 handlebars.registerHelper(layouts(handlebars));

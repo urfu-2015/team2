@@ -1,11 +1,4 @@
 {{#extend "base"}}
-    {{#content "head" mode="append"}}
-        {{#if isDev}}
-            <link rel="stylesheet" href="/main.css">
-        {{else}}
-            <link rel="stylesheet" href="//hackathonteam2.surge.sh/main.css">
-        {{/if}}
-    {{/content}}
 
     {{#content "header"}}
         {{> header/header }}
@@ -13,14 +6,6 @@
 
     {{#content "footer"}}
         {{> footer/footer }}
-    {{/content}}
-
-    {{#content "scripts" mode="append"}}
-        {{#if isDev}}
-            <script src="/main.js"></script>
-        {{else}}
-            <script src="//hackathonteam2.surge.sh/main.js"></script>
-        {{/if}}
     {{/content}}
 
 {{/extend}}
