@@ -1,4 +1,4 @@
-.footer-block
+.footer
 {
     border: 1px solid #666;
     box-shadow: 2px 2px 5px 2px #666;
@@ -10,7 +10,7 @@
     align-items: center;
 }
 
-a
+.footer-address__link
 {
     color: #666;
 }

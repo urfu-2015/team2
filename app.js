@@ -36,7 +36,7 @@ app.use(express.static(publicDir));
 
 app.set('port', (process.env.PORT || 8080));
 
-let startBlocksData = require('./test.json');
+let startBlocksData = require('./startBlocksData.json');
 app.use((req, res, next) => {
 
     req.commonData = {
