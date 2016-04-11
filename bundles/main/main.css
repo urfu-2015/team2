@@ -1,5 +1,2 @@
 @import "../../blocks/header/header.css";
-
-html {
-    margin: 0;
-}
+@import "../../blocks/footer/footer.css";
