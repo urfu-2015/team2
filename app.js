@@ -5,6 +5,7 @@ const express = require('express');
 const url = require('url');
 const app = express();
 const listen = Promise.promisify(app.listen, { context: app });
+const favicon = require('express-favicon');
 
 const path = require('path');
 const argv = require('minimist')(process.argv.slice(2));
@@ -26,6 +27,7 @@ app.use(cookieParser());
 app.use(session({ secret: 'YOUR_SECRET_HERE', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(favicon('./favicon.ico'));
 
 app.set('views', viewsDir);
 app.set('view engine', 'hbs');
