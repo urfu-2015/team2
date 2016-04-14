@@ -2,7 +2,6 @@
 const Promise = require('bluebird');
 
 const express = require('express');
-const mongoose = require('mongoose');
 const url = require('url');
 const app = express();
 const listen = Promise.promisify(app.listen, { context: app });
@@ -15,6 +14,7 @@ const hbs = require('hbs');
 const registerPartials = Promise.promisify(hbs.registerPartials, { context: hbs });
 
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
 const passport = require('passport');
 const strategy = require('./middlewares/setup-passport');
@@ -23,9 +23,6 @@ const session = require('express-session');
 
 const viewsDir = path.join(__dirname, 'bundles');
 const publicDir = path.join(__dirname, 'public');
-
-mongoose.connect('mongodb://<login>:<password>@ds011439.mlab.com:11439/photoquest');
-mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 
 app.use(cookieParser());
 app.use(session({ secret: 'YOUR_SECRET_HERE', resave: false, saveUninitialized: false }));
@@ -39,6 +36,11 @@ app.use(morgan('dev'));
 app.use(express.static(publicDir));
 
 app.set('port', (process.env.PORT || 8080));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
 let startBlocksData = require('./startBlocksData.json');
 app.use((req, res, next) => {
