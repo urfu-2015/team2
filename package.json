@@ -16,8 +16,7 @@
     "deploy:static": "surge -p ./public -d hackathonteam2.surge.sh",
     "deploy": "npm-run-all deploy:*",
     "precommit": "npm run test & npm run lint",
-    "prepush": "npm run test & npm run lint",
-    "setVar": "node setVar.js --AUTH0_CLIENTSECRET=$AUTH0_CLIENTSECRET"
+    "prepush": "npm run test & npm run lint"
   },
   "repository": {
     "type": "git",
@@ -54,6 +53,7 @@
   },
   "dependencies": {
     "bluebird": "3.3.4",
+    "config": "1.20.1",
     "cookie-parser": "1.4.1",
     "express": "4.13.4",
     "express-favicon": "1.0.1",

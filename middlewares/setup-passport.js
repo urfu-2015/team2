@@ -1,11 +1,13 @@
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const settings = require('../settings.js');
-const clientSecret = process.env.AUTH0_CLIENTSECRET;
-const clientID = settings.auth_clientID;
+const config = require('config');
+const clientSecret = process.env.AUTH0_CLIENTSECRET || config.get('auth.client_secret');
+const clientID = config.get('auth.client_ID');
+const authDomain = config.get('auth.domain');
 
 const strategy = new Auth0Strategy({
-    domain: 'yahackathonteam2.auth0.com',
+    domain: authDomain,
     clientID: clientID,
     clientSecret: clientSecret,
     callbackURL: '/login'
