@@ -7,6 +7,7 @@ router.get('/', user.getUser);
 router.post('/add', user.createUser);
 
 router.get('/:id', user.getUser);
+router.put('/:id', user.updateUser);
 
 router.get('/:id/qStarted', user.getUsersQStarted);
 router.get('/:id/qMarked', user.getUsersQMarked);

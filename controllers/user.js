@@ -8,7 +8,6 @@ mongoose.connection.on('error', console.error.bind(console, 'connection error'))
 
 exports.createUser = (req, res) => {
     const data = {
-        _id: req.body.id,
         login: req.body.login,
         avatar: req.body.avatar
     };
@@ -16,9 +15,27 @@ exports.createUser = (req, res) => {
     const newUser = new User(data);
     newUser.save(err => {
         if (err) {
-            console.error('Error on quest save: ' + err);
+            console.error('Error on user save: ' + err);
         } else {
             res.json(data);
+        }
+    });
+};
+
+exports.updateUser = (req, res) => {
+    User.find({ _id: req.params.id }, (err, users) => {
+        if (err) {
+            console.error(err);
+        } else {
+            users = users.pop();
+            users[req.body.questType].push(req.body.id);
+            users.save(err => {
+                if (err) {
+                    console.error('Error on quest save: ' + err);
+                } else {
+                    res.json(users);
+                }
+            });
         }
     });
 };
