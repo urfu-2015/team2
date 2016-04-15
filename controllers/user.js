@@ -3,7 +3,7 @@
 const User = require('../models/user');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://<login>:<password>@ds011439.mlab.com:11439/photoquest');
+mongoose.connect('mongodb://team2:yahackteam2@ds011439.mlab.com:11439/photoquest');
 mongoose.connection.on('error', console.error.bind(console, 'connection error'));
 
 exports.createUser = (req, res) => {
@@ -24,7 +24,10 @@ exports.createUser = (req, res) => {
 };
 
 exports.getUser = (req, res) => {
-    let query = req.params.id ? { _id: req.params.id } : {};
+    if (!req.params.id) {
+        res.send('Wrong arguments');
+    }
+    let query = { _id: req.params.id };
     User.find(query, (err, users) => {
         if (err) {
             console.error(err);
