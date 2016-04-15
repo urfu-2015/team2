@@ -65,9 +65,9 @@ app.use((req, res, next) => {
             host: req.get('host')
         }),
         common: startBlocksData,
-        publicHost: (argv.NODE_ENV === 'development') ? '' : '//hackathonteam2.surge.sh'
+        publicHost: (argv.NODE_ENV === 'development') ? '' : '//hackathonteam2.surge.sh',
+        errors: []
     };
-
     next();
 });
 

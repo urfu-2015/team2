@@ -1,0 +1,25 @@
+@import "../error/error.css";
+
+.errors
+{
+    position: absolute;
+    width: 100%;
+    background-color: #ff5853;
+    border: 1px solid black;
+    min-height: 30px;
+}
+
+.errors__close
+{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 16px;
+    height: 16px;
+    background-image: url("close.png");
+}
+
+.errors_hidden
+{
+    display: none;
+}

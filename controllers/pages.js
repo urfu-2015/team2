@@ -22,3 +22,11 @@ exports.index = (req, res) => {
 };
 
 exports.error404 = (req, res) => res.sendStatus(404);
+
+const checkLoggedIn = (req) => {
+    if (!req.user) {
+        req.commonData.errors.push({
+            text: 'You are not logged in'
+        });
+    }
+};
