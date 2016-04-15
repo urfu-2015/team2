@@ -1,28 +1,33 @@
 header
 {
     display: flex;
-    flex-direction: row;
-    padding: 10px;
     border: 1px solid #666;
     border-radius: 5px;
     margin: 10px;
     padding: 5px;
+    height: 100px;
 }
 
 .header-logo
 {
-    background: url("logo.svg") no-repeat center center;
-    background-size: contain;
-    width: 100px;
-    height: 100px;
+    flex: 1;
+}
+
+.header-logo img
+{
+    width: 115px;
+}
+
+.header-auth__avatar img
+{
+    width: 85px;
 }
 
 .navigation,
 .header-auth
 {
+    flex: 5;
     display: flex;
-    margin: 70px 10px auto;
-    border: 1px solid red;
 }
 
 .navigation-city,
@@ -30,14 +35,17 @@ header
 .navigation-quests
 {
     margin-left: 10px;
+    align-self: flex-end;
 }
 
 .header-auth
 {
-    flex-basis: 20%;
+    justify-content: flex-end;
 }
 
-.navigation
+.header-auth > *
 {
-    flex-basis: 60%;
+    margin-right: 5px;
+    align-self: flex-end;
 }
+

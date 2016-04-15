@@ -11,10 +11,10 @@
 
     <div class="header-auth">
         {{#if user}}
+            <p class="header-auth__nickname">{{user.name.givenName}}</p>
             <div class="header-auth__avatar">
                 <img src="{{ user.picture }}" alt="avatar {{user.name.givenName}}">
             </div>
-            <p>{{user.name.givenName}}</p>
             <a class="header-auth__logout" href="/logout">Выйти</a>
         {{else}}
             <a class="header-auth__login" href="/login">Войти</a>
