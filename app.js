@@ -57,6 +57,7 @@ app.use((req, res, next) => {
             title: 'PhotoQuest'
         },
         user: req.user,
+        currentCity: 'Екатеринбург',
         host: url.format({
             protocol: req.protocol,
             host: req.get('host')

@@ -2,6 +2,42 @@ header
 {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     padding: 10px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+}
+
+.header-logo
+{
+    background: url("logo.svg") no-repeat center center;
+    background-size: contain;
+    width: 100px;
+    height: 100px;
+}
+
+.navigation,
+.header-auth
+{
+    display: flex;
+    margin: 70px 10px auto;
+    border: 1px solid red;
+}
+
+.navigation-city,
+.navigation-main,
+.navigation-quests
+{
+    margin-left: 10px;
+}
+
+.header-auth
+{
+    flex-basis: 20%;
+}
+
+.navigation
+{
+    flex-basis: 60%;
 }

@@ -24,8 +24,12 @@ module.exports = {
                 loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
             },
             {
-                test: /(\.png$)|(\.jpg$)|(\.jpeg$)/,
+                test: /(\.jpg$)|(\.jpeg$)/,
                 loader: 'file-loader'
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-loader'
             }
         ]
     },
