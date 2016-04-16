@@ -1,10 +1,6 @@
 'use strict';
 
 const User = require('../models/user');
-const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://<login>:<password>@ds011439.mlab.com:11439/photoquest');
-mongoose.connection.on('error', console.error.bind(console, 'connection error'));
 
 exports.createUser = (req, res) => {
     const data = {

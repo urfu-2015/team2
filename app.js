@@ -6,6 +6,10 @@ const url = require('url');
 const app = express();
 const listen = Promise.promisify(app.listen, { context: app });
 const favicon = require('express-favicon');
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://<login>:<password>@ds011439.mlab.com:11439/photoquest');
+mongoose.connection.on('error', console.error.bind(console, 'connection error'));
 
 const path = require('path');
 const argv = require('minimist')(process.argv.slice(2));
