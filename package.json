@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "bluebird": "3.3.4",
+    "config": "1.20.1",
     "cookie-parser": "1.4.1",
     "express": "4.13.4",
     "express-favicon": "1.0.1",
