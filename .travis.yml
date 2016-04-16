@@ -7,7 +7,7 @@ install:
 - npm run build
 script:
 - npm run lint
-- npm test
+- npm test -- --AUTH0_CLIENTSECRET=$AUTH0_CLIENTSECRET
 after_success:
 - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && npm run deploy:static'
 deploy:
