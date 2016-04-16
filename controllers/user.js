@@ -3,7 +3,7 @@
 const User = require('../models/user');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://team2:yahackteam2@ds011439.mlab.com:11439/photoquest');
+mongoose.connect('mongodb://<login>:<password>@ds011439.mlab.com:11439/photoquest');
 mongoose.connection.on('error', console.error.bind(console, 'connection error'));
 
 exports.createUser = (req, res) => {
@@ -40,7 +40,6 @@ exports.getUser = (req, res) => {
 
 exports.getUserQuests = (req, res) => {
     let query = { _id: req.params.id };
-    console.log(req.params);
     User.findUser(query, users => {
         let user = users.pop();
         query.field = req.params.qType;
