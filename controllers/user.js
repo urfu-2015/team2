@@ -23,20 +23,10 @@ exports.createUser = (req, res) => {
 };
 
 exports.updateUser = (req, res) => {
-    User.find({ _id: req.params.id }, (err, users) => {
-        if (err) {
-            console.error(err);
-        } else {
-            users = users.pop();
-            users[req.body.questType].push(req.body.id);
-            users.save(err => {
-                if (err) {
-                    console.error('Error on quest save: ' + err);
-                } else {
-                    res.json(users);
-                }
-            });
-        }
+    let query = { _id: req.params.id };
+    User.findUser(query, users => {
+        let user = users.pop();
+        user.update({ questType: req.body.questType, id: req.body.id }, user => res.json(user));
     });
 };
 
@@ -45,47 +35,15 @@ exports.getUser = (req, res) => {
         res.send('Wrong arguments');
     }
     let query = { _id: req.params.id };
-    User.find(query, (err, users) => {
-        if (err) {
-            console.error(err);
-        } else {
-            res.json(users);
-        }
+    User.findUser(query, users => res.json(users));
+};
+
+exports.getUserQuests = (req, res) => {
+    let query = { _id: req.params.id };
+    console.log(req.params);
+    User.findUser(query, users => {
+        let user = users.pop();
+        query.field = req.params.qType;
+        user.populateField(query, user => res.json(user));
     });
-};
-
-exports.getUsersQStarted = (req, res) => {
-    User.find({ _id: req.params.id })
-        .populate('qStarted')
-        .exec((err, users) => {
-            if (err) {
-                console.error(err);
-            } else {
-                res.json(users[0].qStarted);
-            }
-        });
-};
-
-exports.getUsersQMarked = (req, res) => {
-    User.find({ _id: req.params.id })
-        .populate('qMarked')
-        .exec((err, users) => {
-            if (err) {
-                console.error(err);
-            } else {
-                res.json(users[0].qMarked);
-            }
-        });
-};
-
-exports.getUsersQDone = (req, res) => {
-    User.find({ _id: req.params.id })
-        .populate('qDone')
-        .exec((err, users) => {
-            if (err) {
-                console.error(err);
-            } else {
-                res.json(users[0].qDone);
-            }
-        });
 };
