@@ -7,7 +7,7 @@ let commentsSchema = new Schema({
     collectionName: String,
     objectId: Number,
     text: String,
-    userId: { type: Number, ref: 'User' }
+    userId: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
 module.exports = mongoose.model('Comments', commentsSchema);
