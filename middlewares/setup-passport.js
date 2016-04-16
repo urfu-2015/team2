@@ -1,6 +1,5 @@
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
-const settings = require('../settings.js');
 const config = require('config');
 const clientSecret = process.env.AUTH0_CLIENTSECRET || config.get('auth.client_secret');
 const clientID = config.get('auth.client_ID');
