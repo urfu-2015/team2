@@ -9,10 +9,10 @@ let stageSchema = new Schema({
     photo: String,
     hint: String,
     order: Number,
-    likes: [{ type: Schema.Types.ObjectId, ref: 'Likes' }],
+    likes: [{ type: Schema.Types.ObjectId, ref: 'StagesLikes' }],
     likesCount: Number,
     dislikesCount: Number,
-    comments: [{ type: Schema.Types.ObjectId, ref: 'Comments' }]
+    comments: [{ type: Schema.Types.ObjectId, ref: 'StagesComments' }]
 });
 
 module.exports = mongoose.model('Stages', stageSchema);
