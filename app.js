@@ -24,9 +24,6 @@ const session = require('express-session');
 const viewsDir = path.join(__dirname, 'bundles');
 const publicDir = path.join(__dirname, 'public');
 
-// Ждем пока замерджат PR с конфигами, чтобы подставлять логин-пароль
-mongoose.connect('mongodb://<login>:<password>@ds011439.mlab.com:11439/photoquest');
-
 app.use(cookieParser());
 app.use(session({ secret: 'YOUR_SECRET_HERE', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());

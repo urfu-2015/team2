@@ -4,18 +4,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let stageSchema = new Schema({
-    questId: Number,
+    questId: { type: Schema.Types.ObjectId, ref: 'Quests' },
     geolocation: { latitude: Number, longitude: Number },
     photo: String,
     hint: String,
     order: Number,
+    likes: [{ type: Schema.Types.ObjectId, ref: 'Likes' }],
     likesCount: Number,
     dislikesCount: Number,
-    commentsCount: Number
+    comments: [{ type: Schema.Types.ObjectId, ref: 'Comments' }]
 });
-
-stageSchema.methods.isLikedByUser = function (user) {};
-stageSchema.methods.getComments = function () {};
-stageSchema.methods.isDoneByUser = function (user) {};
 
 module.exports = mongoose.model('Stages', stageSchema);

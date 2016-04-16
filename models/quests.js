@@ -6,24 +6,13 @@ const Schema = mongoose.Schema;
 let questsSchema = new Schema({
     name: String,
     city: String,
-    authorId: Number,
+    author: { type: Schema.Types.ObjectId, ref: 'User' },
     description: String,
+    likes: [{ type: Schema.Types.ObjectId, ref: 'Likes' }],
     likesCount: Number,
     dislikesCount: Number,
-    commentsCount: Number,
-    doneCount: Number
+    comments: [{ type: Schema.Types.ObjectId, ref: 'Comments' }],
+    stages: [{ type: Schema.Types.ObjectId, ref: 'Stages' }]
 });
-
-questsSchema.methods.isLikedByUser = function (user) {};
-questsSchema.methods.getStages = function (cb) {
-    const Stages = require('stages');
-    Stages.find({ questId: this._id }, function (err, stages) {
-        // Надо для каждой stage получить isLikedByUser, чтобы подсвечивать/нет сердечко
-        cb(err, stages);
-    });
-};
-questsSchema.methods.isDoneByUser = function (user) {};
-questsSchema.methods.isMarkedByUser = function (user) {}; // добавлен ли в закладки
-questsSchema.methods.getComments = function () {};
 
 module.exports = mongoose.model('Quests', questsSchema);
