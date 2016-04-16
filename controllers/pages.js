@@ -2,11 +2,7 @@ const fs = require('fs');
 const layouts = require('handlebars-layouts');
 
 const handlebars = require('hbs').handlebars;
-
-// Register helpers
 handlebars.registerHelper(layouts(handlebars));
-
-// Register partials
 handlebars.registerPartial('base', fs.readFileSync('./bundles/base.hbs', 'utf8'));
 
 exports.quests = (req, res) => {
