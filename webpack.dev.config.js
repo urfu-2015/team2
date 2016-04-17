@@ -24,7 +24,7 @@ module.exports = {
                 loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
             },
             {
-                test: /(\.jpg$)|(\.jpeg$)/,
+                test: /(\.png$)|(\.jpg$)|(\.jpeg$)/,
                 loader: 'file-loader'
             },
             {
