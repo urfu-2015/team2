@@ -3,37 +3,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Likes = require('./stagesLikes');
-const Comments = require('./stagesComments');
-
 let stageSchema = new Schema({
     questId: { type: Schema.Types.ObjectId, ref: 'Quests' },
     geolocation: { latitude: Number, longitude: Number },
     photo: String,
     hint: String,
     order: Number,
+    likes: [{ type: Schema.Types.ObjectId, ref: 'StagesLikes' }],
     likesCount: Number,
-    dislikesCount: Number
+    dislikesCount: Number,
+    comments: [{ type: Schema.Types.ObjectId, ref: 'StagesComments' }]
 });
-
-stageSchema.methods.findStageLikes = function (cb) {
-    return Likes.find({ stageId: this._id }, (err, likes) => {
-        if (err) {
-            console.error(err);
-        } else {
-            cb(likes);
-        }
-    });
-};
-
-stageSchema.methods.findStageComments = function (cb) {
-    return Comments.find({ stageId: this._id }, (err, comments) => {
-        if (err) {
-            console.error(err);
-        } else {
-            cb(comments);
-        }
-    });
-};
 
 module.exports = mongoose.model('Stages', stageSchema);

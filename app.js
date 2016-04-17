@@ -7,11 +7,8 @@ const app = express();
 const listen = Promise.promisify(app.listen, { context: app });
 const favicon = require('express-favicon');
 const mongoose = require('mongoose');
-const config = require('config');
 
-const dbUrl = process.env.DB_CONNECT || config.get('db.mongodb_URL');
-
-mongoose.connect(dbUrl);
+mongoose.connect('mongodb://<login>:<password>@ds011439.mlab.com:11439/photoquest');
 mongoose.connection.on('error', console.error.bind(console, 'connection error'));
 
 const path = require('path');
@@ -27,6 +24,7 @@ const passport = require('passport');
 const strategy = require('./middlewares/setup-passport');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const config = require('config');
 
 const viewsDir = path.join(__dirname, 'bundles');
 const publicDir = path.join(__dirname, 'public');
