@@ -1,7 +1,9 @@
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const config = require('config');
-const clientSecret = process.env.AUTH0_CLIENTSECRET;
+const fs = require('fs');
+const clientSecret = process.env.AUTH0_CLIENTSECRET ||
+    fs.readFileSync('./config/auth.txt', 'utf-8').match(/=(.*)/)[1];
 const clientID = config.get('auth.client_ID');
 const authDomain = config.get('auth.domain');
 
