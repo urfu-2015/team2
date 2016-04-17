@@ -2,7 +2,6 @@
 
 const Quest = require('../models/quests');
 const QuestStatus = require('../models/questsStatus');
-const User = require('../models/user');
 
 exports.createQuest = (req, res) => {
     const data = {
@@ -25,34 +24,23 @@ exports.createQuest = (req, res) => {
 };
 
 exports.getQuests = (req, res) => {
-    let query = {};
+    let query = req.params.id ? { _id: req.params.id } : {};
     Quest.findQuests(query, quests => res.json(quests));
 };
 
 exports.createStatus = (req, res) => {
     const data = {
-        questId: req.body.questId,
+        questId: req.params.id,
         userId: req.body.userId,
-        status: req.body.status
+        status: req.params.qType
     };
 
     const newQuestStatus = new QuestStatus(data);
     newQuestStatus.save(err => {
         if (err) {
-            console.error('Error on status quest save: ' + err);
+            console.error('Error on quest status save: ' + err);
         } else {
-            let query = { _id: req.body.userId };
-            User.findUser(query, users => {
-                let user = users.pop();
-                user.quests.push(newQuestStatus);
-                user.save(err => {
-                    if (err) {
-                        console.error('Error on status quest push: ' + err);
-                    } else {
-                        res.json(data);
-                    }
-                });
-            });
+            res.json(data);
         }
     });
 };

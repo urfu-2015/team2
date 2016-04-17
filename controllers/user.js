@@ -30,7 +30,6 @@ exports.getUserQuests = (req, res) => {
     let query = { _id: req.params.id };
     User.findUser(query, users => {
         let user = users.pop();
-        query.field = req.params.qType;
-        user.populateQuests(query, user => res.json(user));
+        user.getUserQuests(quests => res.json(quests));
     });
 };

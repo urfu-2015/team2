@@ -3,16 +3,17 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const Stages = require('./stages');
+const Likes = require('./questsLikes');
+const Comments = require('./questsComments');
+
 let questsSchema = new Schema({
     name: String,
     city: String,
     author: { type: Schema.Types.ObjectId, ref: 'User' },
     description: String,
-    likes: [{ type: Schema.Types.ObjectId, ref: 'QuestsLikes' }],
     likesCount: Number,
-    dislikesCount: Number,
-    comments: [{ type: Schema.Types.ObjectId, ref: 'QuestsComments' }],
-    stages: [{ type: Schema.Types.ObjectId, ref: 'Stages' }]
+    dislikesCount: Number
 });
 
 questsSchema.statics.findQuests = function (query, cb) {
@@ -21,6 +22,36 @@ questsSchema.statics.findQuests = function (query, cb) {
             console.error(err);
         } else {
             cb(quests);
+        }
+    });
+};
+
+questsSchema.methods.findQuestStages = function (cb) {
+    return Stages.find({ questId: this._id }, (err, stages) => {
+        if (err) {
+            console.error(err);
+        } else {
+            cb(stages);
+        }
+    });
+};
+
+questsSchema.methods.findQuestLikes = function (cb) {
+    return Likes.find({ questId: this._id }, (err, likes) => {
+        if (err) {
+            console.error(err);
+        } else {
+            cb(likes);
+        }
+    });
+};
+
+questsSchema.methods.findQuestComments = function (cb) {
+    return Comments.find({ questId: this._id }, (err, comments) => {
+        if (err) {
+            console.error(err);
+        } else {
+            cb(comments);
         }
     });
 };
