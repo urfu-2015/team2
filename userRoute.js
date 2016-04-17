@@ -3,7 +3,6 @@ const router = express.Router();
 
 const user = require('./controllers/user');
 
-router.get('/', user.getUser);
 router.post('/', user.createUser);
 
 router.get('/:id', user.getUser);
