@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic");
+
+.quests
+{
+    display: flex;
+    justify-content: center;
+    background-color: #0084aa;
+    padding: 20px;
+}
+
+.quests-container
+{
+    display: flex;
+    flex-flow: column nowrap;
+    width: 880px;
+    color: #e0f7e5;
+    font-family: Roboto, sans-serif;
+    font-size: 30px;
+}
+
+.quests-item
+{
+    display: flex;
+    background-color: #02537e;
+    margin: 20px 0;
+}
+
+.quests-item-container-image
+{
+    margin: 30px 18px;
+    width: 200px;
+    height: 200px;
+    background-color: #e0f7e5;
+}
+
+.quests-item-container-content
+{
+    margin: 24px 0 0;
+    width: calc(100% - 240px);
+}
+
+.quests-item-container-header
+{
+    display: flex;
+    color: #02bfc5;
+}
+
+.quests-item-author
+{
+    margin-top: 14px;
+    margin-left: 24px;
+    font-size: 12px;
+}
+
+.quests-item-description
+{
+    font-size: 20px;
+    text-align: justify;
+    width: 400px;
+    margin: 10px 0;
+}
+
+.quests-item-footer
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.quests-item-footer-left
+{
+    font-size: 14px;
+    color: #a7ead9;
+    margin-bottom: 16px;
+}
+
+.quests-item-footer-right
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 180px;
+}
+
+.quests-item-image-like,
+.quests-item-image-dislike,
+.quests-item-image-people
+{
+    margin: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: #e0f7e5;
+}
+
+.quests-item-number
+{
+    margin: 5px;
+    font-size: 18px;
+}
+
+.quests-item-count-stage
+{
+    margin-bottom: 16px;
+}

@@ -1,0 +1,40 @@
+<article class="quests">
+    <section class="quests-container">
+        {{#each quests}}
+        <div class="quests-item">
+            <div class="quests-item-container-image">
+                <img src="" alt="">
+            </div>
+            <div class="quests-item-container-content">
+                <div class="quests-item-container-header">
+                    <div class="quests-item-name">{{name}}</div>
+                    <div class="quests-item-author">{{author}}</div>
+                </div>
+                <div class="quests-item-description">
+                    {{description}}
+                </div>
+                <div class="quests-item-footer">
+                    <div class="quests-item-footer-left">
+                        <div class="quests-item-count-stage">{{stages}} этапов</div>
+                        <div class="quests-item-tags">#Екб, #граффити, #экстрим</div>
+                    </div>
+                    <div class="quests-item-footer-right">
+                        <div class="quests-item-image-like">
+                            <img src="" alt="">
+                        </div>
+                        <div class="quests-item-number">{{likesCount}}</div>
+                        <div class="quests-item-image-dislike">
+                            <img src="" alt="">
+                        </div>
+                            <div class="quests-item-number">{{dislikesCount}}</div>
+                        <div class="quests-item-image-people">
+                            <img src="" alt="">
+                        </div>
+                        <div class="quests-item-number">{{comments}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </section>
+</article>
