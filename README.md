@@ -22,7 +22,6 @@ npm test
 4. `npm run deploy:dynamic`
 5. Перейти по [ссылке](http://yahackteam2.herokuapp.com)
 
-
 #### Команда «Миникупоросы»
 
 - [@Dotokoto](https://github.com/Dotokoto) (Ванадиевый)

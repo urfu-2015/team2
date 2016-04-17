@@ -24,12 +24,14 @@ const passport = require('passport');
 const strategy = require('./middlewares/setup-passport');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const config = require('config');
 
 const viewsDir = path.join(__dirname, 'bundles');
 const publicDir = path.join(__dirname, 'public');
+const sessionSecret = process.env.SESSION_SECRET || config.get('auth.session_secret');
 
 app.use(cookieParser());
-app.use(session({ secret: 'YOUR_SECRET_HERE', resave: false, saveUninitialized: false }));
+app.use(session({ secret: sessionSecret, resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(favicon('./favicon.ico'));

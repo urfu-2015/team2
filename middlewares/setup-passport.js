@@ -1,10 +1,16 @@
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
+const config = require('config');
+const fs = require('fs');
+const clientSecret = process.env.AUTH0_CLIENTSECRET ||
+    fs.readFileSync('./config/auth.txt', 'utf-8').match(/=(.*)/)[1];
+const clientID = config.get('auth.client_ID');
+const authDomain = config.get('auth.domain');
 
 const strategy = new Auth0Strategy({
-    domain: 'yahackathonteam2.auth0.com',
-    clientID: 'azroWxJIb8My71LFeqLWu3BGAKYp5UtC',
-    clientSecret: 'ySKctUN_SIyD7encV4Oxss5yy3c-z4ig50YVaq-M0Umobvxc-0ZNryIGmvNbDSKT',
+    domain: authDomain,
+    clientID: clientID,
+    clientSecret: clientSecret,
     callbackURL: '/login'
 }, function (accessToken, refreshToken, extraParams, profile, done) {
     // accessToken is the token to call Auth0 API (not needed in the most cases)

@@ -10,6 +10,7 @@
     "lint": "npm run lint:css & npm run lint:js",
     "build": "webpack",
     "dev": "webpack --config webpack.dev.config.js && npm run start:dev",
+    "env": "heroku config:get AUTH0_CLIENTSECRET --app yahackteam2 -s > config/auth.txt",
     "start": "node app.js",
     "start:dev": "node app.js --NODE_ENV=development",
     "deploy:dynamic": "git push heroku master",
@@ -53,6 +54,7 @@
   },
   "dependencies": {
     "bluebird": "3.3.4",
+    "config": "1.20.1",
     "body-parser": "1.15.0",
     "cookie-parser": "1.4.1",
     "express": "4.13.4",
