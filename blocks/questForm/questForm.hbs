@@ -1,0 +1,26 @@
+<div class="quest-form">
+    <div class="quest-form__common-data">
+        <div class="quest-from__text">
+            <div class="quest-form__name">
+                <span class="quest-form__name-label">Название</span>
+                <input  class="quest-form__name-input" name="quest-name" type="text">
+            </div>
+            <div class="quest-form__description">
+                <p  class="quest-form__description-label">Описание</p>
+                <textarea  class="quest-form__description-input" name="quest-description"></textarea>
+            </div>
+        </div>
+        <div class="quest-form__photo">
+            <input class="quest-from__photo-input" type="file">
+        </div>
+    </div>
+
+    <div class="quest-form__stages">
+        {{> footer/footer}}
+    </div>
+
+{{!--    {{> add-stage/add-stage}} --}}
+
+    <button class="quest-form__new-stage-button">Добавить этап</button>
+    <button class="quest-form__submit">Сохранить</button>
+</div>

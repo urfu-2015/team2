@@ -1,0 +1,21 @@
+{{#extend "base"}}
+    {{#content "style"}}
+        <link rel="stylesheet" href="{{ publicHost }}questAddition.css">
+    {{/content}}
+
+    {{#content "header"}}
+        {{> header/header }}
+    {{/content}}
+
+    {{#content "body"}}
+        {{> questForm/questForm }}
+    {{/content}}
+
+    {{#content "footer"}}
+        {{> footer/footer }}
+    {{/content}}
+
+    {{#content "scripts"}}
+        <script src="{{ publicHost }}questAddition.js"></script>
+    {{/content}}
+{{/extend}}

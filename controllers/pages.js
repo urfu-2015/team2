@@ -87,6 +87,13 @@ exports.index = (req, res) => {
     res.send(template(Object.assign(data, req.commonData)));
 };
 
+exports.newQuest = (req, res) => {
+    const template = handlebars.compile(
+        fs.readFileSync('./bundles/questAddition/questAddition.hbs', 'utf8'));
+
+    res.send(template(req.commonData));
+};
+
 exports.error404 = (req, res) => res.sendStatus(404);
 
 const checkLoggedIn = (req) => {

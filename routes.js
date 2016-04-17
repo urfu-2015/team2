@@ -11,6 +11,8 @@ const stagesRoute = require('./stagesRoute');
 module.exports = function (app) {
     app.get('/', pages.index);
 
+    app.get('/new-quest', pages.newQuest);
+
     app.use('/user', userRoute);
 
     app.use('/quests', questsRoute);

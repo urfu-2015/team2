@@ -1,3 +1,4 @@
+require('./header.css');
 require('./geolocation.js');
 
 function getCookie(name) {
