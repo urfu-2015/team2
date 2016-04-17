@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic");
+
+.quests
+{
+    display: flex;
+    justify-content: center;
+    background-color: #ffb74d;
+    padding: 20px;
+}
+
+.quests-container
+{
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: #ffb74d;
+    width: 880px;
+    color: #ff0;
+    font-family: Roboto, sans-serif;
+    font-size: 30px;
+}
+
+.quests-item
+{
+    display: flex;
+    background-color: #000;
+    margin: 20px 0;
+}
+
+.quests-item-container-image
+{
+    margin: 30px 18px;
+    width: 200px;
+    height: 200px;
+    background-color: #cef1ff;
+}
+
+.quests-item-container-content
+{
+    margin: 24px 0 0;
+    width: calc(100% - 240px);
+}
+
+.quests-item-container-header
+{
+    display: flex;
+}
+
+.quests-item-author
+{
+    margin-top: 14px;
+    margin-left: 24px;
+    font-size: 12px;
+}
+
+.quests-item-description
+{
+    font-size: 20px;
+    text-align: justify;
+    width: 400px;
+    margin: 10px 0;
+}
+
+.quests-item-footer
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.quests-item-footer-left
+{
+    font-size: 14px;
+    color: #fdba2b;
+    margin-bottom: 16px;
+}
+
+.quests-item-footer-right
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 180px;
+}
+
+.quests-item-image-like,
+.quests-item-image-dislike,
+.quests-item-image-people
+{
+    margin: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: #cef1ff;
+}
+
+.quests-item-number
+{
+    margin: 5px;
+    font-size: 18px;
+}
+
+.quests-item-count-stage
+{
+    margin-bottom: 16px;
+}

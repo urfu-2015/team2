@@ -9,6 +9,7 @@ const userRoute = require('./userRoute');
 module.exports = function (app) {
     app.get('/', pages.index);
 
+    app.get('/quests', pages.quests);
     app.use('/user', userRoute);
 
     app.get('/login',
