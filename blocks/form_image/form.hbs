@@ -1,0 +1,27 @@
+<form id="file-load" enctype="multipart/form-data" method="post" action="/photos/upload">
+    <input type="file" name="photo">
+    <textarea rows="10" cols="20" name="text" placeholder="Какой-то текст"></textarea>
+    <input type="submit" value="Отправить">
+</form>
+<!--<script>-->
+    <!--var reader = new FileReader();-->
+    <!--$('#file-load').submit(function (event) {-->
+        <!--event.preventDefault();-->
+        <!--reader.readAsDataURL($('input[type="file"]')[0].files[0]);-->
+        <!--reader.onload = function(event) {-->
+            <!--var data = {-->
+                <!--data: event.target.result-->
+            <!--};-->
+            <!--data = JSON.stringify(data);-->
+            <!--$.ajax({-->
+                <!--url: '/photos/upload',-->
+                <!--type: 'POST',-->
+                <!--data: data-->
+            <!--}).done(function (result) {-->
+                <!--alert(result);-->
+            <!--}).fail(function (err) {-->
+                <!--alert(err);-->
+            <!--});-->
+        <!--}-->
+    <!--});-->
+<!--</script>-->
