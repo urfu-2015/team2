@@ -8,10 +8,10 @@ let questsSchema = new Schema({
     city: String,
     author: { type: Schema.Types.ObjectId, ref: 'User' },
     description: String,
-    likes: [{ type: Schema.Types.ObjectId, ref: 'Likes' }],
+    likes: [{ type: Schema.Types.ObjectId, ref: 'QuestsLikes' }],
     likesCount: Number,
     dislikesCount: Number,
-    comments: [{ type: Schema.Types.ObjectId, ref: 'Comments' }],
+    comments: [{ type: Schema.Types.ObjectId, ref: 'QuestsComments' }],
     stages: [{ type: Schema.Types.ObjectId, ref: 'Stages' }]
 });
 
