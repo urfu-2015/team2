@@ -1,0 +1,16 @@
+@import "../../blocks/quest_page/quest_page_controls/quest_page_controls.css";
+@import "../../blocks/quest_page/quest_page_header/quest_page_header.css";
+@import "../../blocks/stage/stage.css";
+@import "../../blocks/stages/stages.css";
+
+.quest-page
+{
+    width: 80%;
+}
+
+@media (max-width: 800px) {
+    .quest-page
+    {
+        width: 100%;
+    }
+}

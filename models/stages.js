@@ -8,6 +8,7 @@ const Comments = require('./stagesComments');
 
 let stageSchema = new Schema({
     questId: { type: Schema.Types.ObjectId, ref: 'Quests' },
+    name: String,
     geolocation: { latitude: Number, longitude: Number },
     photo: String,
     hint: String,

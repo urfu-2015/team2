@@ -13,7 +13,8 @@ let questsSchema = new Schema({
     author: { type: Schema.Types.ObjectId, ref: 'User' },
     description: String,
     likesCount: Number,
-    dislikesCount: Number
+    dislikesCount: Number,
+    doneCount: Number
 });
 
 questsSchema.statics.findQuests = function (query, cb) {
@@ -26,14 +27,12 @@ questsSchema.statics.findQuests = function (query, cb) {
     });
 };
 
-questsSchema.methods.findQuestStages = function (cb) {
-    return Stages.find({ questId: this._id }, (err, stages) => {
-        if (err) {
-            console.error(err);
-        } else {
-            cb(stages);
-        }
-    });
+questsSchema.statics.getFindQuestPromise = function (query) {
+    return this.find(query).exec();
+};
+
+questsSchema.methods.findQuestStages = function () {
+    return Stages.find({ questId: this._id }).exec();
 };
 
 questsSchema.methods.findQuestLikes = function (cb) {
