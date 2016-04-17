@@ -7,12 +7,15 @@ const Likes = require('./stagesLikes');
 const Comments = require('./stagesComments');
 
 let stageSchema = new Schema({
+    name: String,
+    description: String,
     questId: { type: Schema.Types.ObjectId, ref: 'Quests' },
     geolocation: { latitude: Number, longitude: Number },
     photo: String,
     hint: String,
     order: Number,
     likesCount: Number,
+    commentsCount: Number,
     dislikesCount: Number
 });
 

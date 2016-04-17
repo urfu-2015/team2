@@ -1,4 +1,4 @@
-// Пока что не используется
+// Пока что не используется (технический долг)
 'use strict';
 
 const cloudinary = require('cloudinary');

@@ -1,8 +1,17 @@
-<form id="file-load" enctype="multipart/form-data" method="post" action="/photos/upload">
+<form id="file-load" enctype="multipart/form-data" method="post" action="/stages">
     <input type="file" name="photo">
-    <textarea rows="10" cols="20" name="text" placeholder="Какой-то текст"></textarea>
+    <input type="text" name="name" placeholder="Навзание этапа">
+    <label for="latitude">Широта</label>
+    <input id="latitude" type="text" name="latitude">
+    <label for="longtitude">Долгота</label>
+    <input id="longtitude" type="text" name="longtitude">
+    <textarea rows="10" cols="20" name="description" placeholder="Описание"></textarea>
+    <textarea rows="10" cols="20" name="hint" placeholder="Подсказка"></textarea>
+    <label for="order">Порядок</label>
+    <input id="order" type="number" name="order">
     <input type="submit" value="Отправить">
 </form>
+<!--Технический долг-->
 <!--<script>-->
     <!--var reader = new FileReader();-->
     <!--$('#file-load').submit(function (event) {-->

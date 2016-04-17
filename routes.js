@@ -5,7 +5,7 @@ const auth = require('./controllers/auth');
 const passport = require('passport');
 const userRoute = require('./userRoute');
 const questsRoute = require('./questsRoute');
-const photosRoute = require('./photosRoute');
+const stagesRoute = require('./stagesRoute');
 
 module.exports = function (app) {
     app.get('/', pages.index);
@@ -14,7 +14,7 @@ module.exports = function (app) {
 
     app.use('/quests', questsRoute);
 
-    app.use('/photos', photosRoute);
+    app.use('/stages', stagesRoute);
 
     app.get('/login',
         passport.authenticate('auth0', { failureRedirect: '/' }),

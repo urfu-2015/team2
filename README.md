@@ -9,6 +9,9 @@
 #### URL для коннекта к нашей ДБ
 mongodb://dbuser:dbpassword@ds011439.mlab.com:11439/photoquest
 
+### Хранилище фотографий
+https://cloudinary.com/console
+
 #### Команда для запуска тестов
 npm test
 
