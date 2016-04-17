@@ -16,8 +16,7 @@
     "deploy:dynamic": "git push heroku master",
     "deploy:static": "surge -p ./public -d hackathonteam2.surge.sh",
     "deploy": "npm-run-all deploy:*",
-    "precommit": "npm run test & npm run lint",
-    "prepush": "npm run test & npm run lint"
+    "precommit": "npm run test & npm run lint"
   },
   "repository": {
     "type": "git",
@@ -41,9 +40,10 @@
     "mocha": "2.4.5",
     "mockery": "1.4.1",
     "morgan": "1.7.0",
-    "nock": "7.2.2",
+    "nock": "8.0.0",
     "npm-run-all": "1.5.3",
     "postcss-loader": "0.8.2",
+    "should": "8.3.1",
     "sinon": "1.17.3",
     "style-loader": "0.13.0",
     "stylelint": "5.0.1",
