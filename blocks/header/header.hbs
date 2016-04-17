@@ -1,18 +1,23 @@
 <header>
-    <div class="city">
-        <p>{{ currentCity }}</p>
-        <button name="chooseCity">Выбрать город</button>
+    <div class="header-logo">
+        <img src="/logo.png">
     </div>
+    <nav class="navigation">
+        <p class="navigation-city">{{ currentCity }}</p>
+        <a class="navigation-main" href="/">Главная</a>
+        <a class="navigation-quests" href="/quests">Квесты</a>
+    </nav>
 
-    <div class="auth">
+
+    <div class="header-auth">
         {{#if user}}
-            <div class="avatar">
-                <img src="{{ user.picture }}" width="100" height="100" alt="avatar {{user.displayName}}">
+            <p class="header-auth__nickname">{{user.name.givenName}}</p>
+            <div class="header-auth__avatar">
+                <img src="{{ user.picture }}" alt="avatar {{user.name.givenName}}">
             </div>
-            <div>{{user.displayName}}</div>
-            <a href="/logout">Выйти</a>
+            <a class="header-auth__logout" href="/logout">Выйти</a>
         {{else}}
-            <a href="/login">Войти</a>
+            <a class="header-auth__login" href="/login">Войти</a>
         {{/if}}
     </div>
 

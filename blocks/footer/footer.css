@@ -6,8 +6,24 @@
     margin: 10px;
     padding: 10px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+}
+
+.footer__share,
+.footer__text,
+.footer-address
+{
+    flex-basis: 33%;
+}
+
+.footer__text
+{
+    text-align: center;
+}
+
+.footer-address
+{
+    text-align: right;
 }
 
 .footer-address__link
