@@ -12,6 +12,9 @@ mongodb://dbuser:dbpassword@ds011439.mlab.com:11439/photoquest
 #### Команда для запуска тестов
 npm test
 
+### Команда для подтягивания переменного окружения
+npm run env
+
 ### Deploy приложения
 Приложение деплоится автоматически при merge в ветку master.
 
