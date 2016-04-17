@@ -9,7 +9,8 @@ const webpack = require('webpack');
 module.exports = {
     context: path.join(__dirname, 'bundles'),
     entry: {
-        main: './main/main.js'
+        main: './main/main.js',
+        quests: './quests/quests.js'
     },
     devtool: 'source-map',
     output: {

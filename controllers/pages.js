@@ -8,10 +8,13 @@ handlebars.registerHelper(layouts(handlebars));
 handlebars.registerPartial('base', fs.readFileSync('./bundles/base.hbs', 'utf8'));
 
 let quests = [{
-        name: 'name',
+        name: 'Крутой Квест',
         city: 'city',
-        author: 'author',
-        description: 'description',
+        author: 'Иван Иванович',
+        description:
+            'Это очень классные квест. Круче ничего нет, даже яйца не такие крутые как он.' +
+            ' Да-да, поверьте мне. Брат за брата, за основу взято.' +
+            ' От души душевно в душу.',
         likesCount: 6,
         dislikesCount: 7
     },

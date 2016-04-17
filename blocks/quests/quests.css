@@ -4,7 +4,7 @@
 {
     display: flex;
     justify-content: center;
-    background-color: #ffb74d;
+    background-color: #0084aa;
     padding: 20px;
 }
 
@@ -12,9 +12,8 @@
 {
     display: flex;
     flex-flow: column nowrap;
-    background-color: #ffb74d;
     width: 880px;
-    color: #ff0;
+    color: #e0f7e5;
     font-family: Roboto, sans-serif;
     font-size: 30px;
 }
@@ -22,7 +21,7 @@
 .quests-item
 {
     display: flex;
-    background-color: #000;
+    background-color: #02537e;
     margin: 20px 0;
 }
 
@@ -31,7 +30,7 @@
     margin: 30px 18px;
     width: 200px;
     height: 200px;
-    background-color: #cef1ff;
+    background-color: #e0f7e5;
 }
 
 .quests-item-container-content
@@ -43,6 +42,7 @@
 .quests-item-container-header
 {
     display: flex;
+    color: #02bfc5;
 }
 
 .quests-item-author
@@ -69,7 +69,7 @@
 .quests-item-footer-left
 {
     font-size: 14px;
-    color: #fdba2b;
+    color: #a7ead9;
     margin-bottom: 16px;
 }
 
@@ -89,7 +89,7 @@
     margin: 5px;
     width: 20px;
     height: 20px;
-    background-color: #cef1ff;
+    background-color: #e0f7e5;
 }
 
 .quests-item-number
