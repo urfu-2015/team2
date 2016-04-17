@@ -1,5 +1,6 @@
 .DS_Store
 .idea
+/config/auth.txt
 node_modules
 npm-debug.log
 public/

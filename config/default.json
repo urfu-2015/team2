@@ -1,0 +1,11 @@
+{
+  "auth": {
+    "client_ID": "azroWxJIb8My71LFeqLWu3BGAKYp5UtC",
+    "session_secret": "YOUR_SECRET",
+    "domain": "yahackathonteam2.auth0.com"
+  },
+
+  "db": {
+    "mongodb_URL": "your_db_url"
+  }
+}
