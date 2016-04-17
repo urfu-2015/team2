@@ -1,6 +1,6 @@
 .DS_Store
 .idea
-.env
+/config/auth.txt
 node_modules
 npm-debug.log
 public/

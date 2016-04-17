@@ -2,8 +2,7 @@
   "auth": {
     "client_ID": "azroWxJIb8My71LFeqLWu3BGAKYp5UtC",
     "session_secret": "YOUR_SECRET",
-    "domain": "yahackathonteam2.auth0.com",
-    "client_secret": "112345"
+    "domain": "yahackathonteam2.auth0.com"
   },
 
   "db": {
