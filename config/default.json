@@ -6,6 +6,6 @@
   },
 
   "db": {
-    "mongodb_URL": "mongodb://team2:yahackteam2@ds011439.mlab.com:11439/photoquest"
+    "mongodb_URL": "your_db_url"
   }
 }
