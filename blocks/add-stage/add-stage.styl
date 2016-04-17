@@ -1,0 +1,57 @@
+$size_img_label = 150px;
+
+.add-stage-form {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 200px;
+    background-color: #0b97c4;
+    display: flex;
+
+    &__add-meta-media {
+        width: 30%;
+        text-align: center;
+
+        &_input-img {
+            display: none;
+            margin: 0;
+        }
+
+        &_img-label {
+            background-color: #888888;
+            max-width: 100%;
+            display: inline-block;
+            width: $size_img_label;
+            height: $size_img_label;
+        }
+
+        &_add-geo {
+            width: $size_img_label;
+            text-align: center;
+            background-color: #8A6343;
+            height: 30px;
+            margin: 10px auto;
+        }
+    }
+
+    &__add-meta-text {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+
+        &_add-name {
+            width: 98%;
+            height: 30px;
+            margin: 5px 0;
+        }
+
+        &_add-description {
+            width: 98%;
+            height: 100px;
+        }
+    }
+
+    $__btn-save {
+        background-color: green;
+    }
+}

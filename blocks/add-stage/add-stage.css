@@ -1,0 +1,44 @@
+.add-stage-form {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 200px;
+  background-color: #0b97c4;
+  display: flex;
+}
+.add-stage-form__add-meta-media {
+  width: 30%;
+  text-align: center;
+}
+.add-stage-form__add-meta-media_input-img {
+  display: none;
+  margin: 0;
+}
+.add-stage-form__add-meta-media_img-label {
+  background-color: #888;
+  max-width: 100%;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+}
+.add-stage-form__add-meta-media_add-geo {
+  width: 150px;
+  text-align: center;
+  background-color: #8a6343;
+  height: 30px;
+  margin: 10px auto;
+}
+.add-stage-form__add-meta-text {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+.add-stage-form__add-meta-text_add-name {
+  width: 98%;
+  height: 30px;
+  margin: 5px 0;
+}
+.add-stage-form__add-meta-text_add-description {
+  width: 98%;
+  height: 100px;
+}
