@@ -15,4 +15,14 @@ let questsSchema = new Schema({
     stages: [{ type: Schema.Types.ObjectId, ref: 'Stages' }]
 });
 
+questsSchema.statics.findQuests = function (query, cb) {
+    return this.find(query, (err, quests) => {
+        if (err) {
+            console.error(err);
+        } else {
+            cb(quests);
+        }
+    });
+};
+
 module.exports = mongoose.model('Quests', questsSchema);

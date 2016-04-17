@@ -3,14 +3,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const QuestsStarted = require('./questsStarted');
-
 let userSchema = new Schema({
     login: String,
     avatar: String,
-    qStarted: [{ type: Schema.Types.ObjectId, ref: 'QuestsStarted' }],
-    qMarked: [{ type: Schema.Types.ObjectId, ref: 'Quests' }],
-    qDone: [{ type: Schema.Types.ObjectId, ref: 'Quests' }]
+    quests: [{ type: Schema.Types.ObjectId, ref: 'QuestsStatus' }]
 });
 
 userSchema.statics.findUser = function (query, cb) {
@@ -23,25 +19,17 @@ userSchema.statics.findUser = function (query, cb) {
     });
 };
 
-userSchema.methods.update = function (params, cb) {
-    this[params.questType].push(params.id);
-    this.save(function (err) {
-        if (err) {
-            console.error('Error on quest save: ' + err);
-        } else {
-            cb(this);
-        }
-    });
-};
-
-userSchema.methods.populateField = function (params, cb) {
+userSchema.methods.getUserQuests = function (params, cb) {
     return this.model('Users').find({ _id: params._id })
-        .populate(params.field)
+        .populate({
+            path: 'quests',
+            populate: { path: params.field }
+        })
         .exec((err, users) => {
             if (err) {
                 console.error(err);
             } else {
-                cb(users[0][params.field]);
+                cb(users);
             }
         });
 };
