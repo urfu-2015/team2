@@ -14,6 +14,6 @@ deploy:
     skip_cleanup: true
     provider: heroku
     api_key:
-      secure: "${HEROKU_API_KEY}"
+      secure: 'GE+4FNpMCtgmtJohAhES3G46/+UUACRRoiFin3YPU7uWp5d30ZslV7qQIsjOFzBirvjJVqgwxbtlyS0RSA4R3X1URPQUWEY4fhH7x2cqbHGTYyB1hDjY+i1Z/JvTpfTgLfN3m6rNWZoRfxx2+tvdPYWrhRl/vx0Li+TTf2UgB9nTqBgr2GrvoZL3NU031xAbSKbFJVK37Eht6YYoQYONSthDjIKUGngwiytDVULVi4ti/Ie0/LcQcvCVO5aj19riIbsaSxusO728Pp+Ka9cQri2tpXYhQuFYclzcyUrDDZlF2XqHOeokK9RucajxPsLSuP3zRR1hVc5P67IjWnlJNcazZGL/abVJFjDSGi+aIjx0++BXGEVVtT6rMihchGRzT0BZGKtI3RYGtn0vBn/IadKDI8ja6/M4RyR2vf9LLMo9T446FnZJRhzAiZ4ziO0bjE6KkawgBiX7nRxjr5ohPZ19eQLv0XQN5MZtZdGtFMgDTjHeXoVM8UF95gJ3fb/putXxyCbz0WB9s0YAbcbyWRgeho29eR0NA1HpdDsgIr9kvR00PQfMHQEQurATgRM7sjs9Sku0sJRJe5yKC7ThLNU7OCWW4MEIKnpyz22bw5ByTvOHwy/C8hYLdCeoSwWGlSqxXkv/yWq5enUCqve8Qw92slUhjL6WH49O9794SWw='
     on: master
     app: yahackteam2
