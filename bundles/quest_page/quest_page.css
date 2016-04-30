@@ -8,7 +8,8 @@
     width: 80%;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 800px)
+{
     .quest-page
     {
         width: 100%;

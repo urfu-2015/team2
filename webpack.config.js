@@ -28,6 +28,20 @@ module.exports = {
             {
                 test: /(\.png$)|(\.jpg$)|(\.jpeg$)/,
                 loader: 'file-loader'
+            },
+            {
+                test: /\.js$/,
+                loader: 'babel',
+                exclude: /node_modules/
+            },
+            {
+                test: /\.hbs$/,
+                loader: 'handlebars-loader',
+                query: {
+                    partialDirs: [
+                        path.join(__dirname, 'blocks')
+                    ]
+                }
             }
         ]
     },

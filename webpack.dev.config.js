@@ -31,6 +31,20 @@ module.exports = {
             {
                 test: /\.svg$/,
                 loader: 'svg-loader'
+            },
+            {
+                test: /\.js$/,
+                loader: 'babel',
+                exclude: /node_modules/
+            },
+            {
+                test: /\.hbs$/,
+                loader: 'handlebars-loader',
+                query: {
+                    partialDirs: [
+                        path.join(__dirname, 'blocks')
+                    ]
+                }
             }
         ]
     },
