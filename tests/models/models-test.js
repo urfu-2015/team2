@@ -75,12 +75,12 @@ describe('Example spec for a model', function () {
                 const questStatus = {
                     questId: foundQuest._id,
                     userId: foundUser._id,
-                    status: 'Started'
+                    status: 'started'
                 };
                 QuestsStatus.create(questStatus, (err, createdQuestStatus) => {
                     createdQuestStatus.questId.should.equal(foundQuest._id);
                     createdQuestStatus.userId.should.equal(foundUser._id);
-                    createdQuestStatus.status.should.equal('Started');
+                    createdQuestStatus.status.should.equal('started');
                     done();
                 });
             });
@@ -93,7 +93,7 @@ describe('Example spec for a model', function () {
             foundUser.getUserQuests(foundQuests => {
                 foundQuests = foundQuests.pop();
                 /*foundQuests.userId.should.equal(foundUser._id);*/
-                foundQuests.status.should.equal('Started');
+                foundQuests.status.should.equal('started');
                 done();
             });
         });
