@@ -12,7 +12,9 @@ cloudinary.config({
 exports.uploadPhoto = (req, res) => {
     let data = req.body.data;
     if (!req.user) {
-        req.commonData.errors.push({ text: 'Не авторизованные пользователи не могут добавлять фотографии.' });
+        req.commonData.errors.push({
+            text: 'Не авторизованные пользователи не могут добавлять фотографии.'
+        });
         res.send(401);
     }
     cloudinary.uploader.upload(data)
