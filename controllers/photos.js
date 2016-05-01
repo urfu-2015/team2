@@ -10,8 +10,18 @@ cloudinary.config({
 });
 
 exports.uploadPhoto = (req, res) => {
-    cloudinary.uploader.upload(req.body.data, function (result) {
-        console.log(result);
-    });
-    res.sendStatus(200);
+    let data = req.body.data;
+    if (!req.user) {
+        req.commonData.errors.push({ text: 'Не авторизованные пользователи не могут добавлять фотографии.' });
+        res.send(401);
+    }
+    cloudinary.uploader.upload(data)
+        .then(result => {
+            // Тут можно записывать result.url в stages.photo
+            res.send(result);
+        })
+        .catch(err => {
+            console.log(err);
+            res.send(err);
+        });
 };
