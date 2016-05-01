@@ -6,6 +6,7 @@
   },
 
   "db": {
-    "mongodb_URL": "mongodb://team2:yahackteam2@ds011439.mlab.com:11439/photoquest"
+    "mongodb_URL": "mongodb://team2:yahackteam2@ds011439.mlab.com:11439/photoquest",
+    "local": "mongodb://127.0.0.1/potoquest"
   }
 }
