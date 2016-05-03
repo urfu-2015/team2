@@ -1,4 +1,4 @@
-/*block EDIT-STAGE*/
+/* block EDIT-STAGE */
 .edit-stage
 {
     margin: 10px auto;
@@ -7,7 +7,7 @@
     min-width: 400px;
     height: 200px;
 
-    border: solid 3px #000000;
+    border: solid 3px #000;
 
     display: flex;
     flex-direction: row;
@@ -27,8 +27,9 @@
     overflow: hidden;
 }
 
-/*block DESCRIPTION-EDITOR*/
-.description-editor {
+/* block DESCRIPTION-EDITOR */
+.description-editor
+{
     width: 95%;
     height: 100%;
 
@@ -50,7 +51,7 @@
     height: 67%;
 }
 
-/*block PHOTO-EDITOR*/
+/* block PHOTO-EDITOR */
 .photo-editor
 {
     padding: 10px 10px 0 10px;
@@ -69,7 +70,7 @@
     display: inline-block;
     width: 150px;
     height: 150px;
-    background: url(./photo_camera.png) center no-repeat;
+    background: url("./photo_camera.png") center no-repeat;
 }
 
 .photo-editor__resource
@@ -78,7 +79,7 @@
     height: 100%;
 }
 
-/*block GEOLOCATION-EDITOR*/
+/* block GEOLOCATION-EDITOR */
 .geolocation-editor
 {
     text-align: center;
