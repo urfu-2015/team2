@@ -1,7 +1,6 @@
 .footer
 {
     border: 1px solid #666;
-    box-shadow: 2px 2px 5px 2px #666;
     border-radius: 5px;
     margin: 10px;
     padding: 10px;
@@ -29,4 +28,17 @@
 .footer-address__link
 {
     color: #666;
+    display: block;
+    height: 25px;
+    width: 100%;
+    background: url("./mail.png") no-repeat center right;
 }
+
+@media (max-width: 767px)
+{
+    .footer
+    {
+        min-width: 370px;
+    }
+}
+
