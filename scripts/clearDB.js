@@ -1,11 +1,14 @@
 'use strict';
 
-const dbURI = require('config').get('db.mongodb_URL');
+const config = require('config');
+const argv = require('minimist')(process.argv.slice(4));
+const dbURL = (argv.STATUS === 'testing') ? config.get('db.local') : config.get('db.mongodb_URL');
+
 const mongoose = require('mongoose');
 
 module.exports = done => {
     if (mongoose.connection.readyState === 0) {
-        mongoose.connect(dbURI, function (err) {
+        mongoose.connect(dbURL, function (err) {
             if (err) {
                 console.error(err);
             }

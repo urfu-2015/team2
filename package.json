@@ -4,7 +4,7 @@
   "jscs": "2.2.1",
   "description": "photoquest",
   "scripts": {
-    "test": "mocha --recursive tests/",
+    "test": "mocha --recursive tests/ --STATUS=testing",
     "lint:css": "stylelint **/*.css",
     "lint:js": "jscs .",
     "lint": "npm run lint:css & npm run lint:js",
