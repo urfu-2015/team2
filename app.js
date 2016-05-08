@@ -6,13 +6,9 @@ const url = require('url');
 const app = express();
 const listen = Promise.promisify(app.listen, { context: app });
 const favicon = require('express-favicon');
-const mongoose = require('mongoose');
 const config = require('config');
 
-const dbUrl = process.env.DB_CONNECT || config.get('db.mongodb_URL');
-
-mongoose.connect(dbUrl);
-mongoose.connection.on('error', console.error.bind(console, 'connection error'));
+const mongoose = require('./scripts/mongooseConnect');
 
 const path = require('path');
 const argv = require('minimist')(process.argv.slice(2));

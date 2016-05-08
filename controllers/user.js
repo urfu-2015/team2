@@ -19,9 +19,6 @@ exports.createUser = (req, res) => {
 };
 
 exports.getUser = (req, res) => {
-    if (!req.params.id) {
-        res.send('Wrong arguments');
-    }
     let query = { _id: req.params.id };
     User.findUser(query, users => res.json(users));
 };
