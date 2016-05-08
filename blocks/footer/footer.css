@@ -31,10 +31,10 @@
     display: block;
     height: 25px;
     width: 100%;
-    background: url("mail.png") no-repeat center right;
+    background: url("./mail.png") no-repeat center right;
 }
 
-@media screen and (max-device-width: 480px)
+@media (max-width: 767px)
 {
     .footer
     {
