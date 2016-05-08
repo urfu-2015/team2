@@ -12,6 +12,7 @@ let stageSchema = new Schema({
     geolocation: { latitude: Number, longitude: Number },
     photo: String,
     hint: String,
+    name: String,
     order: Number,
     likesCount: Number,
     dislikesCount: Number
