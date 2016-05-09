@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const layouts = require('handlebars-layouts');
+const questController = require('../controllers/quests');
 
 const handlebars = require('hbs').handlebars;
 handlebars.registerHelper(layouts(handlebars));

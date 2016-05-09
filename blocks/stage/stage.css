@@ -1,0 +1,144 @@
+hr
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top-color: #666;
+}
+
+.stage
+{
+    border: 1px solid #fff;
+    position: relative;
+}
+
+.stage:hover
+{
+    border: 1px solid #666;
+}
+
+.stage-info
+{
+    position: relative;
+}
+
+.stage-stats-like__img,
+.stage-stats-dislike__img
+{
+    width: 30px;
+    height: 30px;
+    background-image: url(../../blocks/spritesheet.png);
+    background-repeat: no-repeat;
+    margin-right: 5px;
+}
+
+.stage-stats-likes,
+.stage-stats-dislikes
+{
+    display: flex;
+    margin-right: 10px;
+}
+
+.stage-stats-like__img_empty
+{
+    background-position: -75px -35px;
+}
+
+.stage-stats-like__img_filled
+{
+    background-position: -75px -75px;
+}
+
+.stage-stats-dislike__img_empty
+{
+    background-position: -35px -5px;
+}
+
+.stage-stats-dislike__img_filled
+{
+    background-position: -5px -75px;
+}
+
+.stage-photo
+{
+    margin: 10px auto;
+    max-width: 400px;
+}
+
+.stage-description__name
+{
+    text-align: center;
+}
+
+.stage-stats
+{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.stage-checkin
+{
+    margin: 10px auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.stage-description
+{
+    margin: 0 auto;
+    width: 65%;
+    font-size: 1.1em;
+}
+
+@media (max-width: 767px) {
+
+    .stage-stats-like__img,
+    .stage-stats-dislike__img
+    {
+        height: 20px;
+        width: 20px;
+    }
+
+    .stage-stats-like__img_empty
+    {
+        background-position: -75px -5px;
+    }
+
+    .stage-stats-like__img_filled
+    {
+        background-position: -45px -75px;
+    }
+
+    .stage-stats-dislike__img_empty
+    {
+        background-position: -5px -5px;
+    }
+
+    .stage-stats-dislike__img_filled
+    {
+        background-position: -5px -35px;
+    }
+
+    .stage-photo
+    {
+        max-width: 250px;
+    }
+
+    .stage-checkin
+    {
+        position: static;
+        text-align: center;
+    }
+
+    .stage-description
+    {
+        width: 100%;
+    }
+
+    .stage-stats
+    {
+        position: static;
+        text-align: right;
+        margin-top: 10px;
+    }
+}

@@ -1,0 +1,122 @@
+h2
+{
+    margin: 0;
+}
+
+.quest-page-header
+{
+    display: flex;
+}
+
+.quest-page-header-like__img,
+.quest-page-header-dislike__img,
+.quest-page-header-people-done__img
+{
+    height: 30px;
+    width: 30px;
+    background-image: url(../../spritesheet.png);
+    background-repeat: no-repeat;
+    margin-right: 5px;
+}
+
+.quest-page-header-like__img_empty
+{
+    background-position: -75px -35px;
+}
+
+.quest-page-header-like__img_filled
+{
+    background-position: -75px -75px;
+}
+
+.quest-page-header-dislike__img_empty
+{
+    background-position: -35px -5px;
+}
+
+.quest-page-header-dislike__img_filled
+{
+    background-position: -5px -75px;
+}
+
+.quest-page-header-people-done__img
+{
+    background-position: -135px -5px;
+}
+
+.quest-page-header-info
+{
+    width: 100%;
+    margin: 20px auto;
+}
+
+.quest-page-header-stats
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quest-page-header-name
+{
+    text-align: center;
+}
+
+
+.quest-page-header-like,
+.quest-page-header-dislike,
+.quest-page-header-people-done
+{
+    display: flex;
+    margin-right: 10px;
+}
+
+.quest-page-header-like__count,
+.quest-page-header-dislike__count,
+.quest-page-header-people-done__count
+{
+    font-size: 1.2em;
+}
+
+@media (max-width: 767px) {
+    .quest-page-header-like__img,
+    .quest-page-header-dislike__img,
+    .quest-page-header-people-done__img
+    {
+        width: 20px;
+        height: 20px;
+    }
+
+    .quest-page-header-like__img_empty
+    {
+        background-position: -75px -5px;
+    }
+
+    .quest-page-header-like__img_filled
+    {
+        background-position: -45px -75px;
+    }
+
+    .quest-page-header-dislike__img_empty
+    {
+        background-position: -5px -5px;
+    }
+
+    .quest-page-header-dislike__img_filled
+    {
+        background-position: -5px -35px;
+    }
+
+    .quest-page-header-people-done__img
+    {
+        background-position: -105px -5px;
+    }
+
+}
+
+@media (max-width: 991px) {
+    .quest-page-header-stats
+    {
+        margin-top: 10px;
+    }
+}

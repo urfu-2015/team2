@@ -1,0 +1,21 @@
+<div class="quest-page-header">
+    <div class="row quest-page-header-info">
+        <div class="quest-page-header-name col-md-4 col-md-offset-4">
+            <h2>{{ quest.name }}</h2>
+        </div>
+        <section class="quest-page-header-stats col-md-4">
+            <div class="quest-page-header-like">
+                <div class="quest-page-header-like__img quest-page-header-like__img_empty"></div>
+                <span class="badge quest-page-header-like__count">{{ quest.likesCount }}</span>
+            </div>
+            <div class="quest-page-header-dislike">
+                <div class="quest-page-header-dislike__img quest-page-header-dislike__img_empty"></div>
+                <span class="badge quest-page-header-dislike__count">{{ quest.dislikesCount }}</span>
+            </div>
+            <div class="quest-page-header-people-done">
+                <div class="quest-page-header-people-done__img"></div>
+                <span class="badge quest-page-header-people-done__count">{{ quest.doneCount }}</span>
+            </div>
+        </section>
+    </div>
+</div>

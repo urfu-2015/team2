@@ -1,6 +1,6 @@
 <header>
     <div class="header-logo">
-        <img src="/logo.png">
+        <div class="header-logo__img"></div>
     </div>
     <nav class="navigation">
         <p class="navigation-city">{{ currentCity }}</p>
@@ -11,9 +11,9 @@
 
     <div class="header-auth">
         {{#if user}}
-            <p class="header-auth__nickname">{{user.name.givenName}}</p>
+            <p class="header-auth__nickname">{{user.display_Name}}</p>
             <div class="header-auth__avatar">
-                <img src="{{ user.picture }}" alt="avatar {{user.name.givenName}}">
+                <img src="{{ user.picture }}" alt="avatar {{user.display_name}}">
             </div>
             <a class="header-auth__logout" href="/logout">Выйти</a>
         {{else}}
