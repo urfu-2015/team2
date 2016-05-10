@@ -9,4 +9,4 @@ let checkinsSchema = new Schema({
     userId: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
-module.exports = mongoose.model('checkins', checkinsSchema);
+module.exports = mongoose.model('Checkins', checkinsSchema);

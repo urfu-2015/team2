@@ -5,6 +5,7 @@ const COMMENTS_COUNT = 30;
 const MAX_LIKES_COUNT = 10;
 const MAX_DISLIKES_COUNT = 3;
 const MAX_DONE_COUNT = 3;
+const MAX_STARTED_COUNT = 10;
 const MAX_QUEST_STAGES_COUNT = 10;
 
 module.exports = {
@@ -15,5 +16,6 @@ module.exports = {
     MAX_LIKES_COUNT,
     MAX_DISLIKES_COUNT,
     MAX_DONE_COUNT,
+    MAX_STARTED_COUNT,
     MAX_QUEST_STAGES_COUNT
 };
