@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <link href="stageEditor.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="edit-stage">
+    <div class="edit-stage__media">
+        <div class="photo-editor">
+            <label class="photo-editor__loader" for="photo-editor__input1">
+                <input class="photo-editor__input" type="file" id="photo-editor__input1">
+                <img src="" class="photo-editor__preview">
+            </label>
+        </div>
+        <div class="geolocation-editor">
+            <input class="geolocation-editor__input" type="button" value="Геолокация">
+        </div>
+    </div>
+    <div class="edit-stage__description">
+        <div class="description-editor">
+            <input class="description-editor__title" type="text" placeholder="Название этапа" value="">
+            <textarea class="description-editor__hint" placeholder="Подсказка"></textarea>
+        </div>
+    </div>
+</div>
+</body>
+</html>
