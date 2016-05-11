@@ -1,24 +1,46 @@
 <header>
-    <div class="header-logo">
-        <div class="header-logo__img"></div>
-    </div>
-    <nav class="navigation">
-        <p class="navigation-city">{{ currentCity }}</p>
-        <a class="navigation-main" href="/">Главная</a>
-        <a class="navigation-quests" href="/quests">Квесты</a>
-    </nav>
-
-
-    <div class="header-auth">
-        {{#if user}}
-            <p class="header-auth__nickname">{{user.displayName}}</p>
-            <div class="header-auth__avatar">
-                <img src="{{ user.picture }}" alt="avatar {{user.displayName}}">
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <div class="header-logo"></div>
+                </a>
             </div>
-            <a class="header-auth__logout" href="/logout">Выйти</a>
-        {{else}}
-            <a class="header-auth__login" href="/login">Войти</a>
-        {{/if}}
-    </div>
-
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li role="presentation" class="divider"></li>
+                    <li class="active"><a href="#">Главная</a></li>
+                    <li><a href="#">Квесты</a></li>
+                    <li><a href="#">Личный кабинет</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li>
+                        {{#if user}}
+                            <!--<p class="header-auth__nickname">{{user.name.givenName}}</p>-->
+                            <a href="/logout">Выйти</a>
+                        {{else}}
+                            <a href="/login">Войти</a>
+                        {{/if}}
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                           role="button" aria-haspopup="true" aria-expanded="false">
+                            {{ currentCity }}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Москва</a></li>
+                            <li><a href="#">Санкт-Петербург</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </header>

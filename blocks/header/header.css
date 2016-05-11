@@ -1,59 +1,65 @@
-header
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,900&subset=cyrillic");
+
+.navbar
 {
-    display: flex;
     border: 1px solid #666;
     border-radius: 5px;
+
     margin: 10px;
-    padding: 5px;
-    height: 100px;
+
+    font-family: Roboto, sans-serif;
+}
+
+.navbar-toggle .icon-bar
+{
+    background-color: #000;
 }
 
 .header-logo
 {
-    flex: 1;
-}
+    min-width: 50px;
+    height: 50px;
 
-.header-logo__img
-{
-    width: 115px;
-    height: 88px;
-    background: url("./logo.png") no-repeat;
+    background: url("logo.png") no-repeat center left;
     background-size: contain;
+
+    margin-top: -15px;
 }
 
-.header-logo img
+.navbar-nav .divider
 {
-    width: 115px;
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
 }
 
-.header-auth__avatar img
+.nav > li > a
 {
-    width: 85px;
+    color: #666;
+    font-size: 17px;
+    text-decoration: none;
 }
 
-.navigation,
-.header-auth
+.navbar-toggle
 {
-    flex: 5;
-    display: flex;
+    margin-right: 0;
+    margin-bottom: 0;
 }
 
-.navigation-city,
-.navigation-main,
-.navigation-quests
+@media (max-width: 767px)
 {
-    margin-left: 10px;
-    align-self: flex-end;
+    header
+    {
+        min-width: 300px;
+    }
 }
 
-.header-auth
+@media (min-width: 768px)
 {
-    justify-content: flex-end;
+    .navbar > .container .navbar-brand,
+    .navbar > .container-fluid .navbar-brand
+    {
+        margin-left: -25px;
+    }
 }
-
-.header-auth > *
-{
-    margin-right: 5px;
-    align-self: flex-end;
-}
-
