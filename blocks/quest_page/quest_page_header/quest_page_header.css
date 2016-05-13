@@ -14,7 +14,7 @@ h2
 {
     height: 30px;
     width: 30px;
-    background-image: url(../../spritesheet.png);
+    background-image: url("../../spritesheet.png");
     background-repeat: no-repeat;
     margin-right: 5px;
 }
@@ -62,7 +62,6 @@ h2
     text-align: center;
 }
 
-
 .quest-page-header-like,
 .quest-page-header-dislike,
 .quest-page-header-people-done
@@ -78,7 +77,8 @@ h2
     font-size: 1.2em;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767px)
+{
     .quest-page-header-like__img,
     .quest-page-header-dislike__img,
     .quest-page-header-people-done__img
@@ -114,7 +114,8 @@ h2
 
 }
 
-@media (max-width: 991px) {
+@media (max-width: 991px)
+{
     .quest-page-header-stats
     {
         margin-top: 10px;
