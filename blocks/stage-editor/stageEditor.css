@@ -72,10 +72,13 @@
     background: url("./photo_camera.png") center no-repeat;
     border-radius: 20px;
     overflow: hidden;
-    /*border: 3px solid #ffac17;*/
+
+    /* border: 3px solid #ffac17; */
     border: 3px solid black;
-    /*border: 3px solid #1a237e;*/
-    /*border: 3px solid #1b5e20;*/
+
+    /* border: 3px solid #1a237e; */
+
+    /* border: 3px solid #1b5e20; */
 }
 
 [src=""]
@@ -103,10 +106,13 @@
     width: 150px;
     height: 30px;
     text-overflow: ellipsis;
-    /*background: #ffac17;*/
+
+    /* background: #ffac17; */
     background: black;
-    /*background: #1a237e;*/
-    /*background: #1b5e20;*/
+
+    /* background: #1a237e; */
+
+    /* background: #1b5e20; */
     color: white;
     border-radius: 10px;
     border: 0;
