@@ -7,12 +7,14 @@ const layouts = require('handlebars-layouts');
 const fs = require('fs');
 
 const handlebars = require('hbs').handlebars;
+const mongoose = require('mongoose');
 
 function createQuest(req, res) {
     const data = {
         name: req.body.name,
         city: req.body.city,
-        author: req.body.userId,
+        author: mongoose.Types.ObjectId(req.body.userId),
+        photo: req.body.photo,
         description: req.body.description,
         likesCount: 0,
         dislikesCount: 0,
@@ -61,8 +63,8 @@ function getQuestPageInfo(req, res) {
 
 function createStatus(req, res) {
     const data = {
-        questId: req.params.id,
-        userId: req.body.userId,
+        questId: mongoose.Types.ObjectId(req.params.id),
+        userId: mongoose.Types.ObjectId(req.body.userId),
         status: req.params.qType
     };
 

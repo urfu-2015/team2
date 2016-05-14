@@ -26,6 +26,7 @@ module.exports.newQuest = (id, authorId, likes, dislikes, done, cb) => {
         name: faker.company.companyName(),
         city: faker.address.city(),
         author: authorId,
+        photo: faker.random.image(),
         description: faker.hacker.phrase(),
         likesCount: likes,
         doneCount: dislikes,

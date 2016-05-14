@@ -11,6 +11,7 @@ let questsSchema = new Schema({
     name: String,
     city: String,
     author: { type: Schema.Types.ObjectId, ref: 'User' },
+    photo: String,
     description: String,
     likesCount: Number,
     dislikesCount: Number,
