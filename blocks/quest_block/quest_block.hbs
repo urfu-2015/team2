@@ -1,10 +1,12 @@
 <div class="row">
     <div class="col-md-12">
         <div class="quest-block">
-            <img class="img-responsive quest-block__image" src="{{ photo }}" alt="{{ photo }}">
+            <a href="quests/{{ id }}">
+                <img class="img-responsive quest-block__image" src="{{ photo }}" alt="{{ photo }}">
+            </a>
             <div class="quest-block__caption">
                 <h4 class="quest-block__caption__title">
-                    <a href="/quests/{{ _id }}">
+                    <a href="/quests/{{ id }}">
                         {{ name }}
                     </a>
                 </h4>

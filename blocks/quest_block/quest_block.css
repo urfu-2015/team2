@@ -6,30 +6,11 @@
     padding: 4px;
 }
 
-@media(max-width: 750px)
-{
-    .quest-block
-    {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .quest-block__caption
-    {
-        align-self: stretch;
-        text-align: justify;
-    }
-
-    .quest-block__caption__title
-    {
-        text-align: center;
-    }
-}
-
 .quest-block__caption
 {
     text-align: justify;
     margin: 0 10px 0 20px;
+    flex-grow: 2;
 }
 
 .quest-block__ratings
@@ -112,4 +93,31 @@
     border-radius: 10px;
     background-color: #777;
     color: #fff;
+}
+
+.quest-block__image
+{
+    width: 320px;
+    height: 150px;
+    object-fit: cover;
+}
+
+@media(max-width: 750px)
+{
+    .quest-block
+    {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .quest-block__caption
+    {
+        align-self: stretch;
+        text-align: justify;
+    }
+
+    .quest-block__caption__title
+    {
+        text-align: center;
+    }
 }
