@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const pagesController = require('./controllers/pages');
 
 const quests = require('./controllers/quests');
 
-router.get('/', quests.getQuests);
+// router.get('/', quests.getQuests);
+router.get('/', pagesController.quests);
 router.post('/', quests.createQuest);
 
 router.get('/:id', quests.getQuestPageInfo);

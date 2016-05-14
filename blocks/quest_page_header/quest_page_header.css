@@ -3,35 +3,45 @@ h2
     margin: 0;
 }
 
-h3
-{
-    margin: 0;
-}
-
-.quest-stats-count
-{
-    display: flex;
-    align-items: center;
-    max-height: 30px;
-}
-
 .quest-page-header
 {
     display: flex;
-    flex-direction: column;
-    margin: 10px 0;
 }
 
-.quest-page-header-photo,
-.quest-page-header-photo__photo
+.quest-page-header-like__img,
+.quest-page-header-dislike__img,
+.quest-page-header-people-done__img
 {
-    max-width: 400px;
-    max-height: 400px;
+    height: 30px;
+    width: 30px;
+    background-image: url(../spritesheet.png);
+    background-repeat: no-repeat;
+    margin-right: 5px;
 }
 
-.quest-page-header-photo
+.quest-page-header-like__img_empty
 {
-    margin: auto;
+    background-position: -75px -35px;
+}
+
+.quest-page-header-like__img_filled
+{
+    background-position: -75px -75px;
+}
+
+.quest-page-header-dislike__img_empty
+{
+    background-position: -35px -5px;
+}
+
+.quest-page-header-dislike__img_filled
+{
+    background-position: -5px -75px;
+}
+
+.quest-page-header-people-done__img
+{
+    background-position: -135px -5px;
 }
 
 .quest-page-header-info
@@ -47,99 +57,58 @@ h3
     justify-content: center;
 }
 
-.quest-page-header__name
+.quest-page-header-name
 {
     text-align: center;
 }
 
-.quest-page-header__author h2
-{
-    font-size: 20px;
-    margin-bottom: 10px;
-}
 
-.quest-page-header-stats__like-img,
-.quest-page-header-stats__dislike-img,
-.quest-page-header-stats__people-done-img
-{
-    height: 30px;
-    width: 30px;
-    background-image: url("../spritesheet.png");
-    background-repeat: no-repeat;
-    margin-right: 5px;
-}
-
-.quest-page-header-stats__like-img_empty
-{
-    background-position: -75px -35px;
-}
-
-.quest-page-header-stats__like-img_filled
-{
-    background-position: -75px -75px;
-}
-
-.quest-page-header-stats__dislike-img_empty
-{
-    background-position: -35px -5px;
-}
-
-.quest-page-header-stats__dislike-img_filled
-{
-    background-position: -5px -75px;
-}
-
-.quest-page-header-stats__people-done-img
-{
-    background-position: -135px -5px;
-}
-
-.quest-page-header-stats__like,
-.quest-page-header-stats__dislike,
-.quest-page-header-stats__people-done
+.quest-page-header-like,
+.quest-page-header-dislike,
+.quest-page-header-people-done
 {
     display: flex;
     margin-right: 10px;
 }
 
-.quest-page-header-stats__like-count,
-.quest-page-header-stats__dislike-count,
-.quest-page-header-stats__people-done-count
+.quest-page-header-like__count,
+.quest-page-header-dislike__count,
+.quest-page-header-people-done__count
 {
     font-size: 1.2em;
 }
 
 @media (max-width: 767px)
 {
-    .quest-page-header-stats__like-img,
-    .quest-page-header-stats__dislike-img,
-    .quest-page-header-stats__people-done-img
+    .quest-page-header-like__img,
+    .quest-page-header-dislike__img,
+    .quest-page-header-people-done__img
     {
         width: 20px;
         height: 20px;
     }
 
-    .quest-page-header-stats__like-img_empty
+    .quest-page-header-like__img_empty
     {
         background-position: -75px -5px;
     }
 
-    .quest-page-header-stats__like-img_filled
+    .quest-page-header-like__img_filled
     {
         background-position: -45px -75px;
     }
 
-    .quest-page-header-stats__dislike-img_empty
+    .quest-page-header-dislike__img_empty
     {
         background-position: -5px -5px;
     }
 
-    .quest-page-header-stats__dislike-img_filled
+    .quest-page-header-dislike__img_filled
     {
         background-position: -5px -35px;
     }
 
-    .quest-page-header-stats__people-done-img
+    .quest-page-header-people-done__img
     {
         background-position: -105px -5px;
     }
@@ -151,12 +120,5 @@ h3
     .quest-page-header-stats
     {
         margin-top: 10px;
-    }
-
-    .quest-page-header-photo,
-    .quest-page-header-photo__photo
-    {
-        max-width: 100%;
-        max-height: 100%;
     }
 }

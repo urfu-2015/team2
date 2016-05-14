@@ -9,7 +9,8 @@ module.exports = {
     context: path.join(__dirname, 'bundles'),
     entry: {
         main: './main/main.js',
-        questPage: './quest_page/quest_page.js'
+        questPage: './quest_page/quest_page.js',
+        quests: './quests/quests.js'
     },
     devtool: 'source-map',
     output: {

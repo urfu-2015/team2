@@ -1,0 +1,14 @@
+{{#extend "base"}}
+    {{#content "head" mode="append"}}
+        <link rel="stylesheet" href="{{publicHost}}/quests.css">
+    {{/content}}
+
+    {{#content "body"}}
+        <div class="container">
+            {{#each quests}}
+                {{> quest_block/quest_block }}
+            {{/each}}
+        </div>
+    {{/content}}
+
+{{/extend}}

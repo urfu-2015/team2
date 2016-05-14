@@ -8,6 +8,8 @@ const layouts = require('handlebars-layouts');
 const fs = require('fs');
 
 const handlebars = require('hbs').handlebars;
+handlebars.registerHelper(layouts(handlebars));
+handlebars.registerPartial('base', fs.readFileSync('./bundles/base.hbs', 'utf8'));
 const mongoose = require('mongoose');
 
 function createQuest(req, res) {
