@@ -1,0 +1,16 @@
+form
+{
+    margin: 10px auto;
+}
+
+form input
+{
+    display: block;
+    margin: 10px;
+}
+
+form textarea
+{
+    display: block;
+    margin: 10px;
+}

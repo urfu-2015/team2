@@ -1,0 +1,33 @@
+<form id="file-load" enctype="multipart/form-data" method="post" action="#">
+    <input type="file" name="photo">
+    <input type="text" name="name" placeholder="Навзание этапа">
+    <label for="latitude">Широта</label>
+    <input id="latitude" type="text" name="latitude">
+    <label for="longtitude">Долгота</label>
+    <input id="longtitude" type="text" name="longtitude">
+    <textarea rows="10" cols="20" name="description" placeholder="Описание"></textarea>
+    <label for="order">Порядок</label>
+    <input id="order" type="number" name="order">
+    <input type="submit" value="Отправить">
+</form>
+<script>
+    var reader = new FileReader();
+    $('#file-load').submit(function (event) {
+        event.preventDefault();
+        reader.readAsDataURL($('input[type="file"]')[0].files[0]);
+        reader.onload = function(e) {
+            var data = {
+                data: reader.result
+            };
+            $.ajax({
+                url: '/photos/upload',
+                type: 'POST',
+                data: data
+            }).done(function (result) {
+                console.log(result);
+            }).fail(function (err) {
+                console.log(err);
+            });
+        }
+    });
+</script>
