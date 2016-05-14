@@ -3,6 +3,7 @@
 const Quest = require('../models/quests');
 const QuestStatus = require('../models/questsStatus');
 const Stage = require('../models/stages');
+const User = require('../models/user');
 const layouts = require('handlebars-layouts');
 const fs = require('fs');
 
@@ -48,10 +49,27 @@ function getQuestPageInfo(req, res) {
         })
         .then(function (result) {
             let quest = result[0];
+            return User.findOne({ _id: quest.author }).exec()
+                .then(function (user) {
+                    result.push(user);
+                    return result;
+                });
+        })
+        .then(function (result) {
+            let quest = result[0];
             let stages = result[1];
-            const template = handlebars.compile(
-                fs.readFileSync('./bundles/quest_page/quest_page.hbs', 'utf8'));
-            res.send(template(Object.assign({ quest: quest, stages: stages }, req.commonData)));
+            let user = result[2];
+            if (!quest) {
+                res.sendStatus(404);
+            } else {
+                if (user) {
+                    quest.authorName = user.login;
+                }
+                res.render(
+                    'quest_page/quest_page',
+                    Object.assign({ quest: quest, stages: stages }, req.commonData)
+                );
+            }
         })
         .then(null, function (err) {
             if (err) {
