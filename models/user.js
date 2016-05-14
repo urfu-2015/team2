@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 const QuestsStatus = require('./questsStatus');
 
 let userSchema = new Schema({
+    socialId: String,
     login: String,
     avatar: String
 });

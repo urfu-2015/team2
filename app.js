@@ -48,6 +48,7 @@ app.use(bodyParser.urlencoded({
 
 let startBlocksData = require('./startBlocksData.json');
 app.use((req, res, next) => {
+    let user = req.user ? req.user._json : undefined;
     req.commonData = {
         meta: {
             description: 'Hahaton',
@@ -56,7 +57,7 @@ app.use((req, res, next) => {
         page: {
             title: 'PhotoQuest'
         },
-        user: req.user,
+        user: user,
         currentCity: 'Екатеринбург',
         host: url.format({
             protocol: req.protocol,
