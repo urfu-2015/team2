@@ -9,6 +9,7 @@ const StagesComments = require('../models/stagesComments');
 const Checkins = require('../models/checkins');
 
 const faker = require('faker');
+const mongoose = require('mongoose');
 const constants = require('./constantsForFakeData');
 
 module.exports.newUser = (id, cb) => {
@@ -25,7 +26,7 @@ module.exports.newQuest = (id, authorId, likes, dislikes, done, cb) => {
         _id: id,
         name: faker.company.companyName(),
         city: faker.address.city(),
-        author: authorId,
+        author: mongoose.Types.ObjectId(authorId),
         photo: faker.random.image(),
         description: faker.hacker.phrase(),
         likesCount: likes,
@@ -38,7 +39,7 @@ module.exports.newQuest = (id, authorId, likes, dislikes, done, cb) => {
 module.exports.newStage = (id, questId, likes, dislikes, cb) => {
     Stages.create({
         _id: id,
-        questId,
+        questId: mongoose.Types.ObjectId(questId),
         name: faker.company.companyName(),
         geolocation: { latitude: faker.random.number(), longitude: faker.random.number() },
         photo: faker.random.image(),
@@ -52,44 +53,44 @@ module.exports.newStage = (id, questId, likes, dislikes, cb) => {
 
 module.exports.newQuestLike = (questId, type, userId, cb) => {
     QuestsLikes.create({
-        questId,
+        questId: mongoose.Types.ObjectId(questId),
         type,
-        userId
+        userId: mongoose.Types.ObjectId(userId)
     })
         .then(() => cb());
 };
 
 module.exports.newQuestComment = (questId, userId, cb) => {
     QuestsComments.create({
-        questId,
+        questId: mongoose.Types.ObjectId(questId),
         text: faker.hacker.phrase(),
-        userId
+        userId: mongoose.Types.ObjectId(userId)
     })
         .then(() => cb());
 };
 
 module.exports.newStageLike = (stageId, type, userId, cb) => {
     StagesLikes.create({
-        stageId,
+        stageId: mongoose.Types.ObjectId(stageId),
         type,
-        userId
+        userId: mongoose.Types.ObjectId(userId)
     })
         .then(() => cb());
 };
 
 module.exports.newStageComment = (stageId, userId, cb) => {
     StagesComments.create({
-        stageId,
+        stageId: mongoose.Types.ObjectId(stageId),
         text: faker.hacker.phrase(),
-        userId
+        userId: mongoose.Types.ObjectId(userId)
     })
         .then(() => cb());
 };
 
 module.exports.newQuestStatus = (questId, userId, status, cb) => {
     QuestsStatus.create({
-        questId,
-        userId,
+        questId: mongoose.Types.ObjectId(questId),
+        userId: mongoose.Types.ObjectId(userId),
         status
     })
         .then(() => cb());
@@ -97,9 +98,9 @@ module.exports.newQuestStatus = (questId, userId, status, cb) => {
 
 module.exports.newCheckins = (questId, userId, stageId, cb) => {
     Checkins.create({
-        questId,
-        stageId,
-        userId
+        questId: mongoose.Types.ObjectId(questId),
+        stageId: mongoose.Types.ObjectId(stageId),
+        userId: mongoose.Types.ObjectId(userId)
     })
         .then(() => cb());
 };
