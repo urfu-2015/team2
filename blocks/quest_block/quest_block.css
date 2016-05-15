@@ -26,7 +26,7 @@
     padding: 0 10px;
 }
 
-.quest-block__caption h4
+.quest-block__caption__title
 {
     font-size: 18px;
     margin-top: 10px;
@@ -102,6 +102,12 @@
     object-fit: cover;
 }
 
+.quest-block__caption__author
+{
+    margin-top: -10px;
+    font-style: italic;
+}
+
 @media(max-width: 750px)
 {
     .quest-block
@@ -120,4 +126,10 @@
     {
         text-align: center;
     }
+
+    .quest-block__caption__author
+{
+    margin-top: -10px;
+    text-align: center;
+}
 }

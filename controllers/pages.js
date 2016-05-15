@@ -5,6 +5,7 @@ const fs = require('fs');
 const layouts = require('handlebars-layouts');
 const questController = require('../controllers/quests');
 const Quest = require('../models/quests');
+const mongoose = require('mongoose');
 
 const handlebars = require('hbs').handlebars;
 handlebars.registerHelper(layouts(handlebars));
@@ -17,10 +18,12 @@ exports.quests = (req, res) => {
             let data = {
                 quests: []
             };
+            console.log(mongoose.Types.ObjectId(result[1].author).login);
             result.forEach(quest => {
                 data.quests.push({
                     doneCount: quest.doneCount,
                     likesCount: quest.likesCount,
+                    authorName: mongoose.Types.ObjectId(quest.author).login || 'Anonymous',
                     photo: quest.photo,
                     description: quest.description,
                     name: quest.name,
