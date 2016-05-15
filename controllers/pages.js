@@ -33,7 +33,7 @@ exports.quests = (req, res) => {
             return data;
         })
         .then(data => {
-            res.send(template(Object.assign(data, req.commonData)));
+            res.render('quests/quests', Object.assign(data, req.commonData));
         })
         .catch(err => {
             console.log(err);
