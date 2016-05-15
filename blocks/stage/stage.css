@@ -5,13 +5,6 @@ hr
     border-top-color: #666;
 }
 
-.stage-stats-count
-{
-    display: flex;
-    align-items: center;
-    max-height: 30px;
-}
-
 .stage
 {
     border: 1px solid #fff;
@@ -33,7 +26,8 @@ hr
 {
     width: 30px;
     height: 30px;
-    background: url("../../blocks/spritesheet.png") no-repeat;
+    background-image: url("../../blocks/spritesheet.png");
+    background-repeat: no-repeat;
     margin-right: 5px;
 }
 
@@ -96,14 +90,38 @@ hr
     font-size: 1.1em;
 }
 
+.stage-photo__img_container
+{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    display: none;
+    text-align: center;
+}
+
+.stage-photo__img_bg
+{
+    background: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+}
+
+.stage-photo__img_big
+{
+    position: relative;
+    margin: 0 auto;
+    z-index: 2;
+    max-height: 94%;
+    max-width: 94%;
+    margin: 1% 0 0 0;
+}
+
 @media (max-width: 767px)
 {
-
-    .stage-stats-count
-    {
-        max-height: 20px;
-    }
-
     .stage-stats-like__img,
     .stage-stats-dislike__img
     {

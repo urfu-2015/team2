@@ -1,8 +1,8 @@
 <article class="stage container-fluid">
     <div class="row">
         <div class="stage-photo col-md-4">
-            <a href="{{ photo }}" target="_blank">
-                <img src="{{ photo }}" alt="{{ name }}" class="img-responsive stage-photo__img">
+            <a href="{{ photo }}" target="_blank" class="stage__image">
+                <img src="{{ photo }}" alt="{{ name }}" class="img-responsive img-circle stage-photo__img">
             </a>
         </div>
         <div class="stage-info col-md-8">
@@ -22,11 +22,11 @@
     <section class="stage-stats">
         <div class="stage-stats-likes">
             <div class="stage-stats-like__img stage-stats-like__img_empty"></div>
-            <span class="badge stage-stats-count"> {{ likesCount }}</span>
+            <span class="badge"> {{ likesCount }}</span>
         </div>
         <div class="stage-stats-dislikes">
             <div class="stage-stats-dislike__img stage-stats-dislike__img_empty"></div>
-            <span class="badge stage-stats-count"> {{ dislikesCount }}</span>
+            <span class="badge"> {{ dislikesCount }}</span>
         </div>
     </section>
     <div class="stage-stats__comments">
