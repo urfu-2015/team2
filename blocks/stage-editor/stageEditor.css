@@ -1,0 +1,142 @@
+/* block EDIT-STAGE */
+.edit-stage
+{
+    margin: 10px auto;
+
+    width: 70%;
+    min-width: 400px;
+    max-width: 800px;
+    height: 210px;
+
+    border: solid 3px #000;
+
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    padding: 10px 0;
+}
+
+.edit-stage__media
+{
+    width: 30%;
+    min-width: 170px;
+}
+
+.edit-stage__description
+{
+    width: 70%;
+    height: 180px;
+}
+
+/* block DESCRIPTION-EDITOR */
+.description-editor
+{
+    height: 100%;
+}
+
+.description-editor__title
+{
+    display: block;
+    margin: 0 auto 10px;
+    font-size: 20px;
+    width: 95%;
+}
+
+.description-editor__hint
+{
+    display: block;
+    margin: 10px auto 0;
+    width: 95%;
+}
+
+/* block PHOTO-EDITOR */
+.photo-editor
+{
+    height: 150px;
+    width: 150px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.photo-editor__input
+{
+    display: none !important;
+}
+
+.photo-editor__loader
+{
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    background: url("./photo_camera.png") center no-repeat;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 0 !important;
+    border: 3px solid black;
+}
+
+[src=""]
+{
+    opacity: 0;
+}
+
+.photo-editor__preview
+{
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* block GEOLOCATION-EDITOR */
+.geolocation-editor
+{
+    text-align: center;
+    overflow: hidden;
+}
+
+.geolocation-editor__input
+{
+    width: 150px;
+    height: 30px;
+    text-overflow: ellipsis;
+    background: black;
+    color: white;
+    border-radius: 10px;
+    border: 0;
+}
+
+@media (max-width: 560px)
+{
+    .edit-stage
+    {
+        min-width: 100px;
+        height: 500px;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .edit-stage__media
+    {
+        width: 100%;
+    }
+
+    .edit-stage__description
+    {
+        width: 100%;
+        height: 60%;
+    }
+
+    .description-editor
+    {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .description-editor__hint.form-control
+    {
+        height: 220px !important;
+    }
+}

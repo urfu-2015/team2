@@ -1,0 +1,19 @@
+<article class="edit-stage" id="edit-stage-{{ stage.id }}">
+    <div class="edit-stage__media">
+        <div class="photo-editor">
+            <label class="photo-editor__loader" for="photo-editor__input">
+                <input class="photo-editor__input" type="file" id="photo-editor__input">
+                <img src="{{ stage.photo }}" class="photo-editor__preview">
+            </label>
+        </div>
+        <div class="geolocation-editor">
+            <input class="geolocation-editor__input" type="button" value="Геолокация">
+        </div>
+    </div>
+    <div class="edit-stage__description">
+        <div class="description-editor">
+            <input class="description-editor__title" type="text" placeholder="Название этапа" value="{{ stage.name }}">
+            <textarea class="description-editor__hint" placeholder="Подсказка" rows="6">{{ stage.description }}</textarea>
+        </div>
+    </div>
+</article>

@@ -33,8 +33,7 @@ hr
 {
     width: 30px;
     height: 30px;
-    background-image: url("../../blocks/spritesheet.png");
-    background-repeat: no-repeat;
+    background: url("../../blocks/spritesheet.png") no-repeat;
     margin-right: 5px;
 }
 
