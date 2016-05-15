@@ -4,7 +4,6 @@ const pagesController = require('./controllers/pages');
 
 const quests = require('./controllers/quests');
 
-// router.get('/', quests.getQuests);
 router.get('/', pagesController.quests);
 router.post('/', quests.createQuest);
 
