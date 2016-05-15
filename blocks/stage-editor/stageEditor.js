@@ -2,6 +2,7 @@ module.exports.uploadStage = function (element, questId, order) {
     var fileInput = element.find('.photo-editor__input');
     var nameInput = element.find('.description-editor__title');
     var descriptionInput = element.find('.description-editor__hint');
+
     // var latitudeInput = element.find();
     // var longitudeInput = element.find();
 
@@ -13,6 +14,7 @@ module.exports.uploadStage = function (element, questId, order) {
             file: reader.result,
             name: nameInput.val(),
             description: descriptionInput.val(),
+
             // latitude: latitudeInput.val(),
             // longtitude: longitudeInput.val(),
             questId: questId,
