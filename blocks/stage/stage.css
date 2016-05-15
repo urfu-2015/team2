@@ -39,7 +39,6 @@ hr
     width: 30px;
     height: 30px;
     background: url("../../blocks/spritesheet.png") no-repeat;
-    background-repeat: no-repeat;
     margin-right: 5px;
 }
 
