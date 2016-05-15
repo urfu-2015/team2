@@ -1,9 +1,9 @@
-<article class="edit-stage">
+<article class="edit-stage" id="edit-stage-{{ stage.id }}">
     <div class="edit-stage__media">
         <div class="photo-editor">
-            <label class="photo-editor__loader" for="photo-editor__input{{id}}">
-                <input class="photo-editor__input" type="file" id="photo-editor__input{{id}}">
-                <img src="{{stage.photo}}" class="photo-editor__preview">
+            <label class="photo-editor__loader" for="photo-editor__input">
+                <input class="photo-editor__input" type="file" id="photo-editor__input">
+                <img src="{{ stage.photo }}" class="photo-editor__preview">
             </label>
         </div>
         <div class="geolocation-editor">
@@ -12,8 +12,8 @@
     </div>
     <div class="edit-stage__description">
         <div class="description-editor">
-            <input class="description-editor__title" type="text" placeholder="Название этапа" value="{{stage.name}}">
-            <textarea class="description-editor__hint" placeholder="Подсказка">{{stage.description}}</textarea>
+            <input class="description-editor__title" type="text" placeholder="Название этапа" value="{{ stage.name }}">
+            <textarea class="description-editor__hint" placeholder="Подсказка" rows="6">{{ stage.description }}</textarea>
         </div>
     </div>
 </article>

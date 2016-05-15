@@ -6,11 +6,12 @@
     width: 70%;
     min-width: 400px;
     max-width: 800px;
-    height: 200px;
+    height: 210px;
 
     border: solid 3px #000;
 
     display: flex;
+    align-items: center;
     overflow: hidden;
 
     padding: 10px 0;
@@ -25,19 +26,19 @@
 .edit-stage__description
 {
     width: 70%;
+    height: 180px;
 }
 
 /* block DESCRIPTION-EDITOR */
 .description-editor
 {
-    width: 95%;
     height: 100%;
 }
 
 .description-editor__title
 {
     display: block;
-    margin: 10px auto;
+    margin: 0 auto 10px;
     font-size: 20px;
     width: 95%;
 }
@@ -45,23 +46,22 @@
 .description-editor__hint
 {
     display: block;
-    margin: 10px auto;
+    margin: 10px auto 0;
     width: 95%;
-    height: 67%;
 }
 
 /* block PHOTO-EDITOR */
 .photo-editor
 {
-    padding: 10px 10px 0 10px;
     height: 150px;
+    width: 150px;
     margin: 0 auto;
     text-align: center;
 }
 
 .photo-editor__input
 {
-    display: none;
+    display: none !important;
 }
 
 .photo-editor__loader
@@ -72,13 +72,8 @@
     background: url("./photo_camera.png") center no-repeat;
     border-radius: 20px;
     overflow: hidden;
-
-    /* border: 3px solid #ffac17; */
+    margin-bottom: 0 !important;
     border: 3px solid black;
-
-    /* border: 3px solid #1a237e; */
-
-    /* border: 3px solid #1b5e20; */
 }
 
 [src=""]
@@ -98,7 +93,6 @@
 {
     text-align: center;
     overflow: hidden;
-    padding: 0 5px 5px;
 }
 
 .geolocation-editor__input
@@ -106,13 +100,7 @@
     width: 150px;
     height: 30px;
     text-overflow: ellipsis;
-
-    /* background: #ffac17; */
     background: black;
-
-    /* background: #1a237e; */
-
-    /* background: #1b5e20; */
     color: white;
     border-radius: 10px;
     border: 0;
@@ -147,8 +135,8 @@
         align-items: center;
     }
 
-    .description-editor__hint
+    .description-editor__hint.form-control
     {
-        height: 90%;
+        height: 220px !important;
     }
 }
