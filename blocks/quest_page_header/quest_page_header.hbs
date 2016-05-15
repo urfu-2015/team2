@@ -1,0 +1,29 @@
+<div class="quest-page-header">
+    <div class="row quest-page-header-info">
+        <div class="quest-page-header__author col-md-3">
+            {{#if quest.authorName}}<h2>Автор: {{ quest.authorName }}</h2>{{/if}}
+        </div>
+        <div class="quest-page-header__name col-md-6">
+            <h2>{{ quest.name }}</h2>
+        </div>
+        <section class="quest-page-header-stats col-md-3">
+            <div class="quest-page-header-stats__like">
+                <div class="quest-page-header-stats__like-img quest-page-header-stats__like-img_empty"></div>
+                <span class="badge quest-stats-count quest-page-header-stats__like-count">{{ quest.likesCount }}</span>
+            </div>
+            <div class="quest-page-header-stats__dislike">
+                <div class="quest-page-header-stats__dislike-img quest-page-header-stats__dislike-img_empty"></div>
+                <span class="badge quest-stats-count quest-page-header-stats__dislike-count">{{ quest.dislikesCount }}</span>
+            </div>
+            <div class="quest-page-header-stats__people-done">
+                <div class="quest-page-header-stats__people-done-img"></div>
+                <span class="badge quest-stats-count quest-page-header-stats__people-done-count">{{ quest.doneCount }}</span>
+            </div>
+        </section>
+    </div>
+    <div class="row quest-page-header-photo">
+        <a href="{{ quest.photo }}" target="_blank">
+            <img class="quest-page-header-photo__photo" src="{{ quest.photo }}" alt="{{ quest.name }}">
+        </a>
+    </div>
+</div>

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="stage-photo col-md-4">
             <a href="{{ photo }}" target="_blank">
-                <img src="{{ photo }}" alt="{{ name }}" class="img-responsive img-circle stage-photo__img">
+                <img src="{{ photo }}" alt="{{ name }}" class="img-responsive stage-photo__img">
             </a>
         </div>
         <div class="stage-info col-md-8">
@@ -22,11 +22,11 @@
     <section class="stage-stats">
         <div class="stage-stats-likes">
             <div class="stage-stats-like__img stage-stats-like__img_empty"></div>
-            <span class="badge"> {{ likesCount }}</span>
+            <span class="badge stage-stats-count"> {{ likesCount }}</span>
         </div>
         <div class="stage-stats-dislikes">
             <div class="stage-stats-dislike__img stage-stats-dislike__img_empty"></div>
-            <span class="badge"> {{ dislikesCount }}</span>
+            <span class="badge stage-stats-count"> {{ dislikesCount }}</span>
         </div>
     </section>
     <div class="stage-stats__comments">

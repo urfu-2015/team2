@@ -5,6 +5,13 @@ hr
     border-top-color: #666;
 }
 
+.stage-stats-count
+{
+    display: flex;
+    align-items: center;
+    max-height: 30px;
+}
+
 .stage
 {
     border: 1px solid #fff;
@@ -92,6 +99,10 @@ hr
 
 @media (max-width: 767px)
 {
+
+    .stage-stats-count {
+        max-height: 20px;
+    }
 
     .stage-stats-like__img,
     .stage-stats-dislike__img
