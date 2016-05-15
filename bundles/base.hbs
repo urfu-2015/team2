@@ -34,7 +34,7 @@
         {{/block}}
 
         {{#block "header"}}
-            <h1>{{ page.title }}</h1>
+            {{> header/header }}
         {{/block}}
 
         {{#block "body"}}
@@ -46,7 +46,7 @@
         {{/block}}
 
         {{#block "footer"}}
-            <small>&copy; 2016</small>
+            {{> footer/footer }}
         {{/block}}
 
         {{#block "scripts"}}

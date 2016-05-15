@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="quest-block">
+            <a href="quests/{{ id }}">
+                <img class="img-responsive quest-block__image" src="{{ photo }}" alt="{{ photo }}">
+            </a>
+            <div class="quest-block__caption">
+                <h4 class="quest-block__caption__title">
+                    <a href="/quests/{{ id }}">
+                        {{ name }}
+                    </a>
+                </h4>
+                <h6 class="quest-block__caption__author">
+                    Created by: {{ authorName }}
+                </h6>
+                <p>
+                    {{ description }}
+                </p>
+            </div>
+            <div class="quest-block__ratings">
+                <div class="likes">
+                    <div class="likes__img likes__img_empty"></div>
+                    <div class="likes__count count-badge">{{ likesCount }}</div>
+                </div>
+                <div class="people-done">
+                    <div class="people-done__img"></div>
+                    <div class="people-done__count count-badge">{{ doneCount }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+

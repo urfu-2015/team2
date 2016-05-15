@@ -1,0 +1,135 @@
+.quest-block
+{
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding: 4px;
+}
+
+.quest-block__caption
+{
+    text-align: justify;
+    margin: 0 10px 0 20px;
+    flex-grow: 2;
+}
+
+.quest-block__ratings
+{
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.quest-block__caption
+{
+    padding: 0 10px;
+}
+
+.quest-block__caption__title
+{
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.quest-block__caption a
+{
+    text-decoration: none;
+    color: #337ab7;
+}
+
+.quest-block__ratings
+{
+    align-self: center;
+}
+
+.quest-block__ratings__stars
+{
+    color: #d17581;
+}
+
+.likes
+{
+    display: flex;
+}
+
+.people-done
+{
+    display: flex;
+}
+
+.likes__img
+{
+    height: 30px;
+    width: 30px;
+    background-image: url("../spritesheet.png");
+    background-repeat: no-repeat;
+    margin: 0 5px;
+}
+
+.people-done__img
+{
+    height: 30px;
+    width: 30px;
+    background-image: url("../spritesheet.png");
+    background-repeat: no-repeat;
+    margin-left: 5px;
+}
+
+.likes__img_empty
+{
+    background-position: -75px -35px;
+}
+
+.people-done__img
+{
+    background-position: -135px -5px;
+}
+
+.count-badge
+{
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #777;
+    color: #fff;
+}
+
+.quest-block__image
+{
+    width: 320px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.quest-block__caption__author
+{
+    margin-top: -10px;
+    font-style: italic;
+}
+
+@media(max-width: 750px)
+{
+    .quest-block
+    {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .quest-block__caption
+    {
+        align-self: stretch;
+        text-align: justify;
+    }
+
+    .quest-block__caption__title
+    {
+        text-align: center;
+    }
+
+    .quest-block__caption__author
+    {
+        margin-top: -10px;
+        text-align: center;
+    }
+}
