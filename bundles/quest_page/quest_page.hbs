@@ -1,7 +1,7 @@
 {{#extend "base"}}
-    {{#content "head"}}
-        {{>head/head}}
+    {{#content "head" mode="append"}}
         <link rel="stylesheet" href="{{publicHost}}/questPage.css">
+        <script src="{{ publicHost}}/questPage.js"}}></script>
     {{/content}}
 
     {{#content "header"}}
