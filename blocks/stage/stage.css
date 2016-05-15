@@ -5,6 +5,13 @@ hr
     border-top-color: #666;
 }
 
+.stage-stats-count
+{
+    display: flex;
+    align-items: center;
+    max-height: 30px;
+}
+
 .stage
 {
     border: 1px solid #fff;
