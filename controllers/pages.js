@@ -36,6 +36,7 @@ exports.quests = (req, res) => {
             res.send(template(Object.assign(data, req.commonData)));
         })
         .catch(err => {
+            console.log(err);
             req.commonData.errors.push({
                 text: 'Some errors with getting quest'
             });
