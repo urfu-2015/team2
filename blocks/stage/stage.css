@@ -28,12 +28,17 @@ hr
     position: relative;
 }
 
+.stage-stats-count
+{
+    max-height: 20px;
+}
+
 .stage-stats-like__img,
 .stage-stats-dislike__img
 {
     width: 30px;
     height: 30px;
-    background-image: url("../../blocks/spritesheet.png");
+    background: url("../../blocks/spritesheet.png") no-repeat;
     background-repeat: no-repeat;
     margin-right: 5px;
 }
