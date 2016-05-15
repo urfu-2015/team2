@@ -9,7 +9,9 @@
     "deploy:static": "surge -p ./public -d hackathonteam2.surge.sh",
     "deploy": "npm-run-all deploy:*",
     "dev": "webpack --config webpack.dev.config.js && npm run start:dev",
-    "env": "heroku config:get AUTH0_CLIENTSECRET --app yahackteam2 -s > config/auth.txt",
+    "env:auth0": "heroku config:get AUTH0_CLIENTSECRET --app yahackteam2 -s > config/auth.txt",
+    "env:cloudinary": "heroku config:get CLOUDINARY_URL --app yahackteam2 -s > config/cloudinary.txt",
+    "env": "npm-run-all env:*",
     "filldb": "node scripts/fillDB.js",
     "lint": "npm run lint:css & npm run lint:js",
     "lint:css": "stylelint **/*.css",
@@ -62,6 +64,7 @@
     "webpack": "1.12.14"
   },
   "dependencies": {
+    "cloudinary": "1.3.1",
     "bluebird": "3.3.4",
     "body-parser": "1.15.0",
     "config": "1.20.1",

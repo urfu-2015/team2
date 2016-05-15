@@ -99,7 +99,8 @@ hr
 @media (max-width: 767px)
 {
 
-    .stage-stats-count {
+    .stage-stats-count
+    {
         max-height: 20px;
     }
 

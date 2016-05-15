@@ -9,7 +9,7 @@ install:
 - npm run build
 script:
 - npm run lint
-- npm test -- --AUTH0_CLIENTSECRET=$AUTH0_CLIENTSECRET
+- npm test -- --AUTH0_CLIENTSECRET=$AUTH0_CLIENTSECRET --CLOUDINARY_URL=$CLOUDINARY_URL
 after_success:
 - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && npm run deploy:static'
 deploy:

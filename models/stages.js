@@ -11,10 +11,10 @@ let stageSchema = new Schema({
     name: String,
     geolocation: { latitude: Number, longitude: Number },
     photo: String,
-    hint: String,
-    name: String,
+    description: String,
     order: Number,
     likesCount: Number,
+    commentsCount: Number,
     dislikesCount: Number
 });
 
