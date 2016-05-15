@@ -10,6 +10,8 @@ const config = require('config');
 
 const mongoose = require('./scripts/mongooseConnect');
 
+require('./scripts/setCloudinaryURL')();
+
 const path = require('path');
 const argv = require('minimist')(process.argv.slice(2));
 
@@ -41,9 +43,12 @@ app.use(express.static(publicDir));
 
 app.set('port', (process.env.PORT || 8080));
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+    limit: '50mb'
+}));
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: false,
+    limit: '50mb'
 }));
 
 let startBlocksData = require('./startBlocksData.json');
