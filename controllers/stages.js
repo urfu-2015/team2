@@ -7,50 +7,42 @@ const mongoose = require('mongoose');
 const Checkin = require('../models/checkins');
 const geolib = require('geolib');
 
-exports.createStage = (req, res) => {
-    if (!req.body.file) {
+exports.createStage = (req, stage, questId) => {
+    if (!stage.file) {
         req.commonData.errors.push({ text: 'Не была добавлена фотография этапа.' });
-        res.send(403);
-        return;
+        return Promise.reject(new Error(403));
     }
-    photoController.uploadPhoto(req, req.body.file)
+    return photoController.uploadPhoto(req, stage.file)
         .then(result => {
             if (!result) {
                 req.commonData.errors.push({
                     text: 'Внутренняя ошибка сервиса, попробуйте еще раз.'
                 });
-                res.send(500);
-                return;
+
+                return Promise.reject(new Error(500));
             }
 
-            let data = {
-                name: req.body.name,
-                description: req.body.description,
-                geolocation: {
-                    latitude: req.body.latitude,
-                    longtitude: req.body.longtitude
-                },
-                order: req.body.order,
-                questId: mongoose.Types.ObjectId(req.body.questId),
+            return Promise.resolve({
+                name: stage.name,
+                description: stage.description,
+                geolocation: stage.geolocation,
+                order: stage.order,
+                questId: mongoose.Types.ObjectId(questId),
                 photo: result.url,
                 likesCount: 0,
                 commentsCount: 0,
                 dislikesCount: 0
-            };
-
-            new Stage(data).save(err => {
-                if (err) {
-                    console.error('Error on stage save: ' + err);
-                } else {
-                    res.json(data);
-                }
             });
         })
+        .then(data => {
+            let stage = new Stage(data);
+            return Promise.promisify(stage.save, { context: stage })();
+        })
+        .then(result => {
+            return Promise.resolve(200);
+        })
         .catch(err => {
-            req.commonData.errors.push({
-                text: 'Не авторизованные пользователи не могут добавлять фотографии.'
-            });
-            res.send(401);
+            return Promise.reject(err);
         });
 };
 

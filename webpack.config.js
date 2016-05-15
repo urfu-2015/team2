@@ -11,7 +11,7 @@ module.exports = {
     entry: {
         main: './main/main.js',
         quests: './quests/quests.js',
-        questPage: './quest_page/quest_page.js'
+        questPage: './quest_page/quest_page.js',
         questAddition: './questAddition/questAddition.js'
     },
     devtool: 'source-map',

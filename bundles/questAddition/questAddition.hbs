@@ -1,5 +1,5 @@
 {{#extend "base"}}
-    {{#content "style"}}
+    {{#content "head" mode="append"}}
         <link rel="stylesheet" href="{{ publicHost }}questAddition.css">
     {{/content}}
 
@@ -15,7 +15,7 @@
         {{> footer/footer }}
     {{/content}}
 
-    {{#content "scripts"}}
+    {{#content "scripts" mode="append"}}
         <script src="{{ publicHost }}questAddition.js"></script>
     {{/content}}
 {{/extend}}

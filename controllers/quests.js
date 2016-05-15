@@ -6,6 +6,9 @@ const Stage = require('../models/stages');
 const User = require('../models/user');
 const layouts = require('handlebars-layouts');
 const fs = require('fs');
+const photoController = require('./photos.js');
+const stageController = require('./stages.js');
+
 const Checkin = require('../models/checkins');
 const Promise = require('bluebird');
 
@@ -16,25 +19,54 @@ const mongoose = require('mongoose');
 mongoose.Promise = Promise;
 
 function createQuest(req, res) {
-    const data = {
-        name: req.body.name,
-        city: req.body.city,
-        author: mongoose.Types.ObjectId(req.body.userId),
-        photo: req.body.photo,
-        description: req.body.description,
-        likesCount: 0,
-        dislikesCount: 0,
-        doneCount: 0
-    };
+    if (!req.body.quest.file) {
+        req.commonData.errors.push({ text: 'Не была добавлена фотография квеста.' });
+        res.send(403);
+        return;
+    }
 
-    const newQuest = new Quest(data);
-    newQuest.save(err => {
-        if (err) {
-            console.error('Error on quest save: ' + err);
-        } else {
-            res.json(data);
-        }
-    });
+    photoController.uploadPhoto(req, req.body.quest.file)
+        .then(result => {
+            if (!result) {
+                req.commonData.errors.push({
+                    text: 'Внутренняя ошибка сервиса, попробуйте еще раз.'
+                });
+                res.send(500);
+                return Promise.reject();
+            }
+
+            return Promise.resolve({
+                name: req.body.quest.name,
+                city: req.body.quest.city,
+                author: mongoose.Types.ObjectId(req.commonData.user.mongo_id),
+                photo: result.url,
+                description: req.body.quest.description,
+                likesCount: 0,
+                dislikesCount: 0,
+                doneCount: 0
+            });
+        })
+        .then(data => {
+            let quest = new Quest(data);
+
+            return Promise.promisify(quest.save, { context: quest })();
+        })
+        .then(quest => {
+            let stagePromises = req.body.quest.stages.map(stageItem => {
+                return stageController.createStage(req, stageItem, quest.id);
+            });
+            return Promise.all(stagePromises);
+        })
+        .then(relust => {
+            res.send(200);
+        })
+        .catch(err => {
+            req.commonData.errors.push({
+                text: 'Не авторизованные пользователи не могут добавлять фотографии.'
+            });
+            console.log(err);
+            res.send(401);
+        });
 }
 
 function getQuests(req, res) {
