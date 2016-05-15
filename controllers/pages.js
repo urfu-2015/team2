@@ -12,13 +12,11 @@ handlebars.registerHelper(layouts(handlebars));
 handlebars.registerPartial('base', fs.readFileSync('./bundles/base.hbs', 'utf8'));
 
 exports.quests = (req, res) => {
-    const template = handlebars.compile(fs.readFileSync('./bundles/quests/quests.hbs', 'utf8'));
-    Quest.getFindQuestPromise('')
+    Quest.getFindQuestPromise({})
         .then(result => {
             let data = {
                 quests: []
             };
-            console.log(mongoose.Types.ObjectId(result[1].author).login);
             result.forEach(quest => {
                 data.quests.push({
                     doneCount: quest.doneCount,
