@@ -1,6 +1,6 @@
 'use strict';
 
-import {showError} from '../errors/scripts/clientErrors.js';
+import { showError } from '../errors/scripts/clientErrors.js';
 
 (function setUserCity() {
     if (document.cookie.indexOf('userCity') >= 0) {

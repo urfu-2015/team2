@@ -9,7 +9,6 @@
     "bundles/main/velocity.js",
     "scripts/exif.js"
   ],
-  "esnext": true,
   "disallowImplicitTypeConversion": [
     "binary",
     "boolean",

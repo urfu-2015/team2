@@ -2,6 +2,8 @@
 
 const Quest = require('../models/quests');
 const QuestStatus = require('../models/questsStatus');
+const QuestsLikes = require('../models/questsLikes');
+const StagesLikes = require('../models/stagesLikes');
 const Stage = require('../models/stages');
 const User = require('../models/user');
 const layouts = require('handlebars-layouts');
@@ -115,7 +117,6 @@ function updateQuest(req, res) {
                     return stageController.deleteStage(req, stageItem);
                 }
 
-                console.log('new');
                 return stageController.createStage(req, stageItem, req.params.id);
             });
 
@@ -164,12 +165,17 @@ function getQuestPageInfo(req, res) {
                 });
         })
         .then(function (result) {
-            let quest = result[0];
-            return User.findOne({ _id: quest.author }).exec()
-                .then(function (user) {
-                    result.push(user);
-                    return result;
-                });
+            if (!result[0]) {
+                res.sendStatus(404);
+                return;
+            } else {
+                let quest = result[0];
+                return User.findOne({ _id: quest.author }).exec()
+                    .then(function (user) {
+                        result.push(user);
+                        return result;
+                    });
+            }
         })
         .then(result => {
             let quest = result[0];
@@ -303,6 +309,174 @@ function startQuest(req, res) {
     });
 }
 
+function getUserLikes(req, res) {
+    let user = req.commonData.user;
+    if (!user) {
+        res.send('not authorized');
+        return;
+    }
+    let questLike = null;
+    QuestsLikes
+        .findOne({ questId: req.params.id, userId: user.mongo_id })
+        .exec()
+        .then(like => {
+            questLike = like;
+        })
+        .then(result => Stage.find({ questId: req.params.id }).exec())
+        .then(stages => StagesLikes
+            .find({ stageId: { $in: stages }, userId: user.mongo_id })
+            .exec())
+        .then(likes => {
+            let stagesLikes = likes;
+            res.json({
+                questLike: questLike,
+                stagesLikes: stagesLikes
+            });
+        });
+}
+
+function getUserQuestLikes(req, res) {
+    let user = req.commonData.user;
+    if (!user) {
+        res.send('not authorized');
+        return;
+    }
+    QuestsLikes
+        .find({ userId: user.mongo_id })
+        .exec()
+        .then(likes => {
+            res.json({
+                questsLikes: likes
+            });
+        });
+}
+
+function handleLike(req, res) {
+    let user = req.commonData.user;
+    let questId = req.params.id;
+    let stageId = req.body.stageId;
+    let type = req.body.type;
+    let count = { like: 0, dislike: 0 };
+    let likeType;
+    if (!user) {
+        res.status(401).send('Вы должны авторизоваться, чтобы ставить лайки');
+        return;
+    }
+    var newLikeQuery = { type: type, userId: mongoose.Types.ObjectId(user.mongo_id) };
+    var task = {};
+    if (stageId) {
+        task.LikesCollection = StagesLikes;
+        task.Collection = Stage;
+        task.idType = 'stageId';
+        task.id = stageId;
+        task.queryId = { stageId: stageId };
+        task.queryObjectId = mongoose.Types.ObjectId(stageId);
+        newLikeQuery.stageId = mongoose.Types.ObjectId(stageId);
+    } else {
+        task.LikesCollection = QuestsLikes;
+        task.Collection = Quest;
+        task.idType = 'questId';
+        task.id = questId;
+        task.queryId = { questId: questId };
+        task.queryObjectId = mongoose.Types.ObjectId(questId);
+        newLikeQuery.questId = mongoose.Types.ObjectId(questId);
+    }
+    var item;
+
+    task.LikesCollection
+        .findOne(Object.assign(task.queryId, { userId: user.mongo_id }))
+        .exec()
+        .then(like => {
+            if (like) {
+                if (type === like.type) {
+                    count[type ? 'like' : 'dislike'] = -1;
+                    return like.remove();
+                } else {
+                    likeType = type;
+                    count[type ? 'like' : 'dislike'] = 1;
+                    count[type ? 'dislike' : 'like'] = -1;
+                    like.type = type;
+                    return like.save();
+                }
+            }
+            count[type ? 'like' : 'dislike'] = 1;
+            likeType = type;
+            return new task.LikesCollection(newLikeQuery).save();
+
+        })
+        .then(like => task.Collection.findOne({ _id: task.id }).exec())
+        .then(item => {
+            item.likesCount += count.like;
+            item.dislikesCount += count.dislike;
+            return item.save();
+        })
+        .then(item => {
+            res.json({
+                likesCount: item.likesCount,
+                dislikesCount: item.dislikesCount,
+                type: likeType,
+                user: user
+            });
+        });
+}
+
+function handleQuestLike(req, res) {
+    let user = req.commonData.user;
+    let questId = req.body.questId;
+    let count = { like: 0, dislike: 0 };
+    if (!user) {
+        res.status(401).send('Вы должны авторизоваться, чтобы ставить лайки');
+        return;
+    }
+    let resType;
+
+    // на странице квеста есть только лайк
+    // надо проверить, есть ли в базе
+    QuestsLikes
+        .findOne({ questId: questId, userId: user.mongo_id })
+        .exec()
+        .then(like => {
+            if (like) {
+
+                // лайк это или дизлайк?
+                // если лайк, убрать его
+                if (like.type) {
+                    count.like = -1;
+                    resType = false;
+                    return like.remove();
+                } else {
+                    count.like = 1;
+                    count.dislike = -1;
+                    like.type = true;
+                    resType = true;
+                    return like.save();
+                }
+            }
+
+            // если не было в бд, то создаем
+            count.like = 1;
+            resType = true;
+            return new QuestsLikes({
+                questId: mongoose.Types.ObjectId(questId),
+                userId: mongoose.Types.ObjectId(user.mongo_id),
+                type: true
+            }).save();
+        })
+        .then(like => Quest.findOne({ _id: questId }).exec())
+        .then(quest => {
+            quest.likesCount += count.like;
+            quest.dislikesCount += count.dislike;
+            return quest.save();
+        })
+        .then(quest => {
+            res.json({
+                type: resType,
+                likesCount: quest.likesCount,
+                user: user
+            });
+        });
+}
+
 function doneQuest(req, res) {
     if (!req.commonData.user) {
         req.commonData.errors.push({ text: 'Не авторизован.' });
@@ -359,5 +533,9 @@ module.exports = {
     getQuestPageInfo,
     createStatus,
     startQuest,
-    doneQuest
+    doneQuest,
+    getUserLikes,
+    handleLike,
+    getUserQuestLikes,
+    handleQuestLike
 };

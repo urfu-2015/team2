@@ -1,4 +1,5 @@
 require('./quests.css');
+require('../../blocks/likes/questsPageLikes.js');
 
 $(document).ready(function () {
     $(document).on('click.card', '.card', function (b) {

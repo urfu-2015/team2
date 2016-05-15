@@ -1,0 +1,20 @@
+<section class="stats">
+    <div class="stats__like">
+        <div class="stats__like-img stats__like-img_empty"></div>
+        <span class="count-badge stats-count stats__like-count">
+            {{#if quest}}{{ quest.likesCount }}{{ else }}{{likesCount}}{{/if}}
+        </span>
+    </div>
+    <div class="stats__dislike">
+        <div class="stats__dislike-img stats__dislike-img_empty"></div>
+        <span class="count-badge stats-count stats__dislike-count">
+            {{#if quest}}{{ quest.dislikesCount }}{{ else }}{{dislikesCount}}{{/if}}
+        </span>
+    </div>
+    <div class="stats__people-done">
+        <div class="stats__people-done-img"></div>
+        <span class="count-badge stats-count stats__people-done-count">
+            {{#if quest}}{{ quest.doneCount }}{{ else }}{{doneCount}}{{/if}}
+        </span>
+    </div>
+</section>
