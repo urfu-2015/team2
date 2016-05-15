@@ -1,26 +1,27 @@
 <div class="quest-form">
     <div class="quest-form__common-data">
-        <div class="quest-from__text">
-            <div class="quest-form__name">
-                <span class="quest-form__name-label">Название</span>
-                <input  class="quest-form__name-input" name="quest-name" type="text">
-            </div>
-            <div class="quest-form__description">
-                <p  class="quest-form__description-label">Описание</p>
-                <textarea  class="quest-form__description-input" name="quest-description"></textarea>
-            </div>
-        </div>
         <div class="quest-form__photo">
             <input class="quest-from__photo-input" type="file">
+        </div>
+        <div class="quest-form__text">
+            <div class="quest-form__name">
+                <input class="quest-form__name-input" name="quest-name" type="text" placeholder="Название квеста">
+            </div>
+            <div class="quest-form__city">
+                <input class="quest-form__city-input" name="quest-city" type="text" placeholder="Город">
+            </div>
+            <div class="quest-form__description">
+                <textarea class="quest-form__description-input"
+                          name="quest-description"
+                          placeholder="Описание квеста"
+                ></textarea>
+            </div>
         </div>
     </div>
 
     <div class="quest-form__stages">
-        {{> footer/footer}}
     </div>
 
-{{!--    {{> add-stage/add-stage}} --}}
-
-    <button class="quest-form__new-stage-button">Добавить этап</button>
-    <button class="quest-form__submit">Сохранить</button>
+    <button class="quest-form__new-stage-button quest-form__button">Добавить этап</button>
+    <button class="quest-form__submit quest-form__button">Сохранить</button>
 </div>

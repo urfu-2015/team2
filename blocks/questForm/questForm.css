@@ -1,7 +1,7 @@
 .quest-form
 {
-    margin: 0 auto;
     width: 80%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
 }
@@ -14,6 +14,42 @@
 
 .quest-form__text
 {
+    width: 80%;
     display: flex;
     flex-direction: column;
+}
+
+.quest-form__description,
+.quest-form__name,
+.quest-form__city
+{
+    margin: 5px;
+}
+
+.quest-form__name-input,
+.quest-form__city-input
+{
+    width: 100%;
+}
+
+.quest-form__description-input
+{
+    width: 100%;
+    height: 100px;
+}
+
+.quest-form__button
+{
+    width: 200px;
+    margin: 5px;
+}
+
+.quest-form__new-stage-button
+{
+    align-self: flex-start;
+}
+
+.quest-form__submit
+{
+    align-self: center;
 }
