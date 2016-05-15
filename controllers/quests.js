@@ -53,7 +53,7 @@ function createQuest(req, res) {
         })
         .then(quest => {
             let stagePromises = req.body.quest.stages.map(stageItem => {
-                return stageController.createStage(req, stageItem, quest.id);
+                stageController.createStage(req, stageItem, quest.id);
             });
             return Promise.all(stagePromises);
         })

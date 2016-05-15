@@ -33,9 +33,11 @@ document.querySelector('.quest-form__submit').addEventListener('click', () => {
             data: JSON.stringify(data),
             contentType: 'application/json'
         }).done(function (result) {
-//            console.log(result);
+
+            // console.log(result);
         }).fail(function (err) {
-//            console.log(err);
+
+            // console.log(err);
         });
     });
 });

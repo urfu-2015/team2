@@ -39,10 +39,10 @@ exports.createStage = (req, stage, questId) => {
             return Promise.promisify(stage.save, { context: stage })();
         })
         .then(result => {
-            return Promise.resolve(200);
+            Promise.resolve(200);
         })
         .catch(err => {
-            return Promise.reject(err);
+            Promise.reject(err);
         });
 };
 
