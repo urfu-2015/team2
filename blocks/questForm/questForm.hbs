@@ -1,27 +1,36 @@
-<div class="quest-form">
+<div class="quest-form form-group">
     <div class="quest-form__common-data">
-        <div class="quest-form__photo">
-            <input class="quest-form__photo-input" type="file">
-        </div>
+        <label class="quest-form__photo">
+            <input class="quest-form__photo-input" type="file" accept="image/*">
+            <img src="{{ quest.photo }}" alt="фото квеста" class="quest-form__photo-preview">
+        </label>
         <div class="quest-form__text">
             <div class="quest-form__name">
-                <input class="quest-form__name-input" name="quest-name" type="text" placeholder="Название квеста">
+                <input class="quest-form__name-input form-control"
+                       type="text" placeholder="Название квеста"
+                       value="{{ quest.name }}"
+                >
             </div>
             <div class="quest-form__city">
-                <input class="quest-form__city-input" name="quest-city" type="text" placeholder="Город">
+                <input class="quest-form__city-input form-control"
+                       type="text" placeholder="Город"
+                       value="{{ quest.city }}"
+                >
             </div>
             <div class="quest-form__description">
-                <textarea class="quest-form__description-input"
-                          name="quest-description"
+                <textarea class="quest-form__description-input form-control"
                           placeholder="Описание квеста"
-                ></textarea>
+                >{{ quest.description }}</textarea>
             </div>
         </div>
     </div>
 
     <div class="quest-form__stages">
+        {{#each quest.stages}}
+            {{>stage-editor/stageEditor}}
+        {{/each }}
     </div>
 
-    <button class="quest-form__new-stage-button quest-form__button">Добавить этап</button>
-    <button class="quest-form__submit quest-form__button">Сохранить</button>
+    <button class="quest-form__new-stage-button quest-form__button btn btn-info">Добавить этап</button>
+    <button class="quest-form__submit quest-form__button btn btn-success">Сохранить</button>
 </div>

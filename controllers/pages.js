@@ -80,18 +80,24 @@ exports.quests = (req, res) => {
 };
 
 exports.index = (req, res) => {
-    const template = handlebars.compile(fs.readFileSync('./bundles/main/main.hbs', 'utf8'));
     const data = {
         currentCity: 'Екатеринбург'
     };
-    res.send(template(Object.assign(data, req.commonData)));
+
+    res.render('main/main', Object.assign(data, req.commonData));
 };
 
 exports.newQuest = (req, res) => {
-    const template = handlebars.compile(
-        fs.readFileSync('./bundles/questAddition/questAddition.hbs', 'utf8'));
+    if (!req.commonData.user) {
+        req.commonData.errors.push({
+            text: 'Авторизуйтесь, чтобы добавлять квесты'
+        });
+        res.redirect('/');
 
-    res.send(template(req.commonData));
+        return;
+    }
+
+    res.render('questAddition/questAddition', req.commonData);
 };
 
 exports.error404 = (req, res) => res.sendStatus(404);

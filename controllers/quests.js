@@ -16,26 +16,32 @@ const handlebars = require('hbs').handlebars;
 handlebars.registerHelper(layouts(handlebars));
 handlebars.registerPartial('base', fs.readFileSync('./bundles/base.hbs', 'utf8'));
 const mongoose = require('mongoose');
+const createHttpError = require('http-errors');
+
 mongoose.Promise = Promise;
 
 function createQuest(req, res) {
-    if (!req.body.quest.file) {
-        req.commonData.errors.push({ text: 'Не была добавлена фотография квеста.' });
-        res.send(403);
+    if (!req.commonData.user) {
+        res.status(401).send('Вы не авторизованы');
+
         return;
     }
+
+    if (req.body.quest.file === '') {
+        res.sendStatus(403).send('Картинка квеста не указана');
+
+        return;
+    }
+
+    let questId;
 
     photoController.uploadPhoto(req, req.body.quest.file)
         .then(result => {
             if (!result) {
-                req.commonData.errors.push({
-                    text: 'Внутренняя ошибка сервиса, попробуйте еще раз.'
-                });
-                res.send(500);
-                return Promise.reject();
+                return Promise.reject(createHttpError(500, 'Не удалось загрузить фотографию'));
             }
 
-            return Promise.resolve({
+            return new Quest({
                 name: req.body.quest.name,
                 city: req.body.quest.city,
                 author: mongoose.Types.ObjectId(req.commonData.user.mongo_id),
@@ -44,28 +50,29 @@ function createQuest(req, res) {
                 likesCount: 0,
                 dislikesCount: 0,
                 doneCount: 0
-            });
-        })
-        .then(data => {
-            let quest = new Quest(data);
-
-            return Promise.promisify(quest.save, { context: quest })();
+            }).save();
         })
         .then(quest => {
-            let stagePromises = req.body.quest.stages.map(stageItem => {
-                stageController.createStage(req, stageItem, quest.id);
-            });
+            questId = quest.id;
+
+            let stagePromises = req.body.quest.stages.map(
+                stageItem => stageController.createStage(req, stageItem, quest.id)
+            );
+
             return Promise.all(stagePromises);
         })
-        .then(relust => {
-            res.send(200);
+        .then(() => {
+            console.log('id sended');
+            res.send(questId);
         })
         .catch(err => {
-            req.commonData.errors.push({
-                text: 'Не авторизованные пользователи не могут добавлять фотографии.'
-            });
             console.log(err);
-            res.send(401);
+
+            if (err.http_code !== undefined) {
+                res.status(err.http_code).send(err.message);
+            }
+
+            res.status(err.status).send(err.message);
         });
 }
 

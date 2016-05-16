@@ -4,25 +4,28 @@ const fs = require('fs');
 const photoController = require('./photos.js');
 const Stage = require('../models/stages');
 const mongoose = require('mongoose');
+const createHttpError = require('http-errors');
+
 const Checkin = require('../models/checkins');
 const geolib = require('geolib');
 
 exports.createStage = (req, stage, questId) => {
-    if (!stage.file) {
-        req.commonData.errors.push({ text: 'Не была добавлена фотография этапа.' });
-        return Promise.reject(new Error(403));
+    console.log('stage pending');
+    if (stage.file === '') {
+
+        return Promise.reject(createHttpError(403, 'Не была добавлена фотография этапа'));
     }
+
     return photoController.uploadPhoto(req, stage.file)
         .then(result => {
             if (!result) {
-                req.commonData.errors.push({
-                    text: 'Внутренняя ошибка сервиса, попробуйте еще раз.'
-                });
 
-                return Promise.reject(new Error(500));
+                return Promise.reject(
+                    createHttpError(500, 'Внутренняя ошибка сервиса, попробуйте еще раз.')
+                );
             }
-
-            return Promise.resolve({
+            console.log('stage added');
+            return new Stage({
                 name: stage.name,
                 description: stage.description,
                 geolocation: stage.geolocation,
@@ -32,17 +35,7 @@ exports.createStage = (req, stage, questId) => {
                 likesCount: 0,
                 commentsCount: 0,
                 dislikesCount: 0
-            });
-        })
-        .then(data => {
-            let stage = new Stage(data);
-            return Promise.promisify(stage.save, { context: stage })();
-        })
-        .then(result => {
-            Promise.resolve(200);
-        })
-        .catch(err => {
-            Promise.reject(err);
+            }).save();
         });
 };
 

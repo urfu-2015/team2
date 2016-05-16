@@ -13,7 +13,9 @@
     align-items: center;
     overflow: hidden;
 
-    padding: 10px 0;
+    padding: 16px;
+
+    position: relative;
 }
 
 .edit-stage__media
@@ -68,14 +70,14 @@
     display: inline-block;
     width: 150px;
     height: 150px;
-    background: url("./photo_camera.png") center no-repeat;
+    background: url("../photo_camera.png") center no-repeat;
     border-radius: 20px;
     overflow: hidden;
     margin-bottom: 0 !important;
     border: 3px solid black;
 }
 
-[src=""]
+.photo-editor__preview[src=""]
 {
     opacity: 0;
 }
@@ -109,6 +111,7 @@
 {
     .edit-stage
     {
+        padding: 10px 0;
         min-width: 100px;
         height: 500px;
         flex-direction: column;
@@ -138,4 +141,14 @@
     {
         height: 220px !important;
     }
+}
+
+.edit-stage__remove-button
+{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 16px;
+    height: 16px;
+    background-image: url("../close.png");
 }

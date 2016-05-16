@@ -2,55 +2,47 @@ require('./questForm.css');
 const stageFunctions = require('../stage-editor/stageEditor.js');
 const stageTemplate = require('../stage-editor/stageEditor.hbs');
 
+setImageSelectHandler();
+
 let stagesContainer = document.querySelector('.quest-form__stages');
+let stageId = 0;
 
 document.querySelector('.quest-form__new-stage-button').addEventListener('click', addStage);
 
 addStage();
 
-document.querySelector('.quest-form__submit').addEventListener('click', () => {
-    let stagesData = getStages();
+let submitButton = document.querySelector('.quest-form__submit');
 
-    var fileInput = document.querySelector('.quest-form__photo-input');
+submitButton.addEventListener('click', () => {
+    submitButton.disabled = true;
 
-    var reader = new FileReader();
+    uploadNewQuest();
+});
 
-    reader.readAsDataURL(fileInput.files[0]);
-    reader.addEventListener('load', () => {
-        var data = {
-            quest: {
-                file: reader.result,
-                name: document.querySelector('.quest-form__name-input').value,
-                city: document.querySelector('.quest-form__city-input').value,
-                description: document.querySelector('.quest-form__description-input').value,
-                stages: stagesData
-            }
-        };
+function setImageSelectHandler() {
+    let fileInput = document.querySelector('.quest-form__photo-input');
 
-        $.ajax({
-            url: '/quests',
-            type: 'POST',
-            data: JSON.stringify(data),
-            contentType: 'application/json'
-        }).done(function (result) {
+    fileInput.addEventListener('change', () => {
+        var reader = new FileReader();
 
-            // console.log(result);
-        }).fail(function (err) {
-
-            // console.log(err);
+        reader.readAsDataURL(fileInput.files[0]);
+        reader.addEventListener('load', () => {
+            document.querySelector('.quest-form__photo-preview').src = reader.result;
         });
     });
-});
+}
 
 function addStage() {
     let data = {
         stage: {
-            id: stagesContainer.children.length
+            id: stageId
         }
     };
 
+    stageId++;
+
     $('.quest-form__stages').append($.parseHTML(stageTemplate(data)));
-    stageFunctions.setImageSelectHandler(stagesContainer.lastElementChild);
+    stageFunctions.setScripts(stagesContainer.lastElementChild);
 }
 
 function getStages() {
@@ -62,4 +54,31 @@ function getStages() {
     });
 
     return stagesData;
+}
+
+function uploadNewQuest() {
+    let stagesData = getStages();
+
+    let data = {
+        quest: {
+            file: document.querySelector('.quest-form__photo-preview').getAttribute('src'),
+            name: document.querySelector('.quest-form__name-input').value,
+            city: document.querySelector('.quest-form__city-input').value,
+            description: document.querySelector('.quest-form__description-input').value,
+            stages: stagesData
+        }
+    };
+
+    $.ajax({
+        url: '/quests',
+        type: 'POST',
+        data: JSON.stringify(data),
+        contentType: 'application/json'
+    }).done(function (questId) {
+        console.log(questId);
+        window.location.href = `/quests/${questId}`;
+    }).fail(function (err) {
+        console.log(err);
+        submitButton.disabled = false;
+    });
 }
