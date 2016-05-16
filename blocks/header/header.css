@@ -3,16 +3,39 @@
 .navbar
 {
     border: 1px solid #666;
-    border-radius: 5px;
-
-    margin: 10px;
 
     font-family: Roboto, sans-serif;
 }
 
-.navbar-toggle .icon-bar
+.navbar-brand
 {
-    background-color: #000;
+    float: right;
+}
+
+.nav-menu-button
+{
+    position: relative;
+    float: left;
+
+    padding: 9px 9px;
+    margin: 8px 5px;
+    width: 45px !important;
+
+    background-color: transparent;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+
+    outline: none;
+}
+
+.nav-menu-button .icon-bar
+{
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+    background-color: #888;
+    margin-bottom: 3px;
 }
 
 .header-logo
@@ -34,32 +57,41 @@
     background-color: #e5e5e5;
 }
 
-.nav > li > a
+.body-content-wrapper .container
 {
-    color: #666;
-    font-size: 17px;
-    text-decoration: none;
-}
-
-.navbar-toggle
-{
-    margin-right: 0;
-    margin-bottom: 0;
+    width: 100%;
 }
 
 @media (max-width: 767px)
 {
-    header
+    .navbar
     {
         min-width: 300px;
+    }
+
+    .body-content-wrapper
+    {
+        min-width: 280px;
+        margin-top: 40px;
     }
 }
 
 @media (min-width: 768px)
 {
-    .navbar > .container .navbar-brand,
-    .navbar > .container-fluid .navbar-brand
+    .nav-menu-button
     {
-        margin-left: -25px;
+        display: none;
+    }
+
+    header
+    {
+        margin-top: -15px;
+        height: 85px;
+    }
+
+    .navbar-fixed-top
+    {
+        position: static;
+        border-radius: 5px;
     }
 }

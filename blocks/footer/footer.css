@@ -39,6 +39,24 @@
     .footer
     {
         min-width: 300px;
+        width: 100%;
+
+        margin: 0;
+
+        position: absolute;
+        left: 0;
+
+        border-radius: 0;
     }
 }
 
+@media (min-width: 768px)
+{
+    .footer
+    {
+        position: relative;
+        top: 15px;
+        margin: 0;
+        width: 100%;
+    }
+}

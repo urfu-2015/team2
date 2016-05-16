@@ -1,0 +1,35 @@
+<div class="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        {{#if user}}
+            <li class="sidebar-brand sidebar-brand-auth">
+            <img class="sidebar-brand__photo" src="{{ user.picture }}" alt="avatar {{user.name.givenName}}">
+            {{#if user.displayName}}
+                <p class="sidebar-brand__nickname">{{user.displayName}}</p>
+            {{else}}
+                <p class="sidebar-brand__nickname wsedfrghjhgf">{{user.name.givenName}}</p>
+            {{/if}}
+            </li>
+        {{else}}
+            <li class="sidebar-brand sidebar-brand-no-auth">
+                <a href="#">PhotoQuest</a>
+            </li>
+        {{/if}}
+    <li>
+    <a href="#">Главная</a>
+    </li>
+    <li>
+    <a href="#">Квесты</a>
+    </li>
+    <li role="presentation" class="divider"></li>
+        {{#if user}}
+            <li><a href="#">Начатые квесты</a></li>
+            <li><a href="#">Пройденные квесты</a></li>
+            <li><a href="#">Отмеченные кветы</a></li>
+            <li><a href="#">Настройки</a></li>
+            <li role="presentation" class="divider"></li>
+            <li><a href="/logout">Выйти</a></li>
+        {{else}}
+            <li><a href="/login">Войти</a></li>
+        {{/if}}
+    </ul>
+</div>

@@ -1,0 +1,169 @@
+.wrapper
+{
+    padding-left: 0;
+    transition: all 0.5s ease;
+}
+
+.sidebar-wrapper
+{
+    z-index: 1000;
+
+    width: 0;
+    height: 100%;
+
+    position: fixed;
+    left: 230px;
+    top: 50px;
+
+    margin-left: -230px;
+
+    overflow-y: auto;
+    background: #fff;
+    box-shadow: 1px 1px 3px;
+
+    transition: all 0.5s ease;
+}
+
+.wrapper.toggled .sidebar-wrapper
+{
+    width: 230px;
+}
+
+.wrapper.toggled .page-content-wrapper
+{
+    position: absolute;
+    margin-right: -230px;
+}
+
+.page-content-wrapper
+{
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+/* Sidebar Styles */
+.sidebar-nav
+{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    min-width: 230px;
+
+    padding: 0;
+
+    list-style: none;
+}
+
+.sidebar-nav li
+{
+    text-indent: 20px;
+    line-height: 50px;
+}
+
+.sidebar-nav li a
+{
+    display: block;
+    text-decoration: none;
+    color: #666;
+}
+
+.sidebar-nav li a:hover
+{
+    text-decoration: none;
+    color: #000;
+    background: rgba(192, 192, 192, 0.3);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus
+{
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand
+{
+    font-size: 18px;
+    line-height: 65px;
+    background: rgba(0, 128, 128, 0.5);
+}
+
+.sidebar-brand-auth
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-brand-auth .sidebar-brand__nickname
+{
+    text-indent: 0;
+    line-height: 20px;
+
+    margin-bottom: 10px;
+}
+
+.sidebar-brand-no-auth
+{
+    height: 65px;
+}
+
+.sidebar-brand__photo
+{
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.sidebar-nav > .sidebar-brand a
+{
+    color: #fff;
+}
+
+.sidebar-nav .divider
+{
+    height: 1px;
+    margin: 5px 10px;
+    overflow: hidden;
+    background-color: #666;
+    width: 90%;
+}
+
+@media(min-width: 768px)
+{
+    .page-content-wrapper
+    {
+        width: 100%;
+        overflow-x: hidden;
+        padding: 15px;
+    }
+
+    .wrapper
+    {
+        padding-left: 230px;
+    }
+
+    .sidebar-wrapper
+    {
+        width: 230px;
+        top: 0;
+    }
+
+    .wrapper.toggled .sidebar-wrapper
+    {
+        width: 0;
+    }
+
+    .page-content-wrapper
+    {
+        padding: 20px;
+        position: relative;
+    }
+
+    .wrapper.toggled .page-content-wrapper
+    {
+        position: relative;
+        margin-right: 0;
+    }
+}

@@ -6,9 +6,6 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>{{ page.title }}</title>
             <meta name="description" content="{{ meta.description }}">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
@@ -25,34 +22,55 @@
             <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 
             <link rel="stylesheet" href="{{publicHost}}/main.css">
-
         {{/block}}
     </head>
     <body>
-        {{#block "errors"}}
-            <div class="errors-wrapper">
-                {{#if errors}}
-                    {{>errors/errors}}
-                {{/if}}
-            </div>
-        {{/block}}
+        <div class="wrapper">
+            {{#block "sidebar"}}
+                {{> sidebar/sidebar }}
+            {{/block}}
+            <div class="page-content-wrapper">
+                {{#block "errors"}}
+                    <div class="errors-wrapper">
+                        {{#if errors}}
+                            {{>errors/errors}}
+                        {{/if}}
+                    </div>
+                {{/block}}
 
-        {{#block "header"}}
-            {{> header/header }}
-        {{/block}}
+                {{#block "header"}}
+                    {{> header/header }}
+                {{/block}}
 
-        {{#block "body"}}
-            <div class="container">
-                <div class="text-center">
-                    <h3>Добро пожаловать!</h3>
+                <div class="body-content-wrapper">
+                    {{#block "body"}}
+                        <div class="container">
+                            <div class="text-center">
+                                <h3>Добро пожаловать!</h3>
+                                <h3>Добро пожаловать!</h3>
+                                <h3>Добро пожаловать!</h3>
+                                <h3>Добро пожаловать!</h3>
+                                <h3>Добро пожаловать!</h3>
+                                <h3>Добро пожаловать!</h3>
+                                <h3>Добро пожаловать!</h3>
+                                <h3>Добро пожаловать!</h3>
+                                <h3>Добро пожаловать!</h3>
+                                <h3>Добро пожаловать!</h3>
+                                <h3>Добро пожаловать!</h3>
+                                <h3>Добро пожаловать!</h3>
+                                <h3>Добро пожаловать!</h3>
+                                <h3>Добро пожаловать!</h3>
+                                <h3>Добро пожаловать!</h3>
+                            </div>
+                        </div>
+                    {{/block}}
                 </div>
+
+                {{#block "footer"}}
+                    {{> footer/footer }}
+                {{/block}}
             </div>
-        {{/block}}
-
-        {{#block "footer"}}
-            {{> footer/footer }}
-        {{/block}}
-
+        </div>
         {{#block "scripts"}}
             <script src="{{publicHost}}/main.js"></script>
         {{/block}}
