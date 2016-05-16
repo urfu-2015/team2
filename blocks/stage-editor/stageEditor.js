@@ -1,6 +1,5 @@
 require('./stageEditor.css');
 
-
 module.exports.setScripts = function (element) {
     setImageSelectHandler(element);
     setRemoveHandler(element);
@@ -19,9 +18,9 @@ module.exports.getStageData = function (element) {
 };
 
 function setRemoveHandler(element) {
-    element.querySelector('.edit-stage__remove-button').addEventListener('click', () => {
-       element.parentElement.removeChild(element);
-    });
+    element.querySelector('.edit-stage__remove-button').addEventListener('click',
+        () => element.parentElement.removeChild(element)
+    );
 }
 
 function setImageSelectHandler(element) {
