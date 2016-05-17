@@ -8,6 +8,7 @@
             <meta name="description" content="{{ meta.description }}">
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.16/jquery.touchSwipe.min.js"></script>
 
             <!-- Latest compiled and minified CSS -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -26,10 +27,6 @@
     </head>
     <body>
         <div class="wrapper">
-            {{#block "sidebar"}}
-                {{> sidebar/sidebar }}
-            {{/block}}
-            <div class="page-content-wrapper">
                 {{#block "errors"}}
                     <div class="errors-wrapper">
                         {{#if errors}}
@@ -42,24 +39,15 @@
                     {{> header/header }}
                 {{/block}}
 
+                {{#block "sidebar"}}
+                    {{> sidebar/sidebar }}
+                {{/block}}
+
+
                 <div class="body-content-wrapper">
                     {{#block "body"}}
                         <div class="container">
                             <div class="text-center">
-                                <h3>Добро пожаловать!</h3>
-                                <h3>Добро пожаловать!</h3>
-                                <h3>Добро пожаловать!</h3>
-                                <h3>Добро пожаловать!</h3>
-                                <h3>Добро пожаловать!</h3>
-                                <h3>Добро пожаловать!</h3>
-                                <h3>Добро пожаловать!</h3>
-                                <h3>Добро пожаловать!</h3>
-                                <h3>Добро пожаловать!</h3>
-                                <h3>Добро пожаловать!</h3>
-                                <h3>Добро пожаловать!</h3>
-                                <h3>Добро пожаловать!</h3>
-                                <h3>Добро пожаловать!</h3>
-                                <h3>Добро пожаловать!</h3>
                                 <h3>Добро пожаловать!</h3>
                             </div>
                         </div>
@@ -69,7 +57,6 @@
                 {{#block "footer"}}
                     {{> footer/footer }}
                 {{/block}}
-            </div>
         </div>
         {{#block "scripts"}}
             <script src="{{publicHost}}/main.js"></script>

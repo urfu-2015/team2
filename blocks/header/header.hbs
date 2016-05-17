@@ -1,33 +1,42 @@
-<header>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
+<header class="page-header">
+    <nav class="navbar navbar-default">
+        <div class="container navbar-container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <div class="header-logo"></div>
-                </a>
-                <button id="nav-menu-toggle" type="button" class="nav-menu-button">
-                    <!--<button id="nav-menu-toggle" type="button" class="btn btn-default" data-toggle="collapse"-->
-                            <!--data-target="#navbar" aria-expanded="false" aria-controls="navbar">-->
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                <div class="navbar-brand">
+                    <span class="header-logo"></span>
+                    <h1>PhotoQuest</h1>
+                </div>
             </div>
-            <!--<div id="navbar" class="navbar-collapse collapse">-->
-                <!--<ul class="nav navbar-nav">-->
-                    <!--<li class="dropdown">-->
-                        <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown"-->
-                           <!--role="button" aria-haspopup="true" aria-expanded="false">-->
-                            <!--{{ currentCity }}-->
-                            <!--<span class="caret"></span>-->
-                        <!--</a>-->
-                        <!--<ul class="dropdown-menu">-->
-                            <!--<li><a href="#">Москва</a></li>-->
-                            <!--<li><a href="#">Санкт-Петербург</a></li>-->
-                        <!--</ul>-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</div>-->
+            <div class="btn-group nav-menu">
+                <ul class="nav-menu-list">
+                    <li class="nav-menu-list__mobile-menu">Меню</li>
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/quests">Квесты</a></li>
+                    {{#if user}}
+                        <li><a href="#">Профиль</a></li>
+                        <li><a href="/logout">Выйти</a></li>
+                    {{else}}
+                        <li><a href="/login">Войти</a></li>
+                    {{/if}}
+                </ul>
+            </div>
+            <div class="quest-search">
+                <input class="quest-search__input" placeholder="Search quest...">
+            </div>
+            <div class="btn-group city-select">
+                <button class="btn btn-link ico-msq header-city-button" data-toggle="dropdown" type="button">
+                    <i class="glyphicon glyphicon-map-marker"></i>
+                    <span class="city-select__current-city">{{ currentCity }} </span>
+                    <i class="glyphicon glyphicon-menu-down city-select-menu-down"></i>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Астана</a></li>
+                    <li><a href="#">Москва</a></li>
+                    <li><a href="#">Санкт-Петербург</a></li>
+                    <li><a href="#">Нижний Новгород</a></li>
+                    <li><a href="#">Новосибирск</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 </header>

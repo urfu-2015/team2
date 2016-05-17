@@ -1,52 +1,120 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,900&subset=cyrillic");
 
+.page-header
+{
+    height: 230px;
+
+    padding: 0;
+    margin: 0;
+}
+
+.city-select .header-city-button,
+.city-select .header-city-button:hover
+{
+    color: #fff;
+    outline: none;
+    width: 150px;
+    padding: 10px 0 0;
+}
+
+.city-select.btn-group.open .btn
+{
+    color: #fff;
+}
+
+.city-select.open > .dropdown-menu
+{
+    background-color: #fff;
+}
+
+.city-select .city-select-menu-down
+{
+    font-size: 9px;
+}
+
+.nav-menu
+{
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.nav-menu-list
+{
+    display: flex;
+    margin-left: -40px;
+}
+
+.nav-menu-list li
+{
+    margin-right: 10px;
+    border-radius: 5px;
+    padding: 3px 5px;
+    background-color: #fff;
+    color: #000;
+}
+
+.nav-menu-list li,
+.header-city-button
+{
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.nav-menu-list li > a
+{
+    color: #000;
+    text-decoration: none;
+}
+
+.quest-search__input
+{
+    width: 270px;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
 .navbar
 {
-    border: 1px solid #666;
+    background: url("header-bg.jpg") no-repeat center;
+    background-size: cover;
 
     font-family: Roboto, sans-serif;
+
+    height: 230px;
+}
+
+.navbar-container
+{
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .navbar-brand
 {
-    float: right;
-}
-
-.nav-menu-button
-{
-    position: relative;
-    float: left;
-
-    padding: 9px 9px;
-    margin: 8px 5px;
-    width: 45px !important;
-
-    background-color: transparent;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-
-    outline: none;
-}
-
-.nav-menu-button .icon-bar
-{
-    display: block;
-    width: 22px;
-    height: 2px;
-    border-radius: 1px;
-    background-color: #888;
-    margin-bottom: 3px;
+    display: flex;
+    justify-content: center;
 }
 
 .header-logo
 {
-    min-width: 50px;
-    height: 50px;
+    min-width: 30px;
+    height: 30px;
 
     background: url("logo.png") no-repeat center left;
     background-size: contain;
 
-    margin-top: -15px;
+    margin-right: 10px;
+}
+
+.navbar-brand h1
+{
+    font-size: 41px;
+    color: #fff;
+    margin-top: -10px;
 }
 
 .navbar-nav .divider
@@ -72,26 +140,19 @@
     .body-content-wrapper
     {
         min-width: 280px;
-        margin-top: 40px;
+        margin-top: 50px;
     }
 }
 
 @media (min-width: 768px)
 {
-    .nav-menu-button
+    .page-header
+    {
+        width: 100%;
+    }
+
+    .nav-menu-list__mobile-menu
     {
         display: none;
-    }
-
-    header
-    {
-        margin-top: -15px;
-        height: 85px;
-    }
-
-    .navbar-fixed-top
-    {
-        position: static;
-        border-radius: 5px;
     }
 }

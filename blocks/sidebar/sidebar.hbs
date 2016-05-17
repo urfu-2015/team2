@@ -6,7 +6,7 @@
             {{#if user.displayName}}
                 <p class="sidebar-brand__nickname">{{user.displayName}}</p>
             {{else}}
-                <p class="sidebar-brand__nickname wsedfrghjhgf">{{user.name.givenName}}</p>
+                <p class="sidebar-brand__nickname">{{user.name.givenName}}</p>
             {{/if}}
             </li>
         {{else}}
@@ -14,22 +14,29 @@
                 <a href="#">PhotoQuest</a>
             </li>
         {{/if}}
-    <li>
-    <a href="#">Главная</a>
-    </li>
-    <li>
-    <a href="#">Квесты</a>
-    </li>
-    <li role="presentation" class="divider"></li>
+        <li>
+        <a href="/">Главная</a>
+        </li>
+        <li>
+        <a href="/quests">Квесты</a>
+        </li>
+        <li role="presentation" class="divider"></li>
         {{#if user}}
             <li><a href="#">Начатые квесты</a></li>
             <li><a href="#">Пройденные квесты</a></li>
-            <li><a href="#">Отмеченные кветы</a></li>
+            <li><a href="#">Отмеченные квесты</a></li>
             <li><a href="#">Настройки</a></li>
             <li role="presentation" class="divider"></li>
             <li><a href="/logout">Выйти</a></li>
         {{else}}
             <li><a href="/login">Войти</a></li>
         {{/if}}
+        <li class="sidebar-footer">
+            <!--<div class="footer__share ya-share2" data-services="{{ common.footer.social.name }}"-->
+                 <!--data-description="{{ common.footer.social.description }}" data-counter></div>-->
+            <address class="sidebar-footer-address">
+                <a class="sidebar-footer-address__link" href="mailto:{{ common.footer.mail }}"></a>
+            </address>
+        </li>
     </ul>
 </div>
