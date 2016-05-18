@@ -17,6 +17,10 @@ let stageSchema = new Schema({
     dislikesCount: Number
 });
 
+stageSchema.statics.deleteStage = function (query) {
+    return this.find(query).remove().exec();
+};
+
 stageSchema.methods.findStageLikes = function (cb) {
     return Likes.find({ stageId: this._id }, (err, likes) => {
         if (err) {

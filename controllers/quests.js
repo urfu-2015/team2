@@ -76,6 +76,23 @@ function createQuest(req, res) {
         });
 }
 
+function updateQuest(req, res) {
+
+}
+
+function deleteQuest(req, res) {
+    if (!req.params.id) {
+        res.sendStatus(400);
+    }
+
+    let query = {
+        _id: req.params.id
+    };
+
+    Quest.deleteQuest(query)
+        .then(() => res.sendStatus(200));
+}
+
 function getQuests(req, res) {
     let query = req.params.id ? { _id: req.params.id } : {};
     Quest.findQuests(query, quests => res.json(quests));
@@ -226,6 +243,8 @@ function startQuest(req, res) {
 
 module.exports = {
     createQuest,
+    updateQuest,
+    deleteQuest,
     getQuests,
     getQuestPageInfo,
     createStatus,

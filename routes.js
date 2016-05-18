@@ -13,6 +13,8 @@ module.exports = function (app) {
 
     app.get('/new-quest', pages.newQuest);
 
+    app.get('/edit-quest/:id', pages.editQuest);
+
     app.use('/user', userRoute);
 
     app.use('/quests', questsRoute);

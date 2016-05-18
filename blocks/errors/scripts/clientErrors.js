@@ -16,3 +16,7 @@ export const showError = (error) => {
     errorsBlock.innerHTML += renderErrorBlock(error);
     setCloseEvent();
 };
+
+export const removeErrors = () => {
+    document.querySelector('.errors-wrapper').innerHTML = '';
+};

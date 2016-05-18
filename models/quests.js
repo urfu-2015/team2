@@ -32,6 +32,10 @@ questsSchema.statics.getFindQuestPromise = function (query) {
     return this.find(query).exec();
 };
 
+questsSchema.statics.deleteQuest = function (query) {
+    return this.find(query).remove().exec();
+};
+
 questsSchema.methods.findQuestStages = function () {
     return Stages.find({ questId: this._id }).exec();
 };

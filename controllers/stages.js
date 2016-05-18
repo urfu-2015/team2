@@ -37,6 +37,29 @@ exports.createStage = (req, stage, questId) => {
                 dislikesCount: 0
             }).save();
         });
+}
+
+function updateStage(req, res) {
+
+}
+
+function deleteStage(req, res) {
+    if (!req.params.id) {
+        res.sendStatus(400);
+    }
+
+    let query = {
+        _id: req.params.id
+    };
+
+    Stage.deleteStage(query)
+        .then(() => res.sendStatus(200));
+}
+
+module.exports = {
+    createStage,
+    updateStage,
+    deleteStage
 };
 
 exports.registerCheckin = (req, res) => {

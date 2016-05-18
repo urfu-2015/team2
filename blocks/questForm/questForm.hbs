@@ -1,4 +1,4 @@
-<div class="quest-form form-group">
+<div class="quest-form form-group" data-quest-id="{{ quest.id }}">
     <div class="quest-form__common-data">
         <label class="quest-form__photo">
             <input class="quest-form__photo-input" type="file" accept="image/*">
@@ -27,7 +27,7 @@
 
     <div class="quest-form__stages">
         {{#each quest.stages}}
-            {{>stage-editor/stageEditor}}
+            {{>stageEditor/stageEditor}}
         {{/each }}
     </div>
 

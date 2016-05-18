@@ -1,22 +1,37 @@
 require('./questForm.css');
-const stageFunctions = require('../stage-editor/stageEditor.js');
-const stageTemplate = require('../stage-editor/stageEditor.hbs');
+const stageFunctions = require('../stageEditor/stageEditor.js');
+const stageTemplate = require('../stageEditor/stageEditor.hbs');
+const clientErrors = require('../errors/scripts/clientErrors.js');
 
 setImageSelectHandler();
 
 let stagesContainer = document.querySelector('.quest-form__stages');
 let stageId = 0;
+let isEditing = false;
+let questId = document.querySelector('.quest-form').dataset.questId;
+let editingStages = [];
+
+if (questId !== '') {
+    initEditing();
+} else {
+    addStage();
+}
 
 document.querySelector('.quest-form__new-stage-button').addEventListener('click', addStage);
-
-addStage();
 
 let submitButton = document.querySelector('.quest-form__submit');
 
 submitButton.addEventListener('click', () => {
     submitButton.disabled = true;
+    clientErrors.removeErrors();
 
-    uploadNewQuest();
+    try {
+        uploadQuest();
+    } catch (err) {
+        clientErrors.showError({ text: err.message });
+    } finally {
+        submitButton.disabled = false;
+    }
 });
 
 function setImageSelectHandler() {
@@ -33,30 +48,45 @@ function setImageSelectHandler() {
 }
 
 function addStage() {
-    let data = {
-        stage: {
-            id: stageId
-        }
-    };
+
+    $('.quest-form__stages').append($.parseHTML(stageTemplate()));
 
     stageId++;
+    stagesContainer.lastElementChild.dataset.editStageId = stageId;
 
-    $('.quest-form__stages').append($.parseHTML(stageTemplate(data)));
     stageFunctions.setScripts(stagesContainer.lastElementChild);
 }
 
 function getStages() {
     let stagesData = [];
     let stages = [].slice.apply(stagesContainer.children);
+    let isStageInRequest = {};
 
-    stages.forEach((stage) => {
-        stagesData.push(stageFunctions.getStageData(stage));
+    stages.forEach((stage, index) => {
+        let data = stageFunctions.getStageData(stage);
+
+        data.order = index;
+
+        if (data.editing) {
+            isStageInRequest[data.id] = true;
+        }
+
+        stagesData.push(data);
+    });
+
+    editingStages.forEach((id) => {
+        if (!isStageInRequest[id]) {
+            stagesData.push({
+                id: id,
+                removed: true
+            });
+        }
     });
 
     return stagesData;
 }
 
-function uploadNewQuest() {
+function uploadQuest() {
     let stagesData = getStages();
 
     let data = {
@@ -69,9 +99,18 @@ function uploadNewQuest() {
         }
     };
 
+    if (isEditing && !data.quest.file.startsWith('data:image')) {
+        delete data.quest.file;
+    }
+
+    checkData(data);
+
+    let url = '/quests' + (isEditing ? `/${questId}` : '');
+    let type = isEditing ? 'PATCH' : 'POST';
+
     $.ajax({
-        url: '/quests',
-        type: 'POST',
+        url: url,
+        type: type,
         data: JSON.stringify(data),
         contentType: 'application/json'
     }).done(function (questId) {
@@ -81,4 +120,53 @@ function uploadNewQuest() {
         console.log(err);
         submitButton.disabled = false;
     });
+}
+
+function checkData(data) {
+    if (data.quest.file === '' && !isEditing) {
+        throw new Error('Не указана картинка квеста');
+    }
+    if (data.quest.name === '') {
+        throw new Error('Не указано название квеста');
+    }
+    if (data.quest.city === '') {
+        throw new Error('Не указан город квеста');
+    }
+    if (data.quest.description === '') {
+        throw new Error('Не указано описание квеста');
+    }
+    if (data.quest.stages.length === 0) {
+        throw new Error('Нельзя добавить квест без этапов');
+    }
+    data.quest.stages.forEach((stage) => {
+        if (stage.removed) {
+            return;
+        }
+        if (stage.file === '' && !stage.editing) {
+            throw new Error('Не указана картинка этапа');
+        }
+        if (stage.name === '') {
+            throw new Error('Не указано название этапа');
+        }
+        if (stage.description === '') {
+            throw new Error('Не указано описание этапа');
+        }
+
+        //if (stage.geolocation === undefined) {
+        //    throw new Error('Не указано местоположение этапа');
+        //}
+    });
+}
+
+function initEditing() {
+    isEditing = true;
+    stageId = stagesContainer.lastElementChild.dataset.editStageId;
+
+    let stages = [].slice.apply(stagesContainer.children);
+
+    stages.forEach((stage) => {
+        stageFunctions.setScripts(stage);
+        editingStages.push(stageFunctions.getStageId(stage));
+    });
+
 }
