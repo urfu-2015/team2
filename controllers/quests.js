@@ -62,7 +62,6 @@ function createQuest(req, res) {
             return Promise.all(stagePromises);
         })
         .then(() => {
-            console.log('id sended');
             res.send(questId);
         })
         .catch(err => {
@@ -72,12 +71,69 @@ function createQuest(req, res) {
                 res.status(err.http_code).send(err.message);
             }
 
-            res.status(err.status).send(err.message);
+            res.status(500).send(err.message);
         });
 }
 
 function updateQuest(req, res) {
+    if (!req.commonData.user) {
+        res.status(401).send('Вы не авторизованы');
 
+        return;
+    }
+
+    let photoPromise = req.body.quest.file ?
+        photoController.uploadPhoto(req, req.body.quest.file) : Promise.resolve();
+
+    photoPromise
+        .then(result => {
+            let updatedData = {
+                name: req.body.quest.name,
+                city: req.body.quest.city,
+                description: req.body.quest.description
+            };
+
+            if (req.body.quest.file) {
+                if (!result) {
+                    return Promise.reject(createHttpError(500, 'Не удалось загрузить фотографию'));
+                }
+
+                updatedData.photo = result.url;
+            }
+
+            return updatedData;
+        })
+        .then(updatedData => Quest.update({ _id: req.params.id }, updatedData))
+        .then(() => {
+            let stagePromises = req.body.quest.stages.map(stageItem => {
+                if (stageItem.edited) {
+                    console.log('edit');
+                    return stageController.updateStage(req, stageItem);
+                }
+
+                if (stageItem.removed) {
+                    console.log('remove');
+                    return stageController.deleteStage(req, stageItem);
+                }
+
+                console.log('new');
+                return stageController.createStage(req, stageItem, req.params.id);
+            });
+
+            return Promise.all(stagePromises);
+        })
+        .then(() => {
+            res.send(req.params.id);
+        })
+        .catch(err => {
+            console.log(err);
+
+            if (err.http_code !== undefined) {
+                res.status(err.http_code).send(err.message);
+            }
+
+            res.status(500).send(err.message);
+        });
 }
 
 function deleteQuest(req, res) {
@@ -174,7 +230,13 @@ function getQuestPageInfo(req, res) {
             } else {
                 if (user) {
                     quest.authorName = user.login;
+                    if (req.commonData.user && req.commonData.user.mongo_id === user.id) {
+                        quest.editAllowed = true;
+                    }
                 }
+
+                stages = stages.sort((stage1, stage2) => stage1.order - stage2.order);
+
                 res.render(
                     'quest_page/quest_page',
                     Object.assign({

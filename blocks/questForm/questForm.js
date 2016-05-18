@@ -29,7 +29,6 @@ submitButton.addEventListener('click', () => {
         uploadQuest();
     } catch (err) {
         clientErrors.showError({ text: err.message });
-    } finally {
         submitButton.disabled = false;
     }
 });
@@ -67,7 +66,7 @@ function getStages() {
 
         data.order = index;
 
-        if (data.editing) {
+        if (data.edited) {
             isStageInRequest[data.id] = true;
         }
 
@@ -160,7 +159,10 @@ function checkData(data) {
 
 function initEditing() {
     isEditing = true;
-    stageId = stagesContainer.lastElementChild.dataset.editStageId;
+
+    if (stagesContainer.lastElementChild) {
+        stageId = stagesContainer.lastElementChild.dataset.editStageId;
+    }
 
     let stages = [].slice.apply(stagesContainer.children);
 
@@ -169,4 +171,21 @@ function initEditing() {
         editingStages.push(stageFunctions.getStageId(stage));
     });
 
+    let deleteQuestButton = document.querySelector('.quest-form_editing__delete-quest-button');
+
+    deleteQuestButton.addEventListener('click', () => {
+        deleteQuestButton.disabled = true;
+
+        $.ajax({
+            url: `/quests/${questId}`,
+            type: 'DELETE',
+            data: '',
+            contentType: 'application/json'
+        }).done(function () {
+            window.location.href = '/quests';
+        }).fail(function (err) {
+            console.log(err);
+            deleteQuestButton.disabled = false;
+        });
+    });
 }

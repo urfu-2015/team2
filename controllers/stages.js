@@ -10,7 +10,6 @@ const Checkin = require('../models/checkins');
 const geolib = require('geolib');
 
 exports.createStage = (req, stage, questId) => {
-    console.log('stage pending');
     if (stage.file === '') {
 
         return Promise.reject(createHttpError(403, 'Не была добавлена фотография этапа'));
@@ -24,7 +23,7 @@ exports.createStage = (req, stage, questId) => {
                     createHttpError(500, 'Внутренняя ошибка сервиса, попробуйте еще раз.')
                 );
             }
-            console.log('stage added');
+
             return new Stage({
                 name: stage.name,
                 description: stage.description,
@@ -37,29 +36,42 @@ exports.createStage = (req, stage, questId) => {
                 dislikesCount: 0
             }).save();
         });
-}
+};
 
-function updateStage(req, res) {
+exports.updateStage = (req, stage) => {
+    let photoPromise = stage.file ?
+        photoController.uploadPhoto(req, stage.file) : Promise.resolve();
 
-}
+    photoPromise
+        .then(result => {
+            let updatedData = {
+                name: stage.name,
+                description: stage.description,
+                geolocation: stage.geolocation,
+                order: stage.order
+            };
 
-function deleteStage(req, res) {
-    if (!req.params.id) {
-        res.sendStatus(400);
-    }
+            if (stage.file) {
+                if (!result) {
 
+                    return Promise.reject(
+                        createHttpError(500, 'Внутренняя ошибка сервиса, попробуйте еще раз.')
+                    );
+                }
+
+                updatedData.photo = result.url;
+            }
+
+            return Stage.update({ _id: stage.id }, updatedData);
+        });
+};
+
+exports.deleteStage = (req, stage) => {
     let query = {
-        _id: req.params.id
+        _id: stage.id
     };
 
-    Stage.deleteStage(query)
-        .then(() => res.sendStatus(200));
-}
-
-module.exports = {
-    createStage,
-    updateStage,
-    deleteStage
+    return Stage.deleteStage(query);
 };
 
 exports.registerCheckin = (req, res) => {

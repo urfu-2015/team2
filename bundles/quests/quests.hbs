@@ -5,6 +5,9 @@
 
     {{#content "body"}}
         <div class="container">
+            {{#if addQuestsAllowed}}
+                <a href="/new-quest" class="btn btn-primary quests-page__add-quest-button">Создать квест</a>
+            {{/if}}
             {{#each quests}}
                 {{> quest_block/quest_block }}
             {{/each}}

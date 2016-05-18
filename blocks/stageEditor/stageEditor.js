@@ -20,7 +20,7 @@ module.exports.getStageData = function (element) {
 
     if (stageId !== '') {
         data.id = stageId;
-        data.editing = true;
+        data.edited = true;
 
         if (!data.file.startsWith('data:image')) {
             delete data.file;

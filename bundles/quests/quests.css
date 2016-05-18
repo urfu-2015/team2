@@ -12,3 +12,10 @@ body
     justify-content: center;
     max-width: 1600px;
 }
+
+.quests-page__add-quest-button
+{
+    text-decoration: none;
+    width: 120px;
+    margin: 10px 0 30px;
+}

@@ -66,7 +66,13 @@ exports.quests = (req, res) => {
         })
         .then(result => {
             let data = {};
+
             data.quests = result.reverse();
+
+            if (req.commonData.user) {
+                data.addQuestsAllowed = true;
+            }
+
             res.render('quests/quests', Object.assign(data, req.commonData));
         })
         .catch(err => {

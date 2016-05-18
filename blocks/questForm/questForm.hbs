@@ -24,6 +24,9 @@
             </div>
         </div>
     </div>
+    {{#if quest.id}}
+        <button class="quest-form_editing__delete-quest-button btn btn-danger">Удалить квест</button>
+    {{/if}}
 
     <div class="quest-form__stages">
         {{#each quest.stages}}

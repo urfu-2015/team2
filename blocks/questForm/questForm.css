@@ -84,6 +84,12 @@
     align-self: center;
 }
 
+.quest-form_editing__delete-quest-button
+{
+    align-self: flex-end;
+    margin: 10px;
+}
+
 @media (max-width: 560px)
 {
     .quest-form__common-data
