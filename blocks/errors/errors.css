@@ -2,12 +2,12 @@
 
 .errors
 {
+    z-index: 1200;
     position: absolute;
     width: 100%;
     background-color: #ff5853;
     border: 1px solid black;
     min-height: 30px;
-    z-index: 1200;
 }
 
 .errors__close
