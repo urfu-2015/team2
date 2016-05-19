@@ -4,6 +4,7 @@
   "jscs": "2.2.1",
   "description": "photoquest",
   "scripts": {
+    "build": "webpack",
     "build:dev": "webpack --config webpack.dev.config.js",
     "deploy:dynamic": "git push heroku master",
     "deploy:static": "surge -p ./public -d hackathonteam2.surge.sh",
