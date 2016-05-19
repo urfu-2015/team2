@@ -1,10 +1,26 @@
 <article class="stage container-fluid">
     <div class="row">
-        <div class="stage-photo col-md-4">
-            <a href="{{ photo }}" target="_blank" class="stage__image">
-                <img src="{{ photo }}" alt="{{ name }}" class="img-responsive stage-photo__img">
-            </a>
+        <a href="{{ photo }}" target="_blank" class="stage-photo__mobile">
+            <img  src="{{ photo }}" alt="{{ name }}" class="img-responsive stage-photo__img">
+        </a>
+    
+        <a href="#" class="thumbnail" data-toggle="modal" data-target="#stage-modal" class="stage-photo"> 
+            <img  src="{{ photo }}" alt="{{ name }}" class="img-responsive stage-photo__img">
+        </a>
+    
+        <div id="stage-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog stage-modal__dialog">
+                <div class="modal-content stage-modal__content">
+                    <div class="modal-body">
+                        <img src="" alt="" class="stage-modal__image">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
+  
         <div class="stage-info col-md-8">
             <div class="stage-checkin">
                 <button class="btn btn-success stage-checkin__button">Check in!</button>
