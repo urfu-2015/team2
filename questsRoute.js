@@ -6,6 +6,7 @@ const quests = require('./controllers/quests');
 
 router.get('/', pagesController.quests);
 router.post('/', quests.createQuest);
+router.post('/start', quests.startQuest);
 
 router.get('/:id', quests.getQuestPageInfo);
 router.post('/:id/:qType(Started|Done|Marked)', quests.createStatus);

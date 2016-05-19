@@ -6,6 +6,7 @@ const layouts = require('handlebars-layouts');
 const questController = require('../controllers/quests');
 const Quest = require('../models/quests');
 const mongoose = require('mongoose');
+const User = require('../models/user');
 
 const handlebars = require('hbs').handlebars;
 handlebars.registerHelper(layouts(handlebars));
@@ -13,24 +14,33 @@ handlebars.registerPartial('base', fs.readFileSync('./bundles/base.hbs', 'utf8')
 
 exports.quests = (req, res) => {
     Quest.getFindQuestPromise({})
-        .then(result => {
-            let data = {
-                quests: []
-            };
-            result.forEach(quest => {
-                data.quests.push({
+        .then(quests => {
+            var promiseQuests = quests.map(function (questDoc) {
+                let quest = questDoc.toObject();
+                let data = {
                     doneCount: quest.doneCount,
                     likesCount: quest.likesCount,
-                    authorName: mongoose.Types.ObjectId(quest.author).login || 'Anonymous',
                     photo: quest.photo,
                     description: quest.description,
                     name: quest.name,
                     id: quest._id
-                });
+                };
+                return User.findOne({ _id: quest.author }).exec()
+                    .then(userDoc => {
+                        if (!userDoc) {
+                            data.authorName = 'Anonymous';
+                        } else {
+                            let user = userDoc.toObject();
+                            data.authorName = user.login;
+                        }
+                        return data;
+                    });
             });
-            return data;
+            return Promise.all(promiseQuests);
         })
-        .then(data => {
+        .then(result => {
+            let data = {};
+            data.quests = result;
             res.render('quests/quests', Object.assign(data, req.commonData));
         })
         .catch(err => {

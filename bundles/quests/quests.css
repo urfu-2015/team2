@@ -1,1 +1,8 @@
 @import "../../blocks/quest_block/quest_block.css";
+
+.container
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
