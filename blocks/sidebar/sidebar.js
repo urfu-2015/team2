@@ -17,6 +17,21 @@ $(function () {
                 $('.wrapper').addClass('toggled');
             }
         },
+        swipeStatus: function (event, phase) {
+            if (phase == 'move' || phase == 'start') {
+                var $target = event.target.nodeName;
+
+                if ($target.toLowerCase() === 'input' ||
+                    $target.toLowerCase() === 'textarea') {
+
+                    return false;
+                }
+
+                $('input').blur();
+                $('textarea').blur();
+            }
+        },
+        allowPageScroll: 'auto',
         threshold: 50
     });
 });

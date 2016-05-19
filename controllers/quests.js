@@ -107,16 +107,15 @@ function updateQuest(req, res) {
         .then(() => {
             let stagePromises = req.body.quest.stages.map(stageItem => {
                 if (stageItem.edited) {
-                    console.log('edit');
+
                     return stageController.updateStage(req, stageItem);
                 }
 
                 if (stageItem.removed) {
-                    console.log('remove');
+
                     return stageController.deleteStage(req, stageItem);
                 }
 
-                console.log('new');
                 return stageController.createStage(req, stageItem, req.params.id);
             });
 

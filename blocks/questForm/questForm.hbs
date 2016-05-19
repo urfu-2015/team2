@@ -1,39 +1,49 @@
-<div class="quest-form form-group" data-quest-id="{{ quest.id }}">
-    <div class="quest-form__common-data">
+<article class="quest-form form-group" data-quest-id="{{ quest.id }}">
+    {{>map/map}}
+    <section class="quest-form__common-data">
         <label class="quest-form__photo">
-            <input class="quest-form__photo-input" type="file" accept="image/*">
+            <input class="quest-form__photo-input noSwipe" type="file" accept="image/*">
             <img src="{{ quest.photo }}" alt="фото квеста" class="quest-form__photo-preview">
         </label>
-        <div class="quest-form__text">
-            <div class="quest-form__name">
-                <input class="quest-form__name-input form-control"
+        <section class="quest-form__text">
+            <section class="quest-form__name">
+                <input class="quest-form__name-input form-control noSwipe"
                        type="text" placeholder="Название квеста"
                        value="{{ quest.name }}"
                 >
-            </div>
-            <div class="quest-form__city">
-                <input class="quest-form__city-input form-control"
-                       type="text" placeholder="Город"
+            </section>
+            <section class="quest-form__city">
+                <input class="quest-form__city-input form-control noSwipe"
+                       type="text"
+                       placeholder="Город"
                        value="{{ quest.city }}"
                 >
-            </div>
-            <div class="quest-form__description">
-                <textarea class="quest-form__description-input form-control"
+            </section>
+            <section class="quest-form__description">
+                <textarea class="quest-form__description-input form-control noSwipe"
                           placeholder="Описание квеста"
                 >{{ quest.description }}</textarea>
-            </div>
-        </div>
-    </div>
+            </section>
+        </section>
+    </section>
     {{#if quest.id}}
         <button class="quest-form_editing__delete-quest-button btn btn-danger">Удалить квест</button>
     {{/if}}
 
-    <div class="quest-form__stages">
+    <section class="quest-form__stages">
         {{#each quest.stages}}
             {{>stageEditor/stageEditor}}
         {{/each }}
-    </div>
+    </section>
 
     <button class="quest-form__new-stage-button quest-form__button btn btn-info">Добавить этап</button>
-    <button class="quest-form__submit quest-form__button btn btn-success">Сохранить</button>
-</div>
+
+    <div class="quest-form__controls">
+        <button class="quest-form__submit quest-form__button btn btn-success">Сохранить</button>
+        {{#if quest.id}}
+            <a href="/quests/{{ quest.id }}"
+               class="quest-form__cancel quest-form__button btn btn-danger"
+            >Отменить изменения</a>
+        {{/if}}
+    </div>
+</article>

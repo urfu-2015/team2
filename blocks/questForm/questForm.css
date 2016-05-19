@@ -2,7 +2,7 @@
 {
     width: 80%;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 20px auto 0;
     display: flex;
     flex-direction: column;
 }
@@ -15,7 +15,7 @@
     background: url("../photo_camera.png") center no-repeat;
     border-radius: 20px;
     overflow: hidden;
-    border: 3px solid black;
+    border: 3px solid #000;
 }
 
 .quest-form__photo-input
@@ -38,7 +38,6 @@
 .quest-form__common-data
 {
     display: flex;
-    flex-direction: row;
     justify-content: space-around;
 }
 
@@ -72,6 +71,7 @@
 {
     width: 200px;
     margin: 5px;
+    text-decoration: none;
 }
 
 .quest-form__new-stage-button
@@ -79,9 +79,11 @@
     align-self: flex-start;
 }
 
-.quest-form__submit
+.quest-form__controls
 {
     align-self: center;
+    display: flex;
+    justify-content: space-around;
 }
 
 .quest-form_editing__delete-quest-button
@@ -90,7 +92,7 @@
     margin: 10px;
 }
 
-@media (max-width: 560px)
+@media (max-width: 767px)
 {
     .quest-form__common-data
     {
@@ -101,6 +103,12 @@
     .quest-form__new-stage-button
     {
         align-self: center;
+    }
+
+    .quest-form__controls
+    {
+        flex-direction: column;
+        align-items: center;
     }
 
     .quest-form__text

@@ -2,6 +2,12 @@ require('./questForm.css');
 const stageFunctions = require('../stageEditor/stageEditor.js');
 const stageTemplate = require('../stageEditor/stageEditor.hbs');
 const clientErrors = require('../errors/scripts/clientErrors.js');
+const mapFunctions = require('../map/map.js');
+
+let questForm = document.querySelector('.quest-form');
+
+mapFunctions.subscribeOnGeoloactionChanges(questForm);
+questForm.addEventListener('geolocationChanged', geolocationChangedHandler);
 
 setImageSelectHandler();
 
@@ -16,6 +22,8 @@ if (questId !== '') {
 } else {
     addStage();
 }
+
+mapFunctions.initMap();
 
 document.querySelector('.quest-form__new-stage-button').addEventListener('click', addStage);
 
@@ -33,11 +41,21 @@ submitButton.addEventListener('click', () => {
     }
 });
 
+function geolocationChangedHandler(event) {
+    let changedStage = document.querySelector(`[data-edit-stage-id="${event.detail.stageId}"]`);
+
+    stageFunctions.setGeolocation(changedStage, event.detail.geolocation);
+}
+
 function setImageSelectHandler() {
     let fileInput = document.querySelector('.quest-form__photo-input');
 
     fileInput.addEventListener('change', () => {
         var reader = new FileReader();
+
+        if (fileInput.files[0] === undefined) {
+            return;
+        }
 
         reader.readAsDataURL(fileInput.files[0]);
         reader.addEventListener('load', () => {
@@ -50,8 +68,8 @@ function addStage() {
 
     $('.quest-form__stages').append($.parseHTML(stageTemplate()));
 
-    stageId++;
     stagesContainer.lastElementChild.dataset.editStageId = stageId;
+    stageId++;
 
     stageFunctions.setScripts(stagesContainer.lastElementChild);
 }
@@ -72,6 +90,10 @@ function getStages() {
 
         stagesData.push(data);
     });
+
+    if (stagesData.length === 0) {
+        throw new Error('Нельзя добавить квест без этапов');
+    }
 
     editingStages.forEach((id) => {
         if (!isStageInRequest[id]) {
@@ -113,7 +135,6 @@ function uploadQuest() {
         data: JSON.stringify(data),
         contentType: 'application/json'
     }).done(function (questId) {
-        console.log(questId);
         window.location.href = `/quests/${questId}`;
     }).fail(function (err) {
         console.log(err);
@@ -151,9 +172,9 @@ function checkData(data) {
             throw new Error('Не указано описание этапа');
         }
 
-        //if (stage.geolocation === undefined) {
-        //    throw new Error('Не указано местоположение этапа');
-        //}
+        if (stage.geolocation === undefined) {
+            throw new Error('Не указано местоположение этапа');
+        }
     });
 }
 
@@ -161,14 +182,15 @@ function initEditing() {
     isEditing = true;
 
     if (stagesContainer.lastElementChild) {
-        stageId = stagesContainer.lastElementChild.dataset.editStageId;
+        stageId = parseInt(stagesContainer.lastElementChild.dataset.editStageId) + 1;
     }
 
     let stages = [].slice.apply(stagesContainer.children);
 
-    stages.forEach((stage) => {
+    stages.forEach((stage, index) => {
         stageFunctions.setScripts(stage);
         editingStages.push(stageFunctions.getStageId(stage));
+        mapFunctions.addStage(index, stageFunctions.getGeolocation(stage));
     });
 
     let deleteQuestButton = document.querySelector('.quest-form_editing__delete-quest-button');

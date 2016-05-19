@@ -10,18 +10,26 @@
                 <img src="{{ photo }}" alt="фото этапа" class="photo-editor__preview">
             </label>
         </div>
-        <div class="geolocation-editor">
-            <input class="geolocation-editor__input" type="button" value="Геолокация">
+        <div
+            class="geolocation-editor"
+            data-longitude="{{ geolocation.longitude }}"
+            data-latitude="{{ geolocation.latitude }}"
+        >
+            <button
+                    class="geolocation-editor__input"
+                    data-toggle="modal"
+                    data-target="#map__modal"
+            >Геолокация</button>
         </div>
     </div>
     <div class="edit-stage__description">
         <div class="description-editor">
-            <input class="description-editor__title form-control"
+            <input class="description-editor__title form-control noSwipe"
                    type="text"
                    placeholder="Название этапа"
                    value="{{ name }}"
             >
-            <textarea class="description-editor__hint form-control"
+            <textarea class="description-editor__hint form-control noSwipe"
                       placeholder="Подсказка"
                       rows="6"
             >{{ description }}</textarea>
