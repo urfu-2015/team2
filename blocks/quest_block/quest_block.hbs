@@ -1,33 +1,32 @@
-<div class="row">
-    <div class="col-md-12">
-        <div class="quest-block">
-            <a href="quests/{{ id }}">
-                <img class="img-responsive quest-block__image" src="{{ photo }}" alt="{{ photo }}">
-            </a>
-            <div class="quest-block__caption">
-                <h4 class="quest-block__caption__title">
-                    <a href="/quests/{{ id }}">
-                        {{ name }}
-                    </a>
-                </h4>
-                <h6 class="quest-block__caption__author">
-                    Created by: {{ authorName }}
-                </h6>
-                <p>
-                    {{ description }}
-                </p>
+<div class="card">
+    <div class="card-image">
+        <img src="{{ photo }}" class="activator">
+    </div>
+    <div class="card-content">
+        <div class="card-content__header">
+            <span class="card-title activator long-word">{{ name }}</span>
+            <i class="fa fa-arrow-up activator fa-2x" aria-hidden="true"></i>
+        </div>
+        <h6 class="quest-block__caption__author">
+            Created by: {{ authorName }}
+        </h6>
+        <div class="card__ratings">
+            <div class="likes">
+                <div class="likes__img likes__img_empty"></div>
+                <div class="likes__count count-badge">{{ likesCount }}</div>
             </div>
-            <div class="quest-block__ratings">
-                <div class="likes">
-                    <div class="likes__img likes__img_empty"></div>
-                    <div class="likes__count count-badge">{{ likesCount }}</div>
-                </div>
-                <div class="people-done">
-                    <div class="people-done__img"></div>
-                    <div class="people-done__count count-badge">{{ doneCount }}</div>
-                </div>
+            <div class="people-done">
+                <div class="people-done__img"></div>
+                <div class="people-done__count count-badge">{{ doneCount }}</div>
             </div>
         </div>
+        <p><a href="/quests/{{ id }}">Перейти</a></p>
+    </div>
+    <div class="card-reveal">
+        <i class="fa fa-times fa-2x right" aria-hidden="true"></i>
+        <span class="card-title long-word"><a href="/quests/{{ id }}">{{ name }}</a></span>
+        <p class="long-word">
+            {{ description }}
+        </p>
     </div>
 </div>
-<hr>
