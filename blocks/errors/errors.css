@@ -2,6 +2,7 @@
 
 .errors
 {
+    z-index: 1200;
     position: absolute;
     width: 100%;
     background-color: #ff5853;

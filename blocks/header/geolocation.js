@@ -35,8 +35,9 @@ function getUserCity(position) {
         if (this.length()) {
             const city = this.get(0).AddressDetails.Country.AdministrativeArea
                 .SubAdministrativeArea.Locality.LocalityName;
-            document.cookie = `userCity=${city};`;
-
+            document.cookie = `userCity=${encodeURIComponent(city)};`;
+            document.cookie = `userLongitude=${(position.coords.longitude)};`;
+            document.cookie = `userLatitude=${position.coords.latitude};`;
         }
     });
 

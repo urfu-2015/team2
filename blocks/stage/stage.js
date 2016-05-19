@@ -1,9 +1,9 @@
 require('./stage.css');
 
 $(document).ready(function () {
-    var $lightbox = $('#lightbox');
+    var $lightbox = $('#stage-modal');
 
-    $('[data-target="#lightbox"]').on('click', function (event) {
+    $('[data-target="#stage-modal"]').on('click', function (event) {
         var $img = $(this).find('img');
 
         $lightbox.find('img').attr('src', $img.attr('src'));

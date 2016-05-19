@@ -1,2 +1,39 @@
 @import "../../blocks/header/header.css";
 @import "../../blocks/footer/footer.css";
+@import "../../blocks/sidebar/sidebar.css";
+@import "../../blocks/main_page_description/main_page_description.css";
+
+html,
+body
+{
+    height: 100%;
+}
+
+.wrapper,
+.page-content-wrapper,
+.body-content-wrapper
+{
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.page-content-wrapper
+{
+    padding: 0;
+    margin: 0;
+}
+
+.body-content-wrapper
+{
+    height: auto !important;
+}
+
+@media(min-width: 768px)
+{
+    .body-content-wrapper
+    {
+        min-height: 100%;
+        height: 100%;
+    }
+}
+

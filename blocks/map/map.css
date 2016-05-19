@@ -1,0 +1,19 @@
+@media (min-width: 768px)
+{
+    #map,
+    .modal-dialog
+    {
+        width: 60vw !important;
+        height: 40vh !important;
+    }
+}
+
+@media (max-width: 768px)
+{
+    #map,
+    .modal-dialog
+    {
+        width: 90vw !important;
+        height: 90vh !important;
+    }
+}
