@@ -1,5 +1,6 @@
 require('./stageEditor.css');
 const mapFunctions = require('../map/map.js');
+const EXIF = require('../../scripts/exif.js');
 
 module.exports.setScripts = function (element) {
     setImageSelectHandler(element);
@@ -65,10 +66,26 @@ module.exports.setGeolocation = function (element, geolocation) {
         geolocation.latitude.toString().substr(0, 7) + '..';
 };
 
+let subscriber;
+
+module.exports.subscribeOnGeoloactionChanges = function (element) {
+    subscriber = element;
+};
+
 function setRemoveHandler(element) {
-    element.querySelector('.edit-stage__remove-button').addEventListener('click',
-        () => element.parentElement.removeChild(element)
-    );
+    element.querySelector('.edit-stage__remove-button').addEventListener('click', () => {
+        element.parentElement.removeChild(element);
+
+        subscriber.dispatchEvent(new CustomEvent(
+            'stageGeolocationChanged',
+            {
+                detail: {
+                    stageId: parseInt(element.dataset.editStageId),
+                    removed: true
+                }
+            }
+        ));
+    });
 }
 
 function setImageSelectHandler(element) {
@@ -84,6 +101,37 @@ function setImageSelectHandler(element) {
         reader.readAsDataURL(fileInput.files[0]);
         reader.addEventListener('load', () => {
             element.querySelector('.photo-editor__preview').src = reader.result;
+        });
+
+        EXIF.getData(fileInput.files[0], function () {
+            if (!this.exifdata.GPSLatitude ||
+                !this.exifdata.GPSLongitude) {
+
+                return;
+            }
+
+            let latitudeArray = this.exifdata.GPSLatitude;
+            let latitude = latitudeArray[0] + latitudeArray[1] / 60 + latitudeArray[2] / 3600;
+
+            let longitudeArray = this.exifdata.GPSLongitude;
+            let longitude = longitudeArray[0] + longitudeArray[1] / 60 + longitudeArray[2] / 3600;
+
+            let geoloaction = {
+                latitude: latitude,
+                longitude: longitude
+            };
+
+            subscriber.dispatchEvent(new CustomEvent(
+                'stageGeolocationChanged',
+                {
+                    detail: {
+                        stageId: parseInt(element.dataset.editStageId),
+                        geolocation: geoloaction
+                    }
+                }
+            ));
+
+            module.exports.setGeolocation(element, geoloaction);
         });
     });
 }

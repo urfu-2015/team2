@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 
 const Likes = require('./stagesLikes');
 const Comments = require('./stagesComments');
+const Checkins = require('./checkins');
 
 let stageSchema = new Schema({
     questId: { type: Schema.Types.ObjectId, ref: 'Quests' },
@@ -18,7 +19,7 @@ let stageSchema = new Schema({
 });
 
 stageSchema.statics.deleteStage = function (query) {
-    return this.find(query).remove().exec();
+    return this.findOne(query).then(stage => stage.remove());
 };
 
 stageSchema.methods.findStageLikes = function (cb) {
@@ -40,5 +41,15 @@ stageSchema.methods.findStageComments = function (cb) {
         }
     });
 };
+
+stageSchema.pre('remove', function (next) {
+    let query = { stageId: this._id };
+
+    Likes.remove(query).exec();
+    Comments.remove(query).exec();
+    Checkins.remove(query).exec();
+
+    next();
+});
 
 module.exports = mongoose.model('Stages', stageSchema);

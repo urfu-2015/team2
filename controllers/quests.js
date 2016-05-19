@@ -103,7 +103,7 @@ function updateQuest(req, res) {
 
             return updatedData;
         })
-        .then(updatedData => Quest.update({ _id: req.params.id }, updatedData))
+        .then(updatedData => Quest.update({ _id: req.params.id }, updatedData).exec())
         .then(() => {
             let stagePromises = req.body.quest.stages.map(stageItem => {
                 if (stageItem.edited) {
@@ -112,10 +112,10 @@ function updateQuest(req, res) {
                 }
 
                 if (stageItem.removed) {
-
                     return stageController.deleteStage(req, stageItem);
                 }
 
+                console.log('new');
                 return stageController.createStage(req, stageItem, req.params.id);
             });
 

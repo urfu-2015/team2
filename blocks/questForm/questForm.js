@@ -7,7 +7,10 @@ const mapFunctions = require('../map/map.js');
 let questForm = document.querySelector('.quest-form');
 
 mapFunctions.subscribeOnGeoloactionChanges(questForm);
-questForm.addEventListener('geolocationChanged', geolocationChangedHandler);
+questForm.addEventListener('mapGeolocationChanged', mapGeolocationChangedHandler);
+
+stageFunctions.subscribeOnGeoloactionChanges(questForm);
+questForm.addEventListener('stageGeolocationChanged', stageGeolocationChangedHandler);
 
 setImageSelectHandler();
 
@@ -41,10 +44,20 @@ submitButton.addEventListener('click', () => {
     }
 });
 
-function geolocationChangedHandler(event) {
+function mapGeolocationChangedHandler(event) {
     let changedStage = document.querySelector(`[data-edit-stage-id="${event.detail.stageId}"]`);
 
     stageFunctions.setGeolocation(changedStage, event.detail.geolocation);
+}
+
+function stageGeolocationChangedHandler(event) {
+    if (event.detail.removed) {
+        mapFunctions.removeStage(event.detail.stageId);
+
+        return;
+    }
+
+    mapFunctions.addStage(event.detail.stageId, event.detail.geolocation);
 }
 
 function setImageSelectHandler() {

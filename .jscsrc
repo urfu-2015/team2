@@ -6,7 +6,8 @@
   "excludeFiles": [
     "**/node_modules/**",
     "public/**",
-    "bundles/main/velocity.js"
+    "bundles/main/velocity.js",
+    "scripts/exif.js"
   ],
   "esnext": true,
   "disallowImplicitTypeConversion": [

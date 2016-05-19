@@ -62,7 +62,9 @@ exports.updateStage = (req, stage) => {
                 updatedData.photo = result.url;
             }
 
-            return Stage.update({ _id: stage.id }, updatedData);
+            console.log(updatedData);
+
+            return Stage.update({ _id: stage.id }, updatedData).exec();
         });
 };
 

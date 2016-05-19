@@ -6,6 +6,8 @@ const Schema = mongoose.Schema;
 const Stages = require('./stages');
 const Likes = require('./questsLikes');
 const Comments = require('./questsComments');
+const Status = require('./questsStatus');
+const Checkins = require('./checkins');
 
 let questsSchema = new Schema({
     name: String,
@@ -33,7 +35,7 @@ questsSchema.statics.getFindQuestPromise = function (query) {
 };
 
 questsSchema.statics.deleteQuest = function (query) {
-    return this.find(query).remove().exec();
+    return this.findOne(query).then(quest => quest.remove());
 };
 
 questsSchema.methods.findQuestStages = function () {
@@ -59,5 +61,22 @@ questsSchema.methods.findQuestComments = function (cb) {
         }
     });
 };
+
+questsSchema.pre('remove', function (next) {
+    let query = { questId: this._id };
+
+    Stages.find(query, (err, stages) => {
+        if (!err) {
+            stages.forEach((stage) => stage.remove());
+        }
+    });
+
+    Likes.remove(query).exec();
+    Comments.remove(query).exec();
+    Status.remove(query).exec();
+    Checkins.remove(query).exec();
+
+    next();
+});
 
 module.exports = mongoose.model('Quests', questsSchema);

@@ -51,7 +51,7 @@ const addStageToMap = (_stage, geolocation) => {
     placeMarks[stageNumber] = newPlaceMark;
 
     subscriber.dispatchEvent(new CustomEvent(
-        'geolocationChanged',
+        'mapGeolocationChanged',
         {
             detail: {
                 stageId: stageNumber,
@@ -90,7 +90,7 @@ export const initMap = () => {
             placeMarks[stageNumber] = newPlaceMark;
 
             subscriber.dispatchEvent(new CustomEvent(
-                'geolocationChanged',
+                'mapGeolocationChanged',
                 {
                     detail: {
                         stageId: stageNumber,
@@ -109,9 +109,7 @@ export const initMap = () => {
 
 const createPlaceMark = (coords) =>
     new ymaps.Placemark(coords,
-        {
-            iconContent: stageNumber + 1
-        },
+        {},
         {
             preset: CHOSEN_STAGE_ICON,
             draggable: true

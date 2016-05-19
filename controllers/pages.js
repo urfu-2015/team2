@@ -156,7 +156,7 @@ exports.editQuest = (req, res) => {
 
             return Stage.find(query).exec()
                 .then(stages => {
-                    quest.stages = stages;
+                    quest.stages = stages.sort((stage1, stage2) => stage1.order - stage2.order);
 
                     return { quest: quest };
                 });
