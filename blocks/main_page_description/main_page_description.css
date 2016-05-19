@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,300,700&subset=cyrillic");
+
+.main-page-description-content__photo
+{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-size: contain;
+    margin: 0 auto;
+}
+
+.main-page-description-content__first-photo
+{
+    background: url("./umbrella-min.jpg") no-repeat center;
+    float: left;
+}
+
+.main-page-description-content__second-photo
+{
+    background: url("./cirk.jpg") no-repeat center;
+    float: right;
+}
+
+.main-page-description-content__third-photo
+{
+    background: url("./astana.jpeg") no-repeat center;
+    float: left;
+}
+
+.main-page-description-content__fourth-photo
+{
+    background: url("./girls.jpg") no-repeat center;
+    float: right;
+}
+
+.main-page-description__second-slogan
+{
+    font-size: 23px;
+}
+
+.main-page-description__footer
+{
+    text-align: center;
+}
+
+.main-page-description__footer  p
+{
+    font-size: 15px;
+    font-weight: 900;
+    padding-top: 25px;
+    background: url("./w.png") no-repeat center;
+}
+
+.main-page-description__footer a
+{
+    margin-top: 20px;
+}
+
+@media (max-width: 767px)
+{
+    .main-page-description-content
+    {
+        margin: 0 50px;
+    }
+
+    .main-page-description-content
+    {
+        text-align: center;
+    }
+
+    .main-page-description-content p
+    {
+        font-size: 5vw;
+        line-height: 5vw;
+        margin-bottom: 30px;
+        font-weight: 100;
+        font-family: Roboto, sans-serif;
+    }
+
+    .main-page-description-content__photo
+    {
+        float: none;
+        width: 90px;
+        height: 90px;
+        background-size: cover !important;
+        margin: 0 auto 30px;
+    }
+
+    .main-page-description__footer
+    {
+        margin-bottom: 15px;
+    }
+
+    .main-page-description__footer p
+    {
+        font-size: 10px;
+        padding: 25px;
+        background-size: contain;
+    }
+
+    .main-page-description__footer a
+    {
+        margin-top: 20px;
+        text-decoration: none;
+    }
+}
+
+@media (min-width: 768px)
+{
+    .main-page-description__content p
+    {
+        max-width: 60%;
+        margin: 0 auto;
+        border: 1px solid transparent;
+        min-height: 200px;
+    }
+
+    .main-page-description__content p
+    {
+        font-family: Roboto, sans-serif;
+        text-transform: uppercase;
+        font-size: 2vw;
+        font-weight: 100;
+        padding-top: 50px;
+        line-height: 2.3vw;
+    }
+
+    .main-page-description__second-slogan
+    {
+        min-height: 100px !important;
+    }
+
+    .main-page-description
+    {
+        margin: 50px;
+    }
+}
