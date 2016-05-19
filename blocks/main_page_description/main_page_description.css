@@ -27,12 +27,6 @@
     float: left;
 }
 
-.main-page-description-content__fourth-photo
-{
-    background: url("./girls.jpg") no-repeat center;
-    float: right;
-}
-
 .main-page-description__second-slogan
 {
     font-size: 23px;
@@ -61,10 +55,6 @@
     .main-page-description-content
     {
         margin: 0 50px;
-    }
-
-    .main-page-description-content
-    {
         text-align: center;
     }
 
@@ -113,10 +103,7 @@
         margin: 0 auto;
         border: 1px solid transparent;
         min-height: 200px;
-    }
 
-    .main-page-description__content p
-    {
         font-family: Roboto, sans-serif;
         text-transform: uppercase;
         font-size: 2vw;
