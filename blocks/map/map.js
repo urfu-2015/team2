@@ -71,6 +71,12 @@ export const removeStage = (_stage) => {
 };
 
 export const initMap = () => {
+    document.addEventListener('keyup', (event) => {
+        if (event.keyCode === 27) {
+            $('#map__modal').modal('hide');
+        }
+    });
+
     ymaps.ready(() => {
         map = new ymaps.Map('map', {
             center: [$.cookie('userLatitude'), $.cookie('userLongitude')],
@@ -101,6 +107,8 @@ export const initMap = () => {
                     }
                 }
             ));
+
+            $('#map__modal').modal('hide');
         });
 
         functionsAfterInit.forEach((func) => func());
