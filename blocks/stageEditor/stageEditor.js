@@ -61,9 +61,17 @@ module.exports.setGeolocation = function (element, geolocation) {
 
     let geolocationInput = geolocationEditor.querySelector('.geolocation-editor__input');
 
-    geolocationInput.innerText =
-        geolocation.longitude.toString().substr(0, 7) + '..;' +
-        geolocation.latitude.toString().substr(0, 7) + '..';
+    let geocoder = ymaps.geocode([geolocation.latitude, geolocation.longitude], {results: 1, json: true}).then(
+        (res) => {
+            console.log(res);
+            geolocationInput.innerText = res.GeoObjectCollection.featureMember[0].GeoObject.name;
+        },
+        (err) => {
+            geolocationInput.innerText =
+                geolocation.longitude.toString().substr(0, 7) + '..;' +
+                geolocation.latitude.toString().substr(0, 7) + '..';
+        }
+    );
 };
 
 let subscriber;

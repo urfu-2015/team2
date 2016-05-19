@@ -175,7 +175,7 @@ function checkData(data) {
         if (stage.removed) {
             return;
         }
-        if (stage.file === '' && !stage.editing) {
+        if (stage.file === '' && !stage.edited) {
             throw new Error('Не указана картинка этапа');
         }
         if (stage.name === '') {
