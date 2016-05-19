@@ -61,7 +61,10 @@ module.exports.setGeolocation = function (element, geolocation) {
 
     let geolocationInput = geolocationEditor.querySelector('.geolocation-editor__input');
 
-    let geocoder = ymaps.geocode([geolocation.latitude, geolocation.longitude], {results: 1, json: true}).then(
+    let geocoder = ymaps.geocode(
+            [geolocation.latitude, geolocation.longitude],
+            { results: 1, json: true }
+    ).then(
         (res) => {
             console.log(res);
             geolocationInput.innerText = res.GeoObjectCollection.featureMember[0].GeoObject.name;
