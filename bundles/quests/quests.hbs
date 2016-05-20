@@ -4,13 +4,21 @@
     {{/content}}
 
     {{#content "body"}}
-        <div class="container">
+        <div class="quests-page-container container">
             {{#if addQuestsAllowed}}
-                <a href="/new-quest" class="btn btn-primary quests-page__add-quest-button">Создать квест</a>
+                <div class="quests-page__button-container">
+                    <a href="/new-quest" class="btn btn-primary quests-page__add-quest-button">
+                        Создать квест
+                    </a>
+                </div>
             {{/if}}
-            {{#each quests}}
-                {{> quest_block/quest_block }}
-            {{/each}}
+            <div class="quests-container">
+                <div class="quests-block">
+                    {{#each quests}}
+                        {{> quest_block/quest_block }}
+                    {{/each}}
+                </div>
+            </div>
         </div>
     {{/content}}
 
