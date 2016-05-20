@@ -2,7 +2,7 @@ require('./stageEditor.css');
 const mapFunctions = require('../map/map.js');
 const EXIF = require('../../scripts/exif.js');
 
-module.exports.setScripts = function (element) {
+module.exports.initStage = function (element) {
     setImageSelectHandler(element);
     setRemoveHandler(element);
     setGeolocationHandler(element);
@@ -123,13 +123,16 @@ function setDropHandler(element) {
             e.stopPropagation();
         })
         .on('dragover dragenter', function () {
-            $form.addClass('.photo-editor__input_is-dragover');
+            $form.addClass('photo-editor__loader_is-dragover');
         })
         .on('dragleave dragend drop', function () {
-            $form.removeClass('.photo-editor__input_is-dragover');
+            $form.removeClass('photo-editor__loader_is-dragover');
         })
         .on('drop', function (e) {
-            handleFileChange(element, e.originalEvent.dataTransfer.files[0]);
+            let file = e.originalEvent.dataTransfer.files[0];
+            if (file.type.startsWith('image')) {
+                handleFileChange(element, e.originalEvent.dataTransfer.files[0]);
+            }
         });
 }
 
@@ -144,6 +147,8 @@ function handleFileChange(element, file) {
     reader.readAsDataURL(file);
     reader.addEventListener('load', () => {
         element.querySelector('.photo-editor__preview').src = reader.result;
+        element.querySelector('.photo-editor__loader')
+            .classList.add('photo-editor__loader_with-image');
     });
 
     EXIF.getData(file, function () {

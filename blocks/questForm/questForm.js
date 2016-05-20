@@ -77,10 +77,10 @@ function setDropHandler() {
             e.stopPropagation();
         })
         .on('dragover dragenter', function () {
-            $form.addClass('.photo-editor__input_is-dragover');
+            $form.addClass('quest-form__photo_is-dragover');
         })
         .on('dragleave dragend drop', function () {
-            $form.removeClass('.photo-editor__input_is-dragover');
+            $form.removeClass('quest-form__photo_is-dragover');
         })
         .on('drop', function (e) {
             handleFileChange(e.originalEvent.dataTransfer.files[0]);
@@ -97,6 +97,9 @@ function handleFileChange(file) {
     reader.readAsDataURL(file);
     reader.addEventListener('load', () => {
         document.querySelector('.quest-form__photo-preview').src = reader.result;
+        document.querySelector('.quest-form__photo')
+            .classList.add('quest-form__photo_with-image');
+
     });
 }
 
@@ -107,7 +110,7 @@ function addStage() {
     stagesContainer.lastElementChild.dataset.editStageId = stageId;
     stageId++;
 
-    stageFunctions.setScripts(stagesContainer.lastElementChild);
+    stageFunctions.initStage(stagesContainer.lastElementChild);
 }
 
 function getStages() {
@@ -162,6 +165,8 @@ function uploadQuest() {
 
     checkData(data);
 
+    $('#quest-form__wait-modal').modal('show');
+
     let url = '/quests' + (isEditing ? `/${questId}` : '');
     let type = isEditing ? 'PATCH' : 'POST';
 
@@ -174,6 +179,7 @@ function uploadQuest() {
         window.location.href = `/quests/${questId}`;
     }).fail(function (err) {
         console.log(err);
+        $('#quest-form__wait-modal').modal('hide');
         submitButton.disabled = false;
     });
 }
@@ -224,7 +230,7 @@ function initEditing() {
     let stages = [].slice.apply(stagesContainer.children);
 
     stages.forEach((stage, index) => {
-        stageFunctions.setScripts(stage);
+        stageFunctions.initStage(stage);
         editingStages.push(stageFunctions.getStageId(stage));
         mapFunctions.addStage(index, stageFunctions.getGeolocation(stage));
     });

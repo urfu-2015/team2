@@ -1,10 +1,26 @@
 <article class="quest-form form-group" data-quest-id="{{ quest.id }}">
     {{>map/map}}
+    <div id="quest-form__wait-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content quest-form__text-modal">
+                Подождите пожалуйста, квест загружается...
+            </div>
+        </div>
+    </div>
     <section class="quest-form__common-data">
-        <label class="quest-form__photo">
-            <input class="quest-form__photo-input noSwipe" type="file" accept="image/*">
-            <img src="{{ quest.photo }}" alt="фото квеста" class="quest-form__photo-preview">
-        </label>
+        <div class="quest-form__photo-container">
+            {{#if quest.photo }}
+                <label class="quest-form__photo quest-form__photo_with-image">
+                    <input class="quest-form__photo-input noSwipe" type="file" accept="image/*">
+                    <img src="{{ quest.photo }}" alt="фото квеста" class="quest-form__photo-preview">
+                </label>
+            {{else}}
+                <label class="quest-form__photo">
+                    <input class="quest-form__photo-input noSwipe" type="file" accept="image/*">
+                    <img src="" alt="фото квеста" class="quest-form__photo-preview">
+                </label>
+            {{/if}}
+        </div>
         <section class="quest-form__text">
             <section class="quest-form__name">
                 <input class="quest-form__name-input form-control noSwipe"

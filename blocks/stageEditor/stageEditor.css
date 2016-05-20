@@ -67,14 +67,19 @@
 
 .photo-editor__loader
 {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
     background: url("../photo_camera.png") center no-repeat;
     border-radius: 20px;
     overflow: hidden;
     margin-bottom: 0 !important;
     border: 3px solid black;
+}
+
+.photo-editor__loader_with-image
+{
+    background: none;
 }
 
 .photo-editor__preview[src=""]
@@ -85,7 +90,7 @@
 .photo-editor__preview
 {
     width: 100%;
-    height: 100%;
+    margin: auto 0;
     border: 0;
 }
 
@@ -158,4 +163,14 @@
     width: 16px;
     height: 16px;
     background-image: url("../close.png");
+}
+
+.photo-editor__loader
+{
+    transition: all 0.2s ease-out 0s;
+}
+
+.photo-editor__loader_is-dragover
+{
+    transform: scale(1.06);
 }

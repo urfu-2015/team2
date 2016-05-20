@@ -5,10 +5,17 @@
     <div class="edit-stage__remove-button"></div>
     <div class="edit-stage__media">
         <div class="photo-editor">
-            <label class="photo-editor__loader">
-                <input class="photo-editor__input" type="file" accept="image/*">
-                <img src="{{ photo }}" alt="фото этапа" class="photo-editor__preview">
-            </label>
+            {{#if photo}}
+                <label class="photo-editor__loader photo-editor__loader_with-image">
+                    <input class="photo-editor__input" type="file" accept="image/*">
+                    <img src="{{ photo }}" alt="фото этапа" class="photo-editor__preview">
+                </label>
+            {{else}}
+                <label class="photo-editor__loader">
+                    <input class="photo-editor__input" type="file" accept="image/*">
+                    <img src="" alt="фото этапа" class="photo-editor__preview">
+                </label>
+            {{/if}}
         </div>
         <div
             class="geolocation-editor"
