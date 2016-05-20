@@ -6,6 +6,7 @@ module.exports.setScripts = function (element) {
     setImageSelectHandler(element);
     setRemoveHandler(element);
     setGeolocationHandler(element);
+    setDropHandler(element);
 };
 
 module.exports.getStageData = function (element) {
@@ -66,7 +67,6 @@ module.exports.setGeolocation = function (element, geolocation) {
             { results: 1, json: true }
     ).then(
         (res) => {
-            console.log(res);
             geolocationInput.innerText = res.GeoObjectCollection.featureMember[0].GeoObject.name;
         },
         (err) => {
@@ -102,49 +102,7 @@ function setRemoveHandler(element) {
 function setImageSelectHandler(element) {
     var fileInput = element.querySelector('.photo-editor__input');
 
-    fileInput.addEventListener('change', () => {
-        var reader = new FileReader();
-
-        if (fileInput.files[0] === undefined) {
-            return;
-        }
-
-        reader.readAsDataURL(fileInput.files[0]);
-        reader.addEventListener('load', () => {
-            element.querySelector('.photo-editor__preview').src = reader.result;
-        });
-
-        EXIF.getData(fileInput.files[0], function () {
-            if (!this.exifdata.GPSLatitude ||
-                !this.exifdata.GPSLongitude) {
-
-                return;
-            }
-
-            let latitudeArray = this.exifdata.GPSLatitude;
-            let latitude = latitudeArray[0] + latitudeArray[1] / 60 + latitudeArray[2] / 3600;
-
-            let longitudeArray = this.exifdata.GPSLongitude;
-            let longitude = longitudeArray[0] + longitudeArray[1] / 60 + longitudeArray[2] / 3600;
-
-            let geoloaction = {
-                latitude: latitude,
-                longitude: longitude
-            };
-
-            subscriber.dispatchEvent(new CustomEvent(
-                'stageGeolocationChanged',
-                {
-                    detail: {
-                        stageId: parseInt(element.dataset.editStageId),
-                        geolocation: geoloaction
-                    }
-                }
-            ));
-
-            module.exports.setGeolocation(element, geoloaction);
-        });
-    });
+    fileInput.addEventListener('change', () => handleFileChange(element, fileInput.files[0]));
 }
 
 function setGeolocationHandler(element) {
@@ -152,5 +110,70 @@ function setGeolocationHandler(element) {
 
     geolocationButton.addEventListener('click', () => {
         mapFunctions.showMap(parseInt(element.dataset.editStageId));
+    });
+}
+
+function setDropHandler(element) {
+    let fileLoader = element.querySelector('.photo-editor__loader');
+
+    let $form = $(fileLoader);
+
+    $form.on('drag dragstart dragend dragover dragenter dragleave drop', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        })
+        .on('dragover dragenter', function () {
+            $form.addClass('.photo-editor__input_is-dragover');
+        })
+        .on('dragleave dragend drop', function () {
+            $form.removeClass('.photo-editor__input_is-dragover');
+        })
+        .on('drop', function (e) {
+            handleFileChange(element, e.originalEvent.dataTransfer.files[0]);
+        });
+}
+
+function handleFileChange(element, file) {
+
+    var reader = new FileReader();
+
+    if (file === undefined) {
+        return;
+    }
+
+    reader.readAsDataURL(file);
+    reader.addEventListener('load', () => {
+        element.querySelector('.photo-editor__preview').src = reader.result;
+    });
+
+    EXIF.getData(file, function () {
+        if (!this.exifdata.GPSLatitude ||
+            !this.exifdata.GPSLongitude) {
+
+            return;
+        }
+
+        let latitudeArray = this.exifdata.GPSLatitude;
+        let latitude = latitudeArray[0] + latitudeArray[1] / 60 + latitudeArray[2] / 3600;
+
+        let longitudeArray = this.exifdata.GPSLongitude;
+        let longitude = longitudeArray[0] + longitudeArray[1] / 60 + longitudeArray[2] / 3600;
+
+        let geoloaction = {
+            latitude: latitude,
+            longitude: longitude
+        };
+
+        subscriber.dispatchEvent(new CustomEvent(
+            'stageGeolocationChanged',
+            {
+                detail: {
+                    stageId: parseInt(element.dataset.editStageId),
+                    geolocation: geoloaction
+                }
+            }
+        ));
+
+        module.exports.setGeolocation(element, geoloaction);
     });
 }

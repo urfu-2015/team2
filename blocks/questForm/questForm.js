@@ -13,6 +13,7 @@ stageFunctions.subscribeOnGeoloactionChanges(questForm);
 questForm.addEventListener('stageGeolocationChanged', stageGeolocationChangedHandler);
 
 setImageSelectHandler();
+setDropHandler();
 
 let stagesContainer = document.querySelector('.quest-form__stages');
 let stageId = 0;
@@ -63,17 +64,39 @@ function stageGeolocationChangedHandler(event) {
 function setImageSelectHandler() {
     let fileInput = document.querySelector('.quest-form__photo-input');
 
-    fileInput.addEventListener('change', () => {
-        var reader = new FileReader();
+    fileInput.addEventListener('change', () => handleFileChange(fileInput.files[0]));
+}
 
-        if (fileInput.files[0] === undefined) {
-            return;
-        }
+function setDropHandler() {
+    let fileLoader = document.querySelector('.quest-form__photo');
 
-        reader.readAsDataURL(fileInput.files[0]);
-        reader.addEventListener('load', () => {
-            document.querySelector('.quest-form__photo-preview').src = reader.result;
+    let $form = $(fileLoader);
+
+    $form.on('drag dragstart dragend dragover dragenter dragleave drop', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        })
+        .on('dragover dragenter', function () {
+            $form.addClass('.photo-editor__input_is-dragover');
+        })
+        .on('dragleave dragend drop', function () {
+            $form.removeClass('.photo-editor__input_is-dragover');
+        })
+        .on('drop', function (e) {
+            handleFileChange(e.originalEvent.dataTransfer.files[0]);
         });
+}
+
+function handleFileChange(file) {
+    let reader = new FileReader();
+
+    if (file === undefined) {
+        return;
+    }
+
+    reader.readAsDataURL(file);
+    reader.addEventListener('load', () => {
+        document.querySelector('.quest-form__photo-preview').src = reader.result;
     });
 }
 
