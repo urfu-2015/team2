@@ -40,7 +40,7 @@ exports.quests = (req, res) => {
         })
         .then(result => {
             let data = {};
-            data.quests = result;
+            data.quests = result.reverse();
             res.render('quests/quests', Object.assign(data, req.commonData));
         })
         .catch(err => {
