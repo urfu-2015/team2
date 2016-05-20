@@ -3,10 +3,14 @@
 @import "../../blocks/sidebar/sidebar.css";
 @import "../../blocks/main_page_description/main_page_description.css";
 
-html,
+html
+{
+    position: relative;
+    min-height: 100%;
+}
 body
 {
-    height: 100%;
+    margin-bottom: 80px;
     background-color: #fff;
 }
 
@@ -33,7 +37,6 @@ body
 {
     .body-content-wrapper
     {
-        min-height: 100%;
         height: 100%;
     }
 }
