@@ -2,11 +2,9 @@
 @import "../../blocks/quest_page_header/quest_page_header.css";
 @import "../../blocks/stages/stages.css";
 
-.stage-header
+body
 {
-    display: flex;
-    justify-content: space-between;
-    background-color: #fff;
+    background-color: #eee;
 }
 
 .stage-head

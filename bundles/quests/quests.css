@@ -1,5 +1,10 @@
 @import "../../blocks/quest_block/quest_block.css";
 
+body
+{
+    background-color: #eee;
+}
+
 .container
 {
     display: flex;
