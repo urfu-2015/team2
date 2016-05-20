@@ -99,19 +99,25 @@ exports.registerCheckin = (req, res) => {
                 data.checkin = false;
                 res.json(data);
             } else {
-                Checkin.findOne({ stageId: data.stageId }, function (err, doc) {
+                Checkin.findOne({
+                    stageId: data.stageId, userId: data.userId
+                }, function (err, doc) {
                     if (err) {
-                        req.commonData.errors.push({ text: 'Чекин не найден в базе данных' });
+                        req.commonData.errors.push({
+                            text: 'Ошибка при поиске чекина в базе данных'
+                        });
                         res.sendStatus(500);
                         return;
                     }
 
+                    // Если пользователь уже зачекинен
                     if (doc) {
                         data.checkin = false;
                         res.json(data);
                         return;
                     }
 
+                    // Если все ок
                     new Checkin(data).save(err => {
                         if (err) {
                             req.commonData.errors.push({ text: 'Ошибка при чекине' });

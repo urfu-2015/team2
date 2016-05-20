@@ -72,7 +72,6 @@ function getQuestPageInfo(req, res) {
                 questId: quest._id, userId: req.commonData.user.mongo_id
             }).exec()
                 .then(statusDoc => {
-                    console.log(statusDoc);
                     if (!statusDoc) {
                         result.push('');
                         return result;
@@ -87,7 +86,6 @@ function getQuestPageInfo(req, res) {
             let stages = result[1];
             let user = result[2] || 'Anonymous';
             let statusString = result[3];
-            console.log('Status Sting is ' + statusString);
             let started = statusString === 'Started';
 
             var promiseStages = stages.map(function (stage) {
@@ -112,7 +110,6 @@ function getQuestPageInfo(req, res) {
                 if (user) {
                     quest.authorName = user.login;
                 }
-                console.log('Started - ' + started);
                 res.render(
                     'quest_page/quest_page',
                     Object.assign({
