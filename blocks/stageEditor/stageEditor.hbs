@@ -1,0 +1,45 @@
+<article class="edit-stage form-group"
+         data-stage-id="{{ id }}"
+         data-edit-stage-id="{{ @index }}"
+>
+    <div class="edit-stage__remove-button"></div>
+    <div class="edit-stage__media">
+        <div class="photo-editor">
+            {{#if photo}}
+                <label class="photo-editor__loader photo-editor__loader_with-image">
+                    <input class="photo-editor__input" type="file" accept="image/*">
+                    <img src="{{ photo }}" alt="фото этапа" class="photo-editor__preview">
+                </label>
+            {{else}}
+                <label class="photo-editor__loader">
+                    <input class="photo-editor__input" type="file" accept="image/*">
+                    <img src="" alt="фото этапа" class="photo-editor__preview">
+                </label>
+            {{/if}}
+        </div>
+        <div
+            class="geolocation-editor"
+            data-longitude="{{ geolocation.longitude }}"
+            data-latitude="{{ geolocation.latitude }}"
+        >
+            <button
+                    class="geolocation-editor__input"
+                    data-toggle="modal"
+                    data-target="#map__modal"
+            >Геолокация</button>
+        </div>
+    </div>
+    <div class="edit-stage__description">
+        <div class="description-editor">
+            <input class="description-editor__title form-control noSwipe"
+                   type="text"
+                   placeholder="Название этапа"
+                   value="{{ name }}"
+            >
+            <textarea class="description-editor__hint form-control noSwipe"
+                      placeholder="Подсказка"
+                      rows="6"
+            >{{ description }}</textarea>
+        </div>
+    </div>
+</article>

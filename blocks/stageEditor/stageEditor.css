@@ -3,18 +3,20 @@
 {
     margin: 10px auto;
 
-    width: 70%;
+    width: 100%;
     min-width: 400px;
-    max-width: 800px;
     height: 210px;
 
-    border: solid 3px #000;
+    background-color: #fff;
+    border-radius: 5px;
 
     display: flex;
     align-items: center;
     overflow: hidden;
 
-    padding: 10px 0;
+    padding: 16px;
+
+    position: relative;
 }
 
 .edit-stage__media
@@ -66,17 +68,22 @@
 
 .photo-editor__loader
 {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    background: url("./photo_camera.png") center no-repeat;
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+    background: url("../photo_camera.png") center no-repeat;
     border-radius: 20px;
     overflow: hidden;
     margin-bottom: 0 !important;
     border: 3px solid black;
 }
 
-[src=""]
+.photo-editor__loader_with-image
+{
+    background: none;
+}
+
+.photo-editor__preview[src=""]
 {
     opacity: 0;
 }
@@ -84,7 +91,7 @@
 .photo-editor__preview
 {
     width: 100%;
-    height: 100%;
+    margin: auto 0;
     border: 0;
 }
 
@@ -97,19 +104,27 @@
 
 .geolocation-editor__input
 {
-    width: 150px;
+    width: 200px;
     height: 30px;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     background: black;
     color: white;
     border-radius: 10px;
     border: 0;
 }
 
+.geolocation-editor__input:focus
+{
+    outline: none;
+}
+
 @media (max-width: 560px)
 {
     .edit-stage
     {
+        padding: 10px 0;
         min-width: 100px;
         height: 500px;
         flex-direction: column;
@@ -139,4 +154,24 @@
     {
         height: 220px !important;
     }
+}
+
+.edit-stage__remove-button
+{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 16px;
+    height: 16px;
+    background-image: url("../close.png");
+}
+
+.photo-editor__loader
+{
+    transition: all 0.2s ease-out 0s;
+}
+
+.photo-editor__loader_is-dragover
+{
+    transform: scale(1.06);
 }

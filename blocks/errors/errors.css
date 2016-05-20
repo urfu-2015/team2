@@ -17,7 +17,7 @@
     right: 5px;
     width: 16px;
     height: 16px;
-    background-image: url("close.png");
+    background-image: url("../close.png");
 }
 
 .errors_hidden

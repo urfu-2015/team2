@@ -1,0 +1,150 @@
+.quest-form
+{
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.quest-form__photo-container
+{
+    align-self: center;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.quest-form__photo
+{
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+    background: url("../photo_camera.png") center no-repeat;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 3px solid #000;
+}
+
+.quest-form__photo-input
+{
+    display: none !important;
+}
+
+.quest-form__photo-preview[src=""]
+{
+    opacity: 0;
+}
+
+.quest-form__photo-preview
+{
+    width: 100%;
+    margin: auto 0;
+    border: 0;
+}
+
+.quest-form__common-data
+{
+    display: flex;
+    justify-content: space-around;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 16px;
+}
+
+.quest-form__text
+{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.quest-form__description,
+.quest-form__name,
+.quest-form__city
+{
+    margin: 5px;
+}
+
+.quest-form__name-input,
+.quest-form__city-input
+{
+    width: 100%;
+}
+
+.quest-form__description-input
+{
+    width: 100%;
+    height: 100px;
+}
+
+.quest-form__button
+{
+    width: 200px;
+    margin: 5px;
+    text-decoration: none;
+}
+
+.quest-form__new-stage-button
+{
+    align-self: flex-start;
+}
+
+.quest-form__controls
+{
+    align-self: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+.quest-form_editing__delete-quest-button
+{
+    align-self: flex-end;
+    margin: 10px;
+}
+
+.quest-form__text-modal
+{
+    padding: 30px;
+}
+
+.quest-form__photo
+{
+    transition: all 0.2s ease-out 0s;
+}
+
+.quest-form__photo_is-dragover
+{
+    transform: scale(1.06);
+}
+
+.quest-form__photo_with-image
+{
+    background: none;
+}
+
+@media (max-width: 767px)
+{
+    .quest-form__common-data
+    {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .quest-form__new-stage-button
+    {
+        align-self: center;
+    }
+
+    .quest-form__controls
+    {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .quest-form__text
+    {
+        width: 90%;
+    }
+}

@@ -5,7 +5,14 @@
 }
 
 .quest-page-controls__button-begin,
-.quest-page-controls__button-later
+.quest-page-controls__button-later,
+.quest-page-controls__button-edit
 {
     width: 120px;
+    margin: 5px;
+}
+
+.quest-page-controls__button-edit
+{
+    text-decoration: none;
 }

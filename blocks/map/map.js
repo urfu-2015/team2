@@ -8,6 +8,12 @@ const REGULAR_STAGE_ICON = 'islands#violetIcon';
 let map;
 let placeMarks = {};
 let stageNumber;
+let subscriber;
+let functionsAfterInit = [];
+
+export const subscribeOnGeoloactionChanges = (element) => {
+    subscriber = element;
+};
 
 export const showMap = (_stage) => {
     stageNumber = _stage;
@@ -15,7 +21,47 @@ export const showMap = (_stage) => {
         openMap();
         return;
     }
-    ymaps.ready(initMap);
+    initMap();
+};
+
+export const addStage = (_stage, geolocation) => {
+    if (map) {
+        addStageToMap(_stage, geolocation);
+
+        return;
+    }
+
+    functionsAfterInit.push(() => {
+        addStageToMap(_stage, geolocation);
+    });
+};
+
+const addStageToMap = (_stage, geolocation) => {
+    stageNumber = _stage;
+
+    if (placeMarks.hasOwnProperty(stageNumber)) {
+        map.geoObjects.remove(placeMarks[stageNumber]);
+    }
+
+    const newPlaceMark = createPlaceMark(
+        [geolocation.latitude, geolocation.longitude]
+    );
+
+    map.geoObjects.add(newPlaceMark);
+    placeMarks[stageNumber] = newPlaceMark;
+
+    subscriber.dispatchEvent(new CustomEvent(
+        'mapGeolocationChanged',
+        {
+            detail: {
+                stageId: stageNumber,
+                geolocation: {
+                    longitude: geolocation.longitude,
+                    latitude: geolocation.latitude
+                }
+            }
+        }
+    ));
 };
 
 export const removeStage = (_stage) => {
@@ -24,30 +70,56 @@ export const removeStage = (_stage) => {
     delete placeMarks[stageNumber];
 };
 
-const initMap = () => {
-    map = new ymaps.Map('map', {
-        center: [$.cookie('userLatitude'), $.cookie('userLongitude')],
-        zoom: 12
+export const initMap = () => {
+    document.addEventListener('keyup', (event) => {
+        if (event.keyCode === 27) {
+            $('#map__modal').modal('hide');
+        }
     });
-    map.events.add('click', (e) => {
-        const coords = e.get('coords');
 
-        if (!placeMarks.hasOwnProperty(stageNumber)) {
+    ymaps.ready(() => {
+        map = new ymaps.Map('map', {
+            center: [$.cookie('userLatitude'), $.cookie('userLongitude')],
+            zoom: 12
+        });
+
+        map.events.add('click', (e) => {
+            const coords = e.get('coords');
+
+            if (placeMarks.hasOwnProperty(stageNumber)) {
+                map.geoObjects.remove(placeMarks[stageNumber]);
+            }
+
             const newPlaceMark = createPlaceMark(coords);
 
             map.geoObjects.add(newPlaceMark);
             placeMarks[stageNumber] = newPlaceMark;
-        }
+
+            subscriber.dispatchEvent(new CustomEvent(
+                'mapGeolocationChanged',
+                {
+                    detail: {
+                        stageId: stageNumber,
+                        geolocation: {
+                            latitude: coords[0],
+                            longitude: coords[1]
+                        }
+                    }
+                }
+            ));
+
+            $('#map__modal').modal('hide');
+        });
+
+        functionsAfterInit.forEach((func) => func());
     });
 };
 
 const createPlaceMark = (coords) =>
     new ymaps.Placemark(coords,
+        {},
         {
-            iconContent: stageNumber + 1
-        },
-        {
-            preset: REGULAR_STAGE_ICON,
+            preset: CHOSEN_STAGE_ICON,
             draggable: true
         }
     );
@@ -58,18 +130,35 @@ const openMap = () => {
     });
 
     if (!placeMarks[stageNumber]) {
+        if (!navigator.geolocation) {
+            return;
+        }
+
+        const options = {
+            enableHighAccuracy: true,
+            timeout: 1000
+        };
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => map.setCenter([position.coords.latitude, position.coords.longitude], 17),
+            null,
+            options
+        );
+
         return;
     }
+
+    map.setCenter(placeMarks[stageNumber].geometry.getCoordinates(), 17);
     placeMarks[stageNumber].options.set('preset', CHOSEN_STAGE_ICON);
 };
 
-const getGeoLocations = () => {
+export const getGeoLocations = () => {
     const res = {};
 
     Object.keys(placeMarks).forEach((key) => {
         res[key] = {
             latitude: placeMarks[key].geometry.getCoordinates()[0],
-            longitude: placeMarks[key].geometry.getCoordinates()[0]
+            longitude: placeMarks[key].geometry.getCoordinates()[1]
         };
     });
     return res;

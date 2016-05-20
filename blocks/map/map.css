@@ -3,8 +3,8 @@
     #map,
     .modal-dialog
     {
-        width: 60vw !important;
-        height: 40vh !important;
+        width: 80vw !important;
+        height: 80vh !important;
     }
 }
 
@@ -16,4 +16,12 @@
         width: 90vw !important;
         height: 90vh !important;
     }
+}
+
+.map__close
+{
+    position: absolute;
+    top: 0;
+    right: -22px;
+    font-size: 32px;
 }

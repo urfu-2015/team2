@@ -6,5 +6,8 @@
         {{else}}
             <button class="btn btn-success quest-page-controls__button-begin begin">Начать</button>
         {{/if}}
+        {{#if quest.editAllowed}}
+            <a href="/edit-quest/{{quest.id}}" class="btn btn-primary quest-page-controls__button-edit">Редактировать</a>
+        {{/if}}
     </div>
 </div>

@@ -4,17 +4,27 @@
     {{/content}}
 
     {{#content "body"}}
-        <div class="container">
-            {{#each quests}}
-                {{> quest_block/quest_block }}
-            {{/each}}
+        <div class="quests-page-container container">
+            {{#if addQuestsAllowed}}
+                <div class="quests-page__button-container">
+                    <a href="/new-quest" class="btn btn-primary quests-page__add-quest-button">
+                        Создать квест
+                    </a>
+                </div>
+            {{/if}}
+            <div class="quests-container">
+                <div class="quests-block">
+                    {{#each quests}}
+                        {{> quest_block/quest_block }}
+                    {{/each}}
+                </div>
+            </div>
         </div>
     {{/content}}
 
     {{#content "scripts" mode="append"}}
         <script src="https://use.fontawesome.com/9ec8bac3ed.js"></script>
         <script src="{{publicHost}}/quests.js"></script>
-        <script src="{{publicHost}}/velocity.js"></script>
     {{/content}}
 
 

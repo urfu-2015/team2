@@ -25,15 +25,14 @@
         {{/block}}
     </head>
     <body>
+        {{#block "errors"}}
+            <div class="errors-wrapper">
+                {{#if errors}}
+                    {{>errors/errors}}
+                {{/if}}
+            </div>
+        {{/block}}
         <div class="wrapper">
-                {{#block "errors"}}
-                    <div class="errors-wrapper">
-                        {{#if errors}}
-                            {{>errors/errors}}
-                        {{/if}}
-                    </div>
-                {{/block}}
-
                 {{#block "header"}}
                     {{> header/header }}
                 {{/block}}

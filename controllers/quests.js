@@ -6,6 +6,9 @@ const Stage = require('../models/stages');
 const User = require('../models/user');
 const layouts = require('handlebars-layouts');
 const fs = require('fs');
+const photoController = require('./photos.js');
+const stageController = require('./stages.js');
+
 const Checkin = require('../models/checkins');
 const Promise = require('bluebird');
 
@@ -13,28 +16,136 @@ const handlebars = require('hbs').handlebars;
 handlebars.registerHelper(layouts(handlebars));
 handlebars.registerPartial('base', fs.readFileSync('./bundles/base.hbs', 'utf8'));
 const mongoose = require('mongoose');
+const createHttpError = require('http-errors');
+
 mongoose.Promise = Promise;
 
 function createQuest(req, res) {
-    const data = {
-        name: req.body.name,
-        city: req.body.city,
-        author: mongoose.Types.ObjectId(req.body.userId),
-        photo: req.body.photo,
-        description: req.body.description,
-        likesCount: 0,
-        dislikesCount: 0,
-        doneCount: 0
+    if (!req.commonData.user) {
+        res.status(401).send('Вы не авторизованы');
+
+        return;
+    }
+
+    if (req.body.quest.file === '') {
+        res.sendStatus(403).send('Картинка квеста не указана');
+
+        return;
+    }
+
+    let questId;
+
+    photoController.uploadPhoto(req, req.body.quest.file)
+        .then(result => {
+            if (!result) {
+                return Promise.reject(createHttpError(500, 'Не удалось загрузить фотографию'));
+            }
+
+            return new Quest({
+                name: req.body.quest.name,
+                city: req.body.quest.city,
+                author: mongoose.Types.ObjectId(req.commonData.user.mongo_id),
+                photo: result.url,
+                description: req.body.quest.description,
+                likesCount: 0,
+                dislikesCount: 0,
+                doneCount: 0
+            }).save();
+        })
+        .then(quest => {
+            questId = quest.id;
+
+            let stagePromises = req.body.quest.stages.map(
+                stageItem => stageController.createStage(req, stageItem, quest.id)
+            );
+
+            return Promise.all(stagePromises);
+        })
+        .then(() => {
+            res.send(questId);
+        })
+        .catch(err => {
+            console.log(err);
+
+            if (err.http_code !== undefined) {
+                res.status(err.http_code).send(err.message);
+            }
+
+            res.status(500).send(err.message);
+        });
+}
+
+function updateQuest(req, res) {
+    if (!req.commonData.user) {
+        res.status(401).send('Вы не авторизованы');
+
+        return;
+    }
+
+    let photoPromise = req.body.quest.file ?
+        photoController.uploadPhoto(req, req.body.quest.file) : Promise.resolve();
+
+    photoPromise
+        .then(result => {
+            let updatedData = {
+                name: req.body.quest.name,
+                city: req.body.quest.city,
+                description: req.body.quest.description
+            };
+
+            if (req.body.quest.file) {
+                if (!result) {
+                    return Promise.reject(createHttpError(500, 'Не удалось загрузить фотографию'));
+                }
+
+                updatedData.photo = result.url;
+            }
+
+            return updatedData;
+        })
+        .then(updatedData => Quest.update({ _id: req.params.id }, updatedData).exec())
+        .then(() => {
+            let stagePromises = req.body.quest.stages.map(stageItem => {
+                if (stageItem.edited) {
+
+                    return stageController.updateStage(req, stageItem);
+                }
+
+                if (stageItem.removed) {
+                    return stageController.deleteStage(req, stageItem);
+                }
+
+                console.log('new');
+                return stageController.createStage(req, stageItem, req.params.id);
+            });
+
+            return Promise.all(stagePromises);
+        })
+        .then(() => {
+            res.send(req.params.id);
+        })
+        .catch(err => {
+            console.log(err);
+
+            if (err.http_code !== undefined) {
+                res.status(err.http_code).send(err.message);
+            }
+
+            res.status(500).send(err.message);
+        });
+}
+
+function deleteQuest(req, res) {
+    if (!req.params.id) {
+        res.sendStatus(400);
+    }
+
+    let query = {
+        _id: req.params.id
     };
 
-    const newQuest = new Quest(data);
-    newQuest.save(err => {
-        if (err) {
-            console.error('Error on quest save: ' + err);
-        } else {
-            res.json(data);
-        }
-    });
+    Quest.deleteQuest(query)
+        .then(() => res.sendStatus(200));
 }
 
 function getQuests(req, res) {
@@ -118,7 +229,13 @@ function getQuestPageInfo(req, res) {
             } else {
                 if (user) {
                     quest.authorName = user.login;
+                    if (req.commonData.user && req.commonData.user.mongo_id === user.id) {
+                        quest.editAllowed = true;
+                    }
                 }
+
+                stages = stages.sort((stage1, stage2) => stage1.order - stage2.order);
+
                 res.render(
                     'quest_page/quest_page',
                     Object.assign({
@@ -187,6 +304,8 @@ function startQuest(req, res) {
 
 module.exports = {
     createQuest,
+    updateQuest,
+    deleteQuest,
     getQuests,
     getQuestPageInfo,
     createStatus,
