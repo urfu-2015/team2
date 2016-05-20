@@ -1,0 +1,32 @@
+.profile-nav-list
+{
+    display: flex;
+    padding: 0;
+}
+
+.profile-nav-list li
+{
+    margin-right: 10px;
+    list-style-type: none;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+.profile-nav-list a
+{
+    color: #000;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block;
+}
+
+.profile-nav-list__active
+{
+    background-color: grey !important;
+}
+
+.profile-nav-list__active a
+{
+    text-decoration: underline;
+    color: #fff !important;
+}

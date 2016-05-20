@@ -1,0 +1,15 @@
+@import "../../blocks/profile_block/profile_block.css";
+@import "../../blocks/quest_block/quest_block.css";
+
+body
+{
+    background-color: #eee;
+}
+
+.container
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1600px;
+}

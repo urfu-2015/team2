@@ -11,24 +11,12 @@ let userSchema = new Schema({
     avatar: String
 });
 
-userSchema.statics.findUser = function (query, cb) {
-    return this.find(query, (err, users) => {
-        if (err) {
-            console.error(err);
-        } else {
-            cb(users);
-        }
-    });
+userSchema.statics.findUser = function (query) {
+    return this.find(query).exec();
 };
 
-userSchema.methods.getUserQuests = function (cb) {
-    return QuestsStatus.find({ userId: this._id }, (err, quests) => {
-        if (err) {
-            console.error(err);
-        } else {
-            cb(quests);
-        }
-    });
+userSchema.methods.getUserQuests = function (status) {
+    return QuestsStatus.find({ userId: this._id, status: status }).exec();
 };
 
 module.exports = mongoose.model('Users', userSchema);

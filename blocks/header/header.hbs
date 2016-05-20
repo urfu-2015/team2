@@ -13,7 +13,7 @@
                     <li><a href="/">Главная</a></li>
                     <li><a href="/quests">Квесты</a></li>
                     {{#if user}}
-                        <li><a href="#">Профиль</a></li>
+                        <li><a href="/user/{{ user.mongo_id }}/Started">Профиль</a></li>
                         <li><a href="/logout">Выйти</a></li>
                     {{else}}
                         <li><a href="/login">Войти</a></li>
@@ -37,16 +37,8 @@
             <div class="btn-group city-select">
                 <button class="btn btn-link ico-msq header-city-button" data-toggle="dropdown" type="button">
                     <i class="glyphicon glyphicon-map-marker"></i>
-                    <span class="city-select__current-city">{{ currentCity }}</span>
-                    <i class="glyphicon glyphicon-menu-down city-select-menu-down"></i>
+                    <span class="city-select__current-city">{{ currentCity }} </span>
                 </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Астана</a></li>
-                    <li><a href="#">Москва</a></li>
-                    <li><a href="#">Санкт-Петербург</a></li>
-                    <li><a href="#">Нижний Новгород</a></li>
-                    <li><a href="#">Новосибирск</a></li>
-                </ul>
             </div>
         </div>
     </nav>
