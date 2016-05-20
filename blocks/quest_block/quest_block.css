@@ -1,52 +1,156 @@
-.quest-block
+.card
 {
-    display: flex;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    position: relative;
     box-sizing: border-box;
-    justify-content: space-between;
-    padding: 4px;
+    width: 350px;
+    background-color: #fff;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
-.quest-block__caption
+.card-image
 {
-    text-align: justify;
-    margin: 0 10px 0 20px;
+    position: relative;
+}
+
+.card-image img
+{
+    position: relative;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.card-image img.activator
+{
+    cursor: pointer;
+}
+
+.card-image .fa
+{
+    display: block;
+    position: relative;
+    top: -245px;
+    left: 5px;
+}
+
+.done-color
+{
+    color: #69c83a;
+}
+
+.pending-color
+{
+    color: #ff0;
+}
+
+.card-content
+{
+    padding: 20px;
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content i
+{
+    display: block;
+    align-self: flex-end;
+}
+
+.card .card-content .card-title
+{
+    margin-bottom: 15px;
+}
+
+.card .card-content .card-title.activator
+{
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 0;
     flex-grow: 2;
 }
 
-.quest-block__ratings
+.card-content__header
 {
-    padding: 10px 0;
     display: flex;
-    align-items: center;
-    margin-left: 10px;
 }
 
-.quest-block__caption
+.card-content__header i
 {
-    padding: 0 10px;
+    display: block;
+    align-self: flex-start;
 }
 
-.quest-block__caption__title
+.card-content i.activator
 {
-    font-size: 18px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    cursor: pointer;
 }
 
-.quest-block__caption a
+.right
+{
+    float: right !important;
+}
+
+.card-reveal
+{
+    padding: 10px;
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    top: 100%;
+    height: 100%;
+    z-index: 3;
+    display: none;
+}
+
+.card .card-reveal .card-title
+{
+    display: flex;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.card-reveal a
 {
     text-decoration: none;
-    color: #337ab7;
 }
 
-.quest-block__ratings
+.card .card-reveal .card-title
 {
-    align-self: center;
+    display: flex;
+    font-size: 20px;
+    cursor: pointer;
 }
 
-.quest-block__ratings__stars
+.card .card-reveal i
 {
-    color: #d17581;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.card-reveal p
+{
+    margin-top: 15px;
+    text-overflow: ellipsis;
+    text-align: justify;
+}
+
+.card__ratings
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-grow: 2;
+    align-items: flex-end;
+    margin-top: 15px;
 }
 
 .likes
@@ -87,49 +191,28 @@
     background-position: -135px -5px;
 }
 
-.count-badge
+.card-content .quest-block__caption__author
 {
-    padding: 5px;
-    border-radius: 10px;
-    background-color: #777;
-    color: #fff;
+    margin: 0;
 }
 
-.quest-block__image
+.long-word
 {
-    width: 320px;
-    height: 150px;
-    object-fit: cover;
-}
+    /* These are technically the same, but use both */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 
-.quest-block__caption__author
-{
-    margin-top: -10px;
-    font-style: italic;
-}
+    -ms-word-break: break-all;
 
-@media(max-width: 750px)
-{
-    .quest-block
-    {
-        flex-direction: column;
-        align-items: center;
-    }
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
 
-    .quest-block__caption
-    {
-        align-self: stretch;
-        text-align: justify;
-    }
+    /* Instead use this non-standard one: */
+    word-break: break-word;
 
-    .quest-block__caption__title
-    {
-        text-align: center;
-    }
-
-    .quest-block__caption__author
-    {
-        margin-top: -10px;
-        text-align: center;
-    }
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }

@@ -4,6 +4,8 @@ const fs = require('fs');
 const photoController = require('./photos.js');
 const Stage = require('../models/stages');
 const mongoose = require('mongoose');
+const Checkin = require('../models/checkins');
+const geolib = require('geolib');
 
 exports.createStage = (req, res) => {
     if (!req.body.file) {
@@ -50,4 +52,83 @@ exports.createStage = (req, res) => {
             });
             res.send(401);
         });
+};
+
+exports.registerCheckin = (req, res) => {
+    if (!req.commonData.user) {
+        req.commonData.errors.push({ text: 'Не авторизован.' });
+        res.send(401);
+        return;
+    }
+
+    let data = {
+        questId: req.body.questId,
+        stageId: req.body.stageId,
+        userId: req.commonData.user.mongo_id,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude
+    };
+
+    Stage.findOne(
+        {
+            _id: data.stageId
+        },
+        function (err, doc) {
+            if (err) {
+                req.commonData.errors.push({ text: 'Этап не найден в базе данных' });
+                res.sendStatus(500);
+                return;
+            }
+            let stage = doc.toObject();
+            let pointLatitude = stage.geolocation.latitude;
+            let pointLongitude = stage.geolocation.longitude;
+            const distance = geolib.getDistance(
+                {
+                    latitude: data.latitude,
+                    longitude: data.longitude
+                },
+                {
+                    latitude: pointLatitude,
+                    longitude: pointLongitude
+                }
+            );
+
+            // distance в метрах
+            // if (distance > 20000000) {
+            if (distance > 150) {
+                data.checkin = false;
+                res.json(data);
+            } else {
+                Checkin.findOne({
+                    stageId: data.stageId, userId: data.userId
+                }, function (err, doc) {
+                    if (err) {
+                        req.commonData.errors.push({
+                            text: 'Ошибка при поиске чекина в базе данных'
+                        });
+                        res.sendStatus(500);
+                        return;
+                    }
+
+                    // Если пользователь уже зачекинен
+                    if (doc) {
+                        data.checkin = false;
+                        res.json(data);
+                        return;
+                    }
+
+                    // Если все ок
+                    new Checkin(data).save(err => {
+                        if (err) {
+                            req.commonData.errors.push({ text: 'Ошибка при чекине' });
+                            res.sendStatus(500);
+                        } else {
+                            data.checkin = true;
+                            res.json(data);
+                        }
+                    });
+                });
+            }
+        }
+    );
 };

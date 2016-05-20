@@ -6,11 +6,14 @@ const Stage = require('../models/stages');
 const User = require('../models/user');
 const layouts = require('handlebars-layouts');
 const fs = require('fs');
+const Checkin = require('../models/checkins');
+const Promise = require('bluebird');
 
 const handlebars = require('hbs').handlebars;
 handlebars.registerHelper(layouts(handlebars));
 handlebars.registerPartial('base', fs.readFileSync('./bundles/base.hbs', 'utf8'));
 const mongoose = require('mongoose');
+mongoose.Promise = Promise;
 
 function createQuest(req, res) {
     const data = {
@@ -57,10 +60,59 @@ function getQuestPageInfo(req, res) {
                     return result;
                 });
         })
-        .then(function (result) {
+        .then(result => {
             let quest = result[0];
             let stages = result[1];
             let user = result[2];
+            if (!req.commonData.user) {
+                result.push('');
+                return result;
+            }
+            return QuestStatus.findOne({
+                questId: quest._id,
+                userId: req.commonData.user.mongo_id
+            }).exec()
+                .then(statusDoc => {
+                    if (!statusDoc) {
+                        result.push('');
+                        return result;
+                    }
+                    let status = statusDoc.toObject();
+                    result.push(status.status);
+                    return result;
+                });
+        })
+        .then(function (result) {
+            let quest = result[0];
+            let stages = result[1];
+            let user = result[2] || 'Anonymous';
+            let statusString = result[3];
+            let started = statusString === 'Started';
+
+            var promiseStages = stages.map(function (stage) {
+                if (!req.commonData.user) {
+                    let objStage = stage.toObject();
+                    objStage.done = false;
+                    return objStage;
+                }
+                return Checkin.findOne({
+                    stageId: stage._id,
+                    userId: req.commonData.user.mongo_id
+                }).exec()
+                    .then(checkin => {
+                        let objStage = stage.toObject();
+                        if (checkin) {
+                            objStage.done = true;
+                        } else {
+                            objStage.done = false;
+                        }
+                        return objStage;
+                    });
+            });
+
+            return Promise.all([quest, user, started, ...promiseStages]);
+
+        }).spread((quest, user, started, ...stages) => {
             if (!quest) {
                 res.sendStatus(404);
             } else {
@@ -69,7 +121,9 @@ function getQuestPageInfo(req, res) {
                 }
                 res.render(
                     'quest_page/quest_page',
-                    Object.assign({ quest: quest, stages: stages }, req.commonData)
+                    Object.assign({
+                        quest: quest, started: started, stages: stages
+                    }, req.commonData)
                 );
             }
         })
@@ -98,9 +152,43 @@ function createStatus(req, res) {
     });
 }
 
+function startQuest(req, res) {
+    if (!req.commonData.user) {
+        req.commonData.errors.push({ text: 'Не авторизован.' });
+        res.sendStatus(401);
+        return;
+    }
+
+    let data = {
+        questId: req.body.questId,
+        userId: req.commonData.user.mongo_id
+    };
+
+    QuestStatus.findOne({
+        questId: req.body.questId,
+        userId: req.commonData.user.mongo_id
+    }, function (err, doc) {
+        if (doc) {
+            req.commonData.errors.push({ text: 'Квест уже начат' });
+            res.sendStatus(400);
+            return;
+        }
+        data.status = 'Started';
+        new QuestStatus(data).save(err => {
+            if (err) {
+                req.commonData.errors.push({ text: 'Ошибка при старте квеста' });
+                res.sendStatus(500);
+            } else {
+                res.json(data);
+            }
+        });
+    });
+}
+
 module.exports = {
     createQuest,
     getQuests,
     getQuestPageInfo,
-    createStatus
+    createStatus,
+    startQuest
 };

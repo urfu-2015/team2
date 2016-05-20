@@ -1,17 +1,29 @@
 @import "../../blocks/quest_page_controls/quest_page_controls.css";
 @import "../../blocks/quest_page_header/quest_page_header.css";
-@import "../../blocks/stage/stage.css";
 @import "../../blocks/stages/stages.css";
 
-.quest-page
+body
 {
-    width: 80%;
+    background-color: #eee;
 }
 
-@media (max-width: 800px)
+.stage-head
 {
-    .quest-page
-    {
-        width: 100%;
-    }
+    overflow-y: hidden;
+}
+
+.stage-header__photo
+{
+    margin-right: 20px;
+}
+
+.stage-header__caption
+{
+    flex-grow: 2;
+}
+
+.modal-body__close-button
+{
+    text-align: center;
+    margin-top: 15px;
 }

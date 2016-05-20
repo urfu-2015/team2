@@ -5,7 +5,8 @@
   "requirePaddingNewLinesAfterBlocks": false,
   "excludeFiles": [
     "**/node_modules/**",
-    "public/**"
+    "public/**",
+    "bundles/main/velocity.js"
   ],
   "esnext": true,
   "disallowImplicitTypeConversion": [

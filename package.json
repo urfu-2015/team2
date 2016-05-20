@@ -12,14 +12,14 @@
     "env:auth0": "heroku config:get AUTH0_CLIENTSECRET --app yahackteam2 -s > config/auth.txt",
     "env:cloudinary": "heroku config:get CLOUDINARY_URL --app yahackteam2 -s > config/cloudinary.txt",
     "env": "npm-run-all env:*",
-    "filldb": "node scripts/fillDB.js",
+    "filldb": "node --harmony scripts/fillDB.js",
     "lint": "npm run lint:css & npm run lint:js",
     "lint:css": "stylelint **/*.css",
     "lint:js": "jscs .",
     "precommit": "npm run test & npm run lint",
-    "start": "node app.js",
-    "start:dev": "node app.js --NODE_ENV=development",
-    "test": "mocha --recursive tests/ --STATUS=testing"
+    "start": "node --harmony app.js",
+    "start:dev": "node --harmony app.js --NODE_ENV=development",
+    "test": "mocha --harmony --recursive tests/ --STATUS=testing"
   },
   "repository": {
     "type": "git",
@@ -72,6 +72,7 @@
     "express": "4.13.4",
     "express-favicon": "1.0.1",
     "express-session": "1.13.0",
+    "geolib": "^2.0.21",
     "handlebars-layouts": "3.1.3",
     "hbs": "4.0.0",
     "jquery-touchswipe": "1.6.15",

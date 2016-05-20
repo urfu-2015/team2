@@ -1,6 +1,5 @@
 {{#extend "base"}}
-    {{#content "head"}}
-        {{>head/head}}
+    {{#content "head" mode="append"}}
         <link rel="stylesheet" href="{{publicHost}}/questPage.css">
     {{/content}}
 
@@ -9,16 +8,34 @@
     {{/content}}
 
     {{#content "body"}}
-        <div class="quest-page container-fluid">
-            <div class="quest-page-info container-fluid">
-                {{> quest_page_header/quest_page_header }}
-                {{> quest_page_controls/quest_page_controls }}
+        <div class="container-fluid stage-head">
+            {{> quest_page_header/quest_page_header }}
+            {{> quest_page_controls/quest_page_controls }}
+            <div class="container">
+                {{> stages/stages }}
             </div>
-            {{> stages/stages }}
+
+            <!--Modal Window Checkin-->
+            <div class="modal fade" id="checkin-modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <p class="text-center">Подождите пожалуйста...</p>
+                            <div class="modal-body__close-button">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     {{/content}}
 
     {{#content "footer"}}
         {{> footer/footer }}
+    {{/content}}
+
+    {{#content "scripts" mode="append"}}
+        <script src="{{ publicHost}}/questPage.js"}}></script>
     {{/content}}
 {{/extend}}
