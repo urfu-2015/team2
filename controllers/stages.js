@@ -94,8 +94,8 @@ exports.registerCheckin = (req, res) => {
             );
 
             // distance в метрах
-            if (distance > 20000000) {
-                // if (distance > 150) {
+            // if (distance > 20000000) {
+            if (distance > 150) {
                 data.checkin = false;
                 res.json(data);
             } else {

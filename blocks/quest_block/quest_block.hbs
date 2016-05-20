@@ -1,6 +1,12 @@
 <div class="card">
     <div class="card-image">
         <img src="{{ photo }}" class="activator">
+        {{#if started}}
+            <i class="fa fa-circle fa-lg pending-color" aria-hidden="true"></i>
+        {{/if}}
+        {{#if done}}
+            <i class="fa fa-check fa-lg done-color" aria-hidden="true"></i>
+        {{/if}}
     </div>
     <div class="card-content">
         <div class="card-content__header">

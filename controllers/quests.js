@@ -69,7 +69,8 @@ function getQuestPageInfo(req, res) {
                 return result;
             }
             return QuestStatus.findOne({
-                questId: quest._id, userId: req.commonData.user.mongo_id
+                questId: quest._id,
+                userId: req.commonData.user.mongo_id
             }).exec()
                 .then(statusDoc => {
                     if (!statusDoc) {
@@ -89,9 +90,17 @@ function getQuestPageInfo(req, res) {
             let started = statusString === 'Started';
 
             var promiseStages = stages.map(function (stage) {
-                return Checkin.findOne({ stageId: stage._id }).exec()
+                if (!req.commonData.user) {
+                    let objStage = stage.toObject();
+                    objStage.done = false;
+                    return objStage;
+                }
+                return Checkin.findOne({
+                    stageId: stage._id,
+                    userId: req.commonData.user.mongo_id
+                }).exec()
                     .then(checkin => {
-                        var objStage = stage.toObject();
+                        let objStage = stage.toObject();
                         if (checkin) {
                             objStage.done = true;
                         } else {

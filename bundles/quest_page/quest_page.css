@@ -9,6 +9,11 @@
     background-color: #fff;
 }
 
+.stage-head
+{
+    overflow-y: hidden;
+}
+
 .stage-header__photo
 {
     margin-right: 20px;

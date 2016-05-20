@@ -33,6 +33,24 @@
     cursor: pointer;
 }
 
+.card-image .fa
+{
+    display: block;
+    position: relative;
+    top: -245px;
+    left: 5px;
+}
+
+.done-color
+{
+    color: #69c83a;
+}
+
+.pending-color
+{
+    color: #ff0;
+}
+
 .card-content
 {
     padding: 20px;

@@ -7,6 +7,7 @@ const questController = require('../controllers/quests');
 const Quest = require('../models/quests');
 const mongoose = require('mongoose');
 const User = require('../models/user');
+const QuestStatus = require('../models/questsStatus');
 
 const handlebars = require('hbs').handlebars;
 handlebars.registerHelper(layouts(handlebars));
@@ -15,7 +16,7 @@ handlebars.registerPartial('base', fs.readFileSync('./bundles/base.hbs', 'utf8')
 exports.quests = (req, res) => {
     Quest.getFindQuestPromise({})
         .then(quests => {
-            var promiseQuests = quests.map(function (questDoc) {
+            var promiseQuests = quests.map(questDoc => {
                 let quest = questDoc.toObject();
                 let data = {
                     doneCount: quest.doneCount,
@@ -34,6 +35,31 @@ exports.quests = (req, res) => {
                             data.authorName = user.login;
                         }
                         return data;
+                    });
+            });
+            return Promise.all(promiseQuests);
+        })
+        .then(quests => {
+            var promiseQuests = quests.map(quest => {
+                if (!req.commonData.user) {
+                    return quest;
+                }
+                return QuestStatus.findOne({
+                    questId: quest.id,
+                    userId: req.commonData.user.mongo_id
+                }).exec()
+                    .then(statusDoc => {
+                        if (!statusDoc) {
+                            return quest;
+                        }
+                        let status = statusDoc.toObject();
+                        if (status.status === 'Started') {
+                            quest.started = true;
+                        }
+                        if (status.status === 'Done') {
+                            quest.done = true;
+                        }
+                        return quest;
                     });
             });
             return Promise.all(promiseQuests);
