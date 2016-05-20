@@ -1,6 +1,7 @@
 'use strict';
 
 const pages = require('./controllers/pages');
+const search = require('./controllers/search');
 const auth = require('./controllers/auth');
 const passport = require('passport');
 
@@ -14,6 +15,8 @@ module.exports = function (app) {
     app.get('/new-quest', pages.newQuest);
 
     app.get('/edit-quest/:id', pages.editQuest);
+
+    app.get('/search', search.searchByQuery);
 
     app.use('/user', userRoute);
 

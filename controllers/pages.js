@@ -14,65 +14,8 @@ handlebars.registerHelper(layouts(handlebars));
 handlebars.registerPartial('base', fs.readFileSync('./bundles/base.hbs', 'utf8'));
 
 exports.quests = (req, res) => {
-    Quest.getFindQuestPromise({})
-        .then(quests => {
-            var promiseQuests = quests.map(questDoc => {
-                let quest = questDoc.toObject();
-                let data = {
-                    doneCount: quest.doneCount,
-                    likesCount: quest.likesCount,
-                    photo: quest.photo,
-                    description: quest.description,
-                    name: quest.name,
-                    id: quest._id
-                };
-                return User.findOne({ _id: quest.author }).exec()
-                    .then(userDoc => {
-                        if (!userDoc) {
-                            data.authorName = 'Anonymous';
-                        } else {
-                            let user = userDoc.toObject();
-                            data.authorName = user.login;
-                        }
-                        return data;
-                    });
-            });
-            return Promise.all(promiseQuests);
-        })
-        .then(quests => {
-            var promiseQuests = quests.map(quest => {
-                if (!req.commonData.user) {
-                    return quest;
-                }
-                return QuestStatus.findOne({
-                    questId: quest.id,
-                    userId: req.commonData.user.mongo_id
-                }).exec()
-                    .then(statusDoc => {
-                        if (!statusDoc) {
-                            return quest;
-                        }
-                        let status = statusDoc.toObject();
-                        if (status.status === 'Started') {
-                            quest.started = true;
-                        }
-                        if (status.status === 'Done') {
-                            quest.done = true;
-                        }
-                        return quest;
-                    });
-            });
-            return Promise.all(promiseQuests);
-        })
-        .then(result => {
-            let data = {};
-
-            data.quests = result.reverse();
-
-            if (req.commonData.user) {
-                data.addQuestsAllowed = true;
-            }
-
+    Quest.getQuestsData(req, {})
+        .then(data => {
             res.render('quests/quests', Object.assign(data, req.commonData));
         })
         .catch(err => {
@@ -82,7 +25,6 @@ exports.quests = (req, res) => {
             });
             res.redirect('/');
         });
-
 };
 
 exports.index = (req, res) => {
