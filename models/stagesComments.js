@@ -9,4 +9,14 @@ let stagesCommentsSchema = new Schema({
     userId: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
+stagesCommentsSchema.statics.findComments = function (query, cb) {
+    return this.find(query, (err, data) => {
+        if (err) {
+            console.log(err);
+        } else {
+            cb(data);
+        }
+    });
+};
+
 module.exports = mongoose.model('StagesComments', stagesCommentsSchema);

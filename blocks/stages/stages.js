@@ -1,3 +1,5 @@
+require('../stage_comments/stage_comments');
+
 const geolib = require('geolib');
 
 if (!navigator.geolocation) {

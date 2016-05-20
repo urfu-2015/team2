@@ -1,0 +1,50 @@
+.stage-comments__show-button
+{
+    display: block;
+    position: relative;
+    width: 120px;
+    left: 100%;
+    margin-left: -120px;
+}
+
+.stage-comments_hidden
+{
+    display: none;
+}
+
+.quest-comments__comments-container
+{
+    width: 60%;
+}
+
+.stage-comments__text
+{
+    display: block;
+    width: 50%;
+    margin: 10px;
+    height: 200px;
+}
+
+.stage-comments__add-comment
+{
+    width: 60%;
+    margin: 10px 0;
+}
+
+.stage-comments__add-comment-button
+{
+    display: block;
+    width: 180px;
+    margin: 0 10px;
+}
+
+@media (max-width: 768px)
+{
+    .stage-comments__text
+    {
+        display: block;
+        width: 100%;
+        height: 150px;
+    }
+}
+
