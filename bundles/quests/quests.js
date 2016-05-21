@@ -1,7 +1,6 @@
 require('./quests.css');
 
 $(document).ready(function () {
-    console.log('here');
     $(document).on('click.card', '.card', function (b) {
         $(this).find('> .card-reveal').length &&
             ($(b.target).is($('.card-reveal i')) ? $(this).find('.card-reveal').velocity({
