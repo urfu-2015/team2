@@ -20,15 +20,8 @@
         <h5 class="quest-block__caption__city">
             {{ city }}
         </h5>
-        <div class="card__ratings">
-            <div class="likes">
-                <div class="likes__img likes__img_empty"></div>
-                <div class="likes__count count-badge">{{ likesCount }}</div>
-            </div>
-            <div class="people-done">
-                <div class="people-done__img"></div>
-                <div class="people-done__count count-badge">{{ doneCount }}</div>
-            </div>
+        <div class="card__ratings quest-stats quest-stats_{{ id }}" data-id="{{ id }}">
+            {{> likes/likes }}
         </div>
         <p><a href="/quests/{{ id }}">Перейти</a></p>
     </div>

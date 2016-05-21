@@ -1,0 +1,118 @@
+
+.stats-count
+{
+    display: flex;
+    align-items: center;
+    max-height: 30px;
+}
+
+.stats
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stats__like-img,
+.stats__dislike-img,
+.stats__people-done-img
+{
+    height: 30px;
+    width: 30px;
+    background-image: url("../spritesheet.png");
+    background-repeat: no-repeat;
+    margin-right: 5px;
+}
+
+.stats__like-img,
+.stats__dislike-img
+{
+    cursor: pointer;
+}
+
+.stats__like-img_empty
+{
+    background-position: -75px -35px;
+}
+
+.stats__like-img_filled
+{
+    background-position: -75px -75px;
+}
+
+.stats__dislike-img_empty
+{
+    background-position: -35px -5px;
+}
+
+.stats__dislike-img_filled
+{
+    background-position: -5px -75px;
+}
+
+.stats__people-done-img
+{
+    background-position: -135px -5px;
+}
+
+.stats__like,
+.stats__dislike,
+.stats__people-done
+{
+    display: flex;
+    margin-right: 10px;
+}
+
+.stats__like-count,
+.stats__dislike-count,
+.stats__people-done-count
+{
+    font-size: 1.2em;
+}
+
+@media (max-width: 767px)
+{
+    .stats__like-img,
+    .stats__dislike-img,
+    .stats__people-done-img
+    {
+        width: 20px;
+        height: 20px;
+    }
+
+    .stats__like-img_empty
+    {
+        background-position: -75px -5px;
+    }
+
+    .stats__like-img_filled
+    {
+        background-position: -45px -75px;
+    }
+
+    .stats__dislike-img_empty
+    {
+        background-position: -5px -5px;
+    }
+
+    .stats__dislike-img_filled
+    {
+        background-position: -5px -35px;
+    }
+
+    .stats__people-done-img
+    {
+        background-position: -105px -5px;
+    }
+
+}
+
+
+@media (max-width: 991px)
+{
+    .stats
+    {
+        margin-top: 10px;
+    }
+
+}

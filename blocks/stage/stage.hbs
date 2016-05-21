@@ -1,4 +1,4 @@
-<div class="row stage-block">
+<div class="row stage-block stage_{{ _id }}" data-id="{{ _id }}">
     <div class="stage-caption">
         <div class="stage-photo">
             <a href="{{ photo }}" target="_blank">
@@ -43,16 +43,10 @@
         </div>
     </div>
 
-    <section class="stage-stats">
-        <div class="stage-stats-likes">
-            <div class="stage-stats-like__img stage-stats-like__img_empty"></div>
-            <span class="badge stage-stats-count"> {{ likesCount }}</span>
-        </div>
-        <div class="stage-stats-dislikes">
-            <div class="stage-stats-dislike__img stage-stats-dislike__img_empty"></div>
-            <span class="badge stage-stats-count"> {{ dislikesCount }}</span>
-        </div>
-    </section>
+    <div class="col-md-3 col-md-offset-9 stage-stats" data-id="{{_id}}">
+    {{> likes/likes }}
+    </div>
+
     <div class="stage-stats__comments">
         <span>{{ commentsCount }}</span>
     </div>

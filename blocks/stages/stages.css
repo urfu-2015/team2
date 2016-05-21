@@ -1,3 +1,10 @@
+@import "../likes/likes.css";
+
+.stage-block .stats__people-done
+{
+    display: none;
+}
+
 .stage-block
 {
     margin-bottom: 10px;
@@ -13,52 +20,9 @@
     max-height: 30px;
 }
 
-.stage-stats-like__img,
-.stage-stats-dislike__img
-{
-    width: 30px;
-    height: 30px;
-    background: url("../../blocks/spritesheet.png") no-repeat;
-    margin-right: 5px;
-}
-
-.stage-stats-likes,
-.stage-stats-dislikes
-{
-    display: flex;
-    margin-right: 10px;
-}
-
-.stage-stats-like__img_empty
-{
-    background-position: -75px -35px;
-}
-
-.stage-stats-like__img_filled
-{
-    background-position: -75px -75px;
-}
-
-.stage-stats-dislike__img_empty
-{
-    background-position: -35px -5px;
-}
-
-.stage-stats-dislike__img_filled
-{
-    background-position: -5px -75px;
-}
-
 .stage-description__name
 {
     text-align: left;
-}
-
-.stage-stats
-{
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
 }
 
 .stage-checkin
