@@ -1,7 +1,19 @@
-<section class="quest-comments__comments-wrapper quest-comments_hidden">
-    <div class="quest-comments__comments-container"></div>
-    <div class="quest-comments__add-comment">
-        <textarea title="Ваш комментарий" rows="4" cols="50" class="quest-comments__text noSwipe"></textarea>
-        <div class="btn btn-primary quest-comments__add-comment-button">Добавить комментарий</div>
+<div class="modal fade" id="quest-comments" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Комментарии к квесту</h4>
+            </div>
+            <div class="modal-body">
+                <div class="quest-comments__comments-container"></div>
+                <div class="quest-comments__add-comment">
+                    <div class="form-group">
+                        <textarea class="form-control quest-comments__text noSwipe" rows="4" id="comment"></textarea>
+                    </div>
+                    <div class="btn btn-primary quest-comments__add-comment-button">Добавить комментарий</div>
+                </div>
+            </div>
+        </div>
     </div>
-</section>
+</div>
