@@ -31,3 +31,11 @@ body
     margin: 30px;
     width: 120px;
 }
+
+.quests-block__warning-empty
+{
+    margin: 30px;
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 5px;
+}
