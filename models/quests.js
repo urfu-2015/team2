@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const Stages = require('./stages');
+const QuestStatus = require('./questsStatus');
 const User = require('./user');
 const Likes = require('./questsLikes');
 const Comments = require('./questsComments');
