@@ -50,7 +50,7 @@
     display: flex;
     justify-content: space-around;
     background-color: #fff;
-    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
     padding: 16px;
 }
 
@@ -123,6 +123,11 @@
 .quest-form__photo_with-image
 {
     background: none;
+}
+
+.quest-form__stages
+{
+    margin-top: 40px;
 }
 
 @media (max-width: 767px)
