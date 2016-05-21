@@ -303,6 +303,51 @@ function startQuest(req, res) {
     });
 }
 
+function doneQuest(req, res) {
+    if (!req.commonData.user) {
+        req.commonData.errors.push({ text: 'Не авторизован.' });
+        res.sendStatus(401);
+        return;
+    }
+
+    let query = {
+        questId: req.body.questId,
+        userId: req.commonData.user.mongo_id
+    };
+
+    let eqChecker = {};
+
+    Stage.count({ questId: query.questId }).exec()
+        .then(stagesCount => {
+            eqChecker.stagesCount = stagesCount;
+            return stagesCount;
+        })
+        .then(() => Checkin.count(query).exec())
+        .then(checkinsCount => {
+            eqChecker.checkinsCount = checkinsCount;
+            return checkinsCount;
+        })
+        .then(() => {
+            if (eqChecker.stagesCount === eqChecker.checkinsCount) {
+                return QuestStatus.findOne({ questId: query.questId }).exec();
+            }
+            return Promise.reject({ questNotDone: true });
+        })
+        .then(statusDoc => {
+            statusDoc.status = 'Done';
+            statusDoc.save();
+            res.json({ questId: req.body.questId });
+        })
+        .catch(err => {
+            if (err.questNotDone) {
+                res.sendStatus(403);
+                return;
+            }
+            req.commonData.errors.push({ text: 'Ошибка при проверке выполнения квеста' });
+            res.sendStatus(500);
+        });
+}
+
 module.exports = {
     createQuest,
     updateQuest,
@@ -310,5 +355,6 @@ module.exports = {
     getQuests,
     getQuestPageInfo,
     createStatus,
-    startQuest
+    startQuest,
+    doneQuest
 };

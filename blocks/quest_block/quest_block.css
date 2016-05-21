@@ -35,20 +35,23 @@
 
 .card-image .fa
 {
-    display: block;
     position: relative;
     top: -245px;
     left: 5px;
+    padding: 6px;
+    border-radius: 20px;
 }
 
 .done-color
 {
     color: #69c83a;
+    background-color: #fff;
 }
 
 .pending-color
 {
     color: #ff0;
+    background-color: #ff0;
 }
 
 .card-content

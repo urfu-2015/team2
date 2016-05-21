@@ -70,6 +70,25 @@ function checkinButtonHandler(e) {
                             ' принятия отметки. Попробуйте подойти ближе';
                 }
                 modalBody.text(text);
+                if (checkDone()) {
+                    console.log(questId);
+                    $.ajax({
+                        url: '/quests/done',
+                        type: 'POST',
+                        data: {
+                            questId: questId
+                        }
+                    }).done(function (res) {
+                        $('#checkin-modal').hide();
+                        let modalBody = $('#checkin-modal').find('.modal-body p');
+                        let text;
+                        text = 'Поздравляем! Вы успешно завершили квест, так держать!';
+                        modalBody.text(text);
+                        $('#checkin-modal').show();
+                    }).fail(function (err) {
+                        console.log(err);
+                    });
+                }
             }).fail(function (err) {
                 let modalBody = $('#checkin-modal').find('.modal-body p');
                 let text;
@@ -93,6 +112,10 @@ function checkinButtonHandler(e) {
             enableHighAccuracy: true
         }
     );
+}
+
+function checkDone() {
+    return $('.stage-checkin__button').length === 0;
 }
 
 module.exports = {

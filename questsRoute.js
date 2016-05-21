@@ -8,6 +8,7 @@ const comments = require('./controllers/comments');
 router.get('/', pagesController.quests);
 router.post('/', quests.createQuest);
 router.post('/start', quests.startQuest);
+router.post('/done', quests.doneQuest);
 
 router.get('/:id', quests.getQuestPageInfo);
 router.patch('/:id', quests.updateQuest);
