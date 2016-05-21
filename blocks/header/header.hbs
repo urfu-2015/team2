@@ -21,12 +21,23 @@
                 </ul>
             </div>
             <div class="quest-search">
-                <input class="quest-search__input noSwipe" placeholder="Найти квест...">
+                <form class="quest-search__form" method="get" action="/search">
+                    {{#if query}}
+                        <input name="query" class="quest-search__input noSwipe"
+                               placeholder="Поиск" value="{{query}}" required
+                        >
+                    {{else}}
+                        <input name="query" class="quest-search__input noSwipe"
+                               placeholder="Поиск" required
+                        >
+                    {{/if}}
+                    <button class="btn btn-xs btn-default quest-search__submit">&#128270;</button>
+                </form>
             </div>
             <div class="btn-group city-select">
                 <button class="btn btn-link ico-msq header-city-button" data-toggle="dropdown" type="button">
                     <i class="glyphicon glyphicon-map-marker"></i>
-                    <span class="city-select__current-city">{{ currentCity }} </span>
+                    <span class="city-select__current-city">{{ currentCity }}</span>
                     <i class="glyphicon glyphicon-menu-down city-select-menu-down"></i>
                 </button>
                 <ul class="dropdown-menu" role="menu">

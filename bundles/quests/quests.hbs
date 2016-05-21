@@ -12,13 +12,19 @@
                     </a>
                 </div>
             {{/if}}
-            <div class="quests-container">
-                <div class="quests-block">
-                    {{#each quests}}
-                        {{> quest_block/quest_block }}
-                    {{/each}}
+            {{#if quests}}
+                <div class="quests-container">
+                    <div class="quests-block">
+                        {{#each quests}}
+                            {{> quest_block/quest_block }}
+                        {{/each}}
+                    </div>
                 </div>
-            </div>
+            {{else}}
+                {{#if query}}
+                    <div class="quests-block__warning-empty">По данному запросу ничего не найдено</div>
+                {{/if}}
+            {{/if}}
         </div>
     {{/content}}
 

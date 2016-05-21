@@ -142,6 +142,11 @@
         min-width: 280px;
         margin-top: 50px;
     }
+
+    .quest-search__input
+    {
+        width: 220px;
+    }
 }
 
 @media (min-width: 768px)
