@@ -11,10 +11,13 @@
 .city-select .header-city-button,
 .city-select .header-city-button:hover
 {
-    color: #fff;
+    color: #000;
     outline: none;
     width: 150px;
-    padding: 10px 0 0;
+    background-color: #fff;
+    margin-top: 10px;
+    padding: 0;
+    border-radius: 5px;
 }
 
 .city-select.btn-group.open .btn
@@ -75,7 +78,7 @@
 
 .navbar
 {
-    background: url("header-bg.jpg") no-repeat center;
+    background: url("header-bg.jpg") no-repeat center top;
     background-size: cover;
 
     font-family: Roboto, sans-serif;
@@ -130,6 +133,15 @@
     width: 100%;
 }
 
+.navbar-mobile-menu
+{
+    background-color: #fff;
+    border-radius: 5px;
+    align-self: flex-start;
+    padding: 1px 5px;
+    font-size: 15px;
+}
+
 @media (max-width: 767px)
 {
     .navbar
@@ -147,6 +159,11 @@
     {
         width: 220px;
     }
+
+    .nav-menu-list li
+    {
+        font-size: 14px;
+    }
 }
 
 @media (min-width: 768px)
@@ -156,8 +173,24 @@
         width: 100%;
     }
 
-    .nav-menu-list__mobile-menu
+    .navbar-mobile-menu
     {
         display: none;
+    }
+}
+
+@media (max-width: 350px)
+{
+    .navbar-brand h1
+    {
+        font-size: 30px;
+        color: #fff;
+        margin-top: 0;
+    }
+
+    .header-logo
+    {
+        min-width: 24px;
+        height: 24px;
     }
 }
