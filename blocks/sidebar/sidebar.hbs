@@ -22,10 +22,9 @@
         </li>
         <li role="presentation" class="divider"></li>
         {{#if user}}
-            <li><a href="#">Начатые квесты</a></li>
-            <li><a href="#">Пройденные квесты</a></li>
-            <li><a href="#">Отмеченные квесты</a></li>
-            <li><a href="#">Настройки</a></li>
+            <li><a href="/user/{{ user.mongo_id }}/Started">Начатые квесты</a></li>
+            <li><a href="/user/{{ user.mongo_id }}/Done">Пройденные квесты</a></li>
+            <li><a href="/user/{{ user.mongo_id }}/Created">Мои квесты</a></li>
             <li role="presentation" class="divider"></li>
             <li><a href="/logout">Выйти</a></li>
         {{else}}

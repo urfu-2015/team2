@@ -11,7 +11,15 @@ let userSchema = new Schema({
     avatar: String
 });
 
-userSchema.statics.findUser = function (query, cb) {
+userSchema.statics.findUser = function (query) {
+    return this.find(query).exec();
+};
+
+userSchema.methods.getUserQuests = function (status) {
+    return QuestsStatus.find({ userId: this._id, status: status }).exec();
+};
+
+userSchema.statics.findUserForTest = function (query, cb) {
     return this.find(query, (err, users) => {
         if (err) {
             console.error(err);
@@ -21,7 +29,7 @@ userSchema.statics.findUser = function (query, cb) {
     });
 };
 
-userSchema.methods.getUserQuests = function (cb) {
+userSchema.methods.getUserQuestsForTest = function (cb) {
     return QuestsStatus.find({ userId: this._id }, (err, quests) => {
         if (err) {
             console.error(err);

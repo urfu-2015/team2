@@ -1,0 +1,32 @@
+<article class="container profile-nav">
+    <div class="quests-page-container container">
+        <div class="quests-page__button-container">
+            <ul class="profile-nav-list">
+                {{# if started}}
+                    <li class="profile-nav-list__active"><a href="/user/{{ user.mongo_id }}/Started">Начатые квесты</a></li>
+                    <li><a href="/user/{{ user.mongo_id }}/Done">Пройденные квесты</a></li>
+                    <li><a href="/user/{{ user.mongo_id }}/Created">Мои квесты</a></li>
+                {{/if}}
+                {{#if done}}
+                    <li><a href="/user/{{ user.mongo_id }}/Started">Начатые квесты</a></li>
+                    <li class="profile-nav-list__active"><a href="/user/{{ user.mongo_id }}/Done">Пройденные квесты</a></li>
+                    <li><a href="/user/{{ user.mongo_id }}/Created">Мои квесты</a></li>
+                {{/if}}
+                {{#if created}}
+                    <li><a href="/user/{{ user.mongo_id }}/Started">Начатые квесты</a></li>
+                    <li><a href="/user/{{ user.mongo_id }}/Done">Пройденные квесты</a></li>
+                    <li class="profile-nav-list__active"><a href="/user/{{ user.mongo_id }}/Created">Мои квесты</a></li>
+                {{/if}}
+            </ul>
+        </div>
+        <div class="quests-container">
+            <div class="quests-block">
+                {{#each quests}}
+                    {{> quest_block/quest_block }}
+                {{else}}
+                    <h2>Квестов не найдено =(</h2>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</article>

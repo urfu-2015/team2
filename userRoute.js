@@ -7,6 +7,7 @@ router.post('/', user.createUser);
 
 router.get('/:id', user.getUser);
 
-router.get('/:id/:qType(Started|Done|Marked)', user.getUserQuests);
+router.get('/:id/:qType(Started|Done)', user.getUserQuests);
+router.get('/:id/Created', user.getCreatedQuests);
 
 module.exports = router;

@@ -1,0 +1,14 @@
+{{#extend "base"}}
+    {{#content "head" mode="append"}}
+        <link rel="stylesheet" href="{{publicHost}}/profile.css">
+    {{/content}}
+
+    {{#content "body"}}
+        {{> profile_block/profile_block}}
+    {{/content}}
+
+    {{#content "scripts" mode="append"}}
+        <script src="https://use.fontawesome.com/9ec8bac3ed.js"></script>
+        <script src="{{publicHost}}/profile.js"></script>
+    {{/content}}
+{{/extend}}

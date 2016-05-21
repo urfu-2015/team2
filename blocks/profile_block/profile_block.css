@@ -1,0 +1,76 @@
+.profile-nav-list
+{
+    display: flex;
+    padding: 0;
+}
+
+.profile-nav-list li
+{
+    margin-right: 10px;
+    list-style-type: none;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+.profile-nav-list a
+{
+    color: #000;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block;
+}
+
+.profile-nav-list__active
+{
+    background-color: grey !important;
+}
+
+.profile-nav-list__active a
+{
+    text-decoration: underline;
+    color: #fff !important;
+}
+
+.quests-page-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 1600px;
+}
+
+.quests-block
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.quests-page__button-container
+{
+    align-self: center;
+}
+
+.quests-page__add-quest-button
+{
+    text-decoration: none;
+    margin: 30px;
+    width: 120px;
+}
+
+.quests-block__warning-empty
+{
+    margin: 30px;
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+@media (max-width: 767px)
+{
+    .profile-nav-list a
+    {
+        padding: 10px 5px;
+        font-size: 10px;
+    }
+}
