@@ -106,6 +106,22 @@
     justify-content: space-between;
 }
 
+.stage-modal__dialog
+{
+    width: auto;
+    max-width: 100%;
+}
+
+.stage-modal.in
+{
+    display: flex !important;
+}
+
+.stage-modal
+{
+    display: none !important;
+}
+
 @media (max-width: 767px)
 {
     .stage-caption

@@ -7,12 +7,12 @@
                         <div class="stage-photo">
                             <a href="{{ photo }}" target="_blank">
                                 {{#if done}}
-                                    <img src="{{ photo }}" alt="{{ name }}" class="stage-photo__img">
+                                    <img src="{{ photo }}" alt="{{ name }}" class="stage-photo__img" data-index="{{@index}}">
                                     <div class="check-container">
                                         <img src="http://vignette2.wikia.nocookie.net/dumbledoresarmyroleplay/images/2/2f/GreenTick.png/revision/latest?cb=20160109171926" class="stage-photo__done-layout__check">
                                     </div>
                                 {{else}}
-                                    <img src="{{ photo }}" alt="{{ name }}" class="stage-photo__img">
+                                    <img src="{{ photo }}" alt="{{ name }}" class="stage-photo__img" data-index="{{@index}}">
                                 {{/if}}
                             </a>
                         </div>
@@ -52,8 +52,21 @@
                     <div class="stage-stats__comments">
                         <span>{{ commentsCount }}</span>
                     </div>
+                    <div class="btn btn-primary stage-comments__show-button" data-id="{{ _id }}">Комментарии</div>
+                    {{> stage_comments/stage_comments}}
                 </div>
-
+                <div id="stage-modal-{{@index}}" class="modal fade stage-modal" role="dialog">
+                    <div class="modal-dialog stage-modal__dialog">
+                        <div class="modal-content stage-modal__content">
+                            <div class="modal-body">
+                                <img src="{{ photo }}" alt="{{ name }}" class="stage-modal__image">
+                            </div>
+                            <div class="modal-footer">
+                                <button class="close" data-dismiss="modal">Закрыть</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {{/if}}
         {{/each}}
     </div>
