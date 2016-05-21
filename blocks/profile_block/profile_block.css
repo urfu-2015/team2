@@ -65,3 +65,12 @@
     background-color: #fff;
     border-radius: 5px;
 }
+
+@media (max-width: 767px)
+{
+    .profile-nav-list a
+    {
+        padding: 10px 5px;
+        font-size: 10px;
+    }
+}
