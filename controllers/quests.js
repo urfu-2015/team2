@@ -217,6 +217,7 @@ function getQuestPageInfo(req, res) {
                         } else {
                             objStage.done = false;
                         }
+                        objStage.started = started;
                         return objStage;
                     });
             });

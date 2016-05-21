@@ -1,0 +1,183 @@
+.stage-block
+{
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.stage-stats-count
+{
+    display: flex;
+    align-items: center;
+    max-height: 30px;
+}
+
+.stage-stats-like__img,
+.stage-stats-dislike__img
+{
+    width: 30px;
+    height: 30px;
+    background: url("../../blocks/spritesheet.png") no-repeat;
+    margin-right: 5px;
+}
+
+.stage-stats-likes,
+.stage-stats-dislikes
+{
+    display: flex;
+    margin-right: 10px;
+}
+
+.stage-stats-like__img_empty
+{
+    background-position: -75px -35px;
+}
+
+.stage-stats-like__img_filled
+{
+    background-position: -75px -75px;
+}
+
+.stage-stats-dislike__img_empty
+{
+    background-position: -35px -5px;
+}
+
+.stage-stats-dislike__img_filled
+{
+    background-position: -5px -75px;
+}
+
+.stage-description__name
+{
+    text-align: left;
+}
+
+.stage-stats
+{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.stage-checkin
+{
+    margin: 10px auto;
+    align-self: flex-start;
+}
+
+.stage-description
+{
+    flex-grow: 2;
+    margin: 0 10px;
+
+    /* These are technically the same, but use both */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+.stage-photo__img
+{
+    height: 200px;
+    width: 320px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.check-container
+{
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.7);
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transform: translateY(-100%);
+    height: 200px;
+    margin-bottom: -200px;
+    width: 320px;
+}
+
+.check-container img
+{
+    width: 100px;
+    height: 100px;
+}
+
+.stage-caption
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 767px)
+{
+    .stage-caption
+    {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stage-checkin
+    {
+        margin: 10px auto;
+        align-self: center;
+    }
+
+    .stage-description
+    {
+        text-align: justify;
+        align-self: stretch;
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .stage-description__name
+    {
+        align-self: center;
+    }
+
+    .stage-description__description
+    {
+        margin-top: 10px;
+        align-self: stretch;
+    }
+
+    .stage-description__description p
+    {
+        text-align: justify;
+        text-align-last: center;
+    }
+}
+
+@media (max-width: 400px)
+{
+    .stage-photo__img
+    {
+        height: 150px;
+        width: 250px;
+
+    }
+
+    .check-container
+    {
+        height: 150px;
+        margin-bottom: -150px;
+        width: 250px;
+    }
+}
