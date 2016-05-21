@@ -118,6 +118,24 @@ function checkDone() {
     return $('.stage-checkin__button').length === 0;
 }
 
+(() => {
+    const images = document.getElementsByClassName('stage-photo__img');
+
+    Array.prototype.forEach.call(images, (image) => {
+        image.addEventListener('click', showImage);
+    });
+})();
+
+function showImage(e) {
+    if (innerWidth <= 768) {
+        return;
+    }
+    e.preventDefault();
+    const index = e.target.dataset.index;
+
+    $(`#stage-modal-${index}`).modal('show');
+}
+
 module.exports = {
     checkinButtonHandler
 };

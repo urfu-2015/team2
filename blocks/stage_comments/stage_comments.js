@@ -1,6 +1,8 @@
 require('./stage_comments.css');
 require('../comments/comments');
 
+import { showError } from '../errors/scripts/clientErrors';
+
 const comments = require('../comments/comments.hbs');
 
 (() => {
@@ -57,7 +59,14 @@ function addComment(e) {
         data,
         type: 'POST'
     }).done(function (result) {
-        document.querySelector(`section[data-id="${id}"] > .stage-comments__comments-container`)
-            .innerHTML += comments({ comments: [result] });
+        const newComment = $.parseHTML(comments({ comments: [result] }));
+
+        $(`section[data-id="${id}"] > .stage-comments__comments-container`).append(newComment);
+    }).fail(function (err) {
+        if (err.status === 401) {
+            showError({ text: err.responseText });
+            return;
+        }
+        showError({ text: 'Неизвестная ошибка' });
     });
 }
