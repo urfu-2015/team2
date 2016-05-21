@@ -80,8 +80,9 @@ exports.getUserQuests = (req, res) => {
 
 exports.getCreatedQuests = (req, res) => {
     Quest.getQuestsData(req, { author: req.params.id })
-        .then(quests => {
-            res.render('profile/profile', Object.assign({ quests }, req.commonData));
+        .then(data => {
+            data.created = true;
+            res.render('profile/profile', Object.assign(data, req.commonData));
         })
         .catch(err => {
             console.log(err);
