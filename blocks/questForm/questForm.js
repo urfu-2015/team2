@@ -153,7 +153,6 @@ function uploadQuest() {
         quest: {
             file: document.querySelector('.quest-form__photo-preview').getAttribute('src'),
             name: document.querySelector('.quest-form__name-input').value,
-            city: document.querySelector('.quest-form__city-input').value,
             description: document.querySelector('.quest-form__description-input').value,
             stages: stagesData
         }
@@ -170,18 +169,30 @@ function uploadQuest() {
     let url = '/quests' + (isEditing ? `/${questId}` : '');
     let type = isEditing ? 'PATCH' : 'POST';
 
-    $.ajax({
-        url: url,
-        type: type,
-        data: JSON.stringify(data),
-        contentType: 'application/json'
-    }).done(function (questId) {
-        window.location.href = `/quests/${questId}`;
-    }).fail(function (err) {
-        console.log(err);
-        $('#quest-form__wait-modal').modal('hide');
-        submitButton.disabled = false;
-    });
+    let firstStage = document.querySelector('.edit-stage');
+
+    getCityByGeolocation(stageFunctions.getGeolocation(firstStage))
+        .then(city => {
+            data.quest.city = city;
+
+            $.ajax({
+                url: url,
+                type: type,
+                data: JSON.stringify(data),
+                contentType: 'application/json'
+            }).done(function (questId) {
+                window.location.href = `/quests/${questId}`;
+            }).fail(function (err) {
+                console.log(err);
+                $('#quest-form__wait-modal').modal('hide');
+                submitButton.disabled = false;
+            });
+        })
+        .catch(err => {
+            clientErrors.showError({ text: 'Проблемы с определением города, попробуйте позже' });
+            $('#quest-form__wait-modal').modal('hide');
+            submitButton.disabled = false;
+        });
 }
 
 function checkData(data) {
@@ -190,9 +201,6 @@ function checkData(data) {
     }
     if (data.quest.name === '') {
         throw new Error('Не указано название квеста');
-    }
-    if (data.quest.city === '') {
-        throw new Error('Не указан город квеста');
     }
     if (data.quest.description === '') {
         throw new Error('Не указано описание квеста');
@@ -213,11 +221,22 @@ function checkData(data) {
         if (stage.description === '') {
             throw new Error('Не указано описание этапа');
         }
-
         if (stage.geolocation === undefined) {
             throw new Error('Не указано местоположение этапа');
         }
     });
+}
+
+function getCityByGeolocation(geolocation) {
+    if (!geolocation) {
+
+        return Promise.reject();
+    }
+
+    return ymaps.geocode(
+        [geolocation.latitude, geolocation.longitude],
+        { results: 1, json: true, kind: 'locality' }
+    ).then(res => res.GeoObjectCollection.featureMember[0].GeoObject.name);
 }
 
 function initEditing() {
