@@ -20,6 +20,12 @@
                         {{/each}}
                     </div>
                 </div>
+                {{#if noMoreQuests }}
+                    <button class="btn btn-default quests-block__more-button" disabled>Загругить еще</button>
+
+                {{else}}
+                    <button class="btn btn-default quests-block__more-button">Загругить еще</button>
+                {{/if}}
             {{else}}
                 {{#if query}}
                     <div class="quests-block__warning-empty">По данному запросу ничего не найдено</div>

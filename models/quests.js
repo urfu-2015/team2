@@ -13,16 +13,21 @@ const Checkins = require('./checkins');
 
 const Promise = require('bluebird');
 
-let questsSchema = new Schema({
-    name: String,
-    city: String,
-    author: { type: Schema.Types.ObjectId, ref: 'User' },
-    photo: String,
-    description: String,
-    likesCount: Number,
-    dislikesCount: Number,
-    doneCount: Number
-});
+let questsSchema = new Schema(
+    {
+        name: String,
+        city: String,
+        author: { type: Schema.Types.ObjectId, ref: 'User' },
+        photo: String,
+        description: String,
+        likesCount: Number,
+        dislikesCount: Number,
+        doneCount: Number
+    },
+    {
+        timestamps: true
+    }
+);
 
 questsSchema.statics.findQuests = function (query, cb) {
     return this.find(query, (err, quests) => {
@@ -42,11 +47,18 @@ questsSchema.statics.deleteQuest = function (query) {
     return this.findOne(query).then(quest => quest.remove());
 };
 
-questsSchema.statics.getQuestsData = function (req, query) {
-    return this.find(query).exec()
+questsSchema.statics.getQuestsData = function (req, query, limit) {
+    let promise = this.find(query).sort('-createdAt');
+
+    if (limit !== undefined) {
+        promise = promise.limit(limit);
+    }
+
+    return promise.exec()
         .then(quests => {
             var promiseQuests = quests.map(questDoc => {
                 let quest = questDoc.toObject();
+
                 let data = {
                     doneCount: quest.doneCount,
                     likesCount: quest.likesCount,
@@ -54,8 +66,10 @@ questsSchema.statics.getQuestsData = function (req, query) {
                     city: quest.city,
                     description: quest.description,
                     name: quest.name,
-                    id: quest._id
+                    id: quest._id,
+                    createdAt: questDoc.createdAt.toISOString()
                 };
+
                 return User.findOne({ _id: quest.author }).exec()
                     .then(userDoc => {
                         if (!userDoc) {
@@ -97,7 +111,7 @@ questsSchema.statics.getQuestsData = function (req, query) {
         .then(result => {
             let data = {};
 
-            data.quests = result.reverse();
+            data.quests = result;
 
             if (req.commonData.user) {
                 data.addQuestsAllowed = true;
