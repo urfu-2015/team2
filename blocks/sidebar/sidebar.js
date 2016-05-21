@@ -1,4 +1,4 @@
-$('.nav-menu-list__mobile-menu').click(function (e) {
+$('.navbar-mobile-menu').click(function (e) {
     e.preventDefault();
     $('.wrapper').toggleClass('toggled');
 });
