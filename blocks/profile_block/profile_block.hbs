@@ -4,9 +4,8 @@
             <img class="quest-page-user-container__photo" src="{{ user.picture }}" alt="avatar {{user.name.givenName}}">
             {{#if user.displayName}}
                 <p class="quest-page-user-container__nickname">{{user.displayName}}</p>
-            {{/if}}
-            {{#if user.name.givenName}}
-                <p class="quest-page-user-container__nickname">{{user.name.givenName}}</p>
+            {{else}}
+                <p class="quest-page-user-container__nickname">{{user.name}}</p>
             {{/if}}
         </div>
         <div class="quests-page__button-container">

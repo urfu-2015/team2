@@ -25,7 +25,6 @@ exports.getUser = (req, res) => {
 };
 
 exports.getUserQuests = (req, res) => {
-    console.log(req.commonData);
     if (req.params.qType === 'Started') {
         req.commonData.started = true;
     }
