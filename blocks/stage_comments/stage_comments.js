@@ -1,8 +1,6 @@
 require('./stage_comments.css');
 require('../comments/comments');
 
-import { showError } from '../errors/scripts/clientErrors';
-
 const comments = require('../comments/comments.hbs');
 
 (() => {
@@ -20,16 +18,10 @@ const comments = require('../comments/comments.hbs');
 
 function showComments(e) {
     const id = e.target.dataset.id;
-    const commentsWrapperClasses =
-        document.querySelector(`section[data-id="${id}"]`).classList;
-    const hiddenClassIndex =
-        Array.prototype.indexOf.call(commentsWrapperClasses, 'stage-comments_hidden');
-    if (hiddenClassIndex >= 0) {
-        commentsWrapperClasses.remove('stage-comments_hidden');
-    } else {
-        commentsWrapperClasses.add('stage-comments_hidden');
-        return;
-    }
+    $(`div.stage-comments[data-id="${id}"]`).modal(); // Активируем модальное окно
+    $(`div.stage-comments[data-id="${id}"]`).modal('show');
+    $(`div.stage-comments[data-id="${id}"]`).scrollTop(0);
+
     const data = {
         commentType: 'stage',
         id
@@ -40,14 +32,15 @@ function showComments(e) {
         data,
         type: 'PUT'
     }).done(function (result) {
-        document.querySelector(`section[data-id="${id}"] > .stage-comments__comments-container`)
+        document.querySelector(`div.stage-comments[data-id="${id}"]` +
+            ` .modal-body > .stage-comments__comments-container`)
             .innerHTML = comments({ comments: result });
     });
 }
 
 function addComment(e) {
     const id = e.target.dataset.id;
-    const text = document.querySelector(`textarea[data-id="${id}"]`).value;
+    const text = document.querySelector(`div.stage-comments[data-id="${id}"] textarea`).value;
     const data = {
         commentType: 'stage',
         id,
@@ -59,9 +52,9 @@ function addComment(e) {
         data,
         type: 'POST'
     }).done(function (result) {
-        const newComment = $.parseHTML(comments({ comments: [result] }));
-
-        $(`section[data-id="${id}"] > .stage-comments__comments-container`).append(newComment);
+        document.querySelector(`div.stage-comments[data-id="${id}"]` +
+            ` .modal-body > .stage-comments__comments-container`)
+            .innerHTML += comments({ comments: [result] });
     }).fail(function (err) {
         if (err.status === 401) {
             showError({ text: err.responseText });

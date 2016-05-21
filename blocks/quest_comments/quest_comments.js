@@ -17,10 +17,6 @@ function showComments() {
     $('#quest-comments').modal('show');
     $('#quest-comments').scrollTop(0);
 
-    $('#quest-comments').on('hidden.bs.modal', function (e) {
-        $(this).find('.modal-body p').text('Подождите пожалуйста...');
-    });
-
     const id = document.querySelector('#questId').value;
     const data = {
         commentType: 'quest',
