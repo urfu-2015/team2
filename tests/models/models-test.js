@@ -90,9 +90,8 @@ describe('Example spec for a model', function () {
     it('should return user quests', done => {
         User.findUserForTest({ login: 'Channing Tatum' }, foundUser => {
             foundUser = foundUser.pop();
-            foundUser.getUserQuests(foundQuests => {
+            foundUser.getUserQuestsForTest(foundQuests => {
                 foundQuests = foundQuests.pop();
-                /*foundQuests.userId.should.equal(foundUser._id);*/
                 foundQuests.status.should.equal('started');
                 done();
             });

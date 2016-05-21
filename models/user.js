@@ -29,4 +29,14 @@ userSchema.statics.findUserForTest = function (query, cb) {
     });
 };
 
+userSchema.methods.getUserQuestsForTest = function (cb) {
+    return QuestsStatus.find({ userId: this._id }, (err, quests) => {
+        if (err) {
+            console.error(err);
+        } else {
+            cb(quests);
+        }
+    });
+};
+
 module.exports = mongoose.model('Users', userSchema);
