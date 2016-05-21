@@ -3,6 +3,10 @@
         <link rel="stylesheet" href="{{publicHost}}/questPage.css">
     {{/content}}
 
+    {{#content "header"}}
+        {{> header/header }}
+    {{/content}}
+
     {{#content "body"}}
         <div class="container-fluid stage-head">
             {{> quest_page_header/quest_page_header }}
@@ -26,7 +30,6 @@
             </div>
         </div>
     {{/content}}
-<<<<<<< Updated upstream
 
     {{#content "footer"}}
         {{> footer/footer }}
@@ -35,6 +38,4 @@
     {{#content "scripts" mode="append"}}
         <script src="{{ publicHost}}/questPage.js"}}></script>
     {{/content}}
-=======
->>>>>>> Stashed changes
 {{/extend}}

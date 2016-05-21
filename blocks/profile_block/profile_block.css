@@ -30,3 +30,38 @@
     text-decoration: underline;
     color: #fff !important;
 }
+
+.quests-page-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 1600px;
+}
+
+.quests-block
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.quests-page__button-container
+{
+    align-self: center;
+}
+
+.quests-page__add-quest-button
+{
+    text-decoration: none;
+    margin: 30px;
+    width: 120px;
+}
+
+.quests-block__warning-empty
+{
+    margin: 30px;
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 5px;
+}

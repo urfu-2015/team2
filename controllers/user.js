@@ -78,3 +78,16 @@ exports.getUserQuests = (req, res) => {
         });
 };
 
+exports.getCreatedQuests = (req, res) => {
+    Quest.getQuestsData(req, { author: req.params.id })
+        .then(quests => {
+            res.render('profile/profile', Object.assign({ quests }, req.commonData));
+        })
+        .catch(err => {
+            console.log(err);
+            req.commonData.errors.push({
+                text: 'Some errors with getting quest'
+            });
+            res.redirect('/');
+        });
+};
