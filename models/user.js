@@ -19,4 +19,14 @@ userSchema.methods.getUserQuests = function (status) {
     return QuestsStatus.find({ userId: this._id, status: status }).exec();
 };
 
+userSchema.statics.findUserForTest = function (query, cb) {
+    return this.find(query, (err, users) => {
+        if (err) {
+            console.error(err);
+        } else {
+            cb(users);
+        }
+    });
+};
+
 module.exports = mongoose.model('Users', userSchema);

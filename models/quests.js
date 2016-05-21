@@ -45,7 +45,6 @@ questsSchema.statics.deleteQuest = function (query) {
 questsSchema.statics.getQuestsData = function (req, query) {
     return this.find(query).exec()
         .then(quests => {
-            console.log('quests: ', quests);
             var promiseQuests = quests.map(questDoc => {
                 let quest = questDoc.toObject();
                 let data = {
@@ -70,7 +69,6 @@ questsSchema.statics.getQuestsData = function (req, query) {
             return Promise.all(promiseQuests);
         })
         .then(quests => {
-            console.log('quests: ', quests);
             var promiseQuests = quests.map(quest => {
                 if (!req.commonData.user) {
                     return quest;

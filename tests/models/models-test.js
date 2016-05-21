@@ -28,7 +28,7 @@ describe('Example spec for a model', function () {
     });
 
     it('should return user', done => {
-        User.findUser({ login: 'Channing Tatum' }, foundUser => {
+        User.findUserForTest({ login: 'Channing Tatum' }, foundUser => {
             foundUser = foundUser.pop();
             foundUser.login.should.equal('Channing Tatum');
             foundUser.avatar.should.equal('awwwww');
@@ -67,7 +67,7 @@ describe('Example spec for a model', function () {
     });
 
     it('should create questStatus', done => {
-        User.findUser({ login: 'Channing Tatum' }, foundUser => {
+        User.findUserForTest({ login: 'Channing Tatum' }, foundUser => {
             foundUser = foundUser.pop();
             Quests.findQuests({ name: 'Night city' }, foundQuest => {
                 foundQuest = foundQuest.pop();
@@ -88,7 +88,7 @@ describe('Example spec for a model', function () {
     });
 
     it('should return user quests', done => {
-        User.findUser({ login: 'Channing Tatum' }, foundUser => {
+        User.findUserForTest({ login: 'Channing Tatum' }, foundUser => {
             foundUser = foundUser.pop();
             foundUser.getUserQuests(foundQuests => {
                 foundQuests = foundQuests.pop();
