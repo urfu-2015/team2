@@ -1,5 +1,4 @@
 require('./quest_page.css');
-
 const stagesScripts = require('../../blocks/stages/stages');
 require('../../blocks/stage/stage');
 require('../../blocks/quest_page_controls/quest_page_controls');

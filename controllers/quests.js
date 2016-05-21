@@ -329,7 +329,10 @@ function doneQuest(req, res) {
         })
         .then(() => {
             if (eqChecker.stagesCount === eqChecker.checkinsCount) {
-                return QuestStatus.findOne({ questId: query.questId }).exec();
+                return QuestStatus.findOne({
+                    questId: query.questId,
+                    userId: query.userId
+                }).exec();
             }
             return Promise.reject({ questNotDone: true });
         })

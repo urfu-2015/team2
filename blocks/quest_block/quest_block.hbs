@@ -2,7 +2,8 @@
     <div class="card-image">
         <img src="{{ photo }}" class="activator">
         {{#if started}}
-            <i class="fa fa-circle fa-lg pending-color" aria-hidden="true"></i>
+            <i class="fa fa-flag fa-lg pending-color" aria-hidden="true"></i>
+            <!--<i class="fa fa-circle fa-lg pending-color" aria-hidden="true"></i>-->
         {{/if}}
         {{#if done}}
             <i class="fa fa-check fa-lg done-color" aria-hidden="true"></i>
@@ -14,8 +15,11 @@
             <i class="fa fa-arrow-up activator fa-2x" aria-hidden="true"></i>
         </div>
         <h6 class="quest-block__caption__author">
-            Created by: {{ authorName }}
+            Автор: {{ authorName }}
         </h6>
+        <h5 class="quest-block__caption__city">
+            {{ city }}
+        </h5>
         <div class="card__ratings">
             <div class="likes">
                 <div class="likes__img likes__img_empty"></div>
