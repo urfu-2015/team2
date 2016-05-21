@@ -1,5 +1,13 @@
 <article class="container profile-nav">
     <div class="quests-page-container container">
+        <div class="quest-page__user-container">
+            <img class="quest-page-user-container__photo" src="{{ user.picture }}" alt="avatar {{user.name.givenName}}">
+            {{#if user.displayName}}
+                <p class="quest-page-user-container__nickname">{{user.displayName}}</p>
+            {{else}}
+                <p class="quest-page-user-container__nickname">{{user.name}}</p>
+            {{/if}}
+        </div>
         <div class="quests-page__button-container">
             <ul class="profile-nav-list">
                 {{# if started}}
