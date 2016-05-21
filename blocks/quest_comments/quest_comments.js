@@ -1,6 +1,8 @@
 require('./quest_comments.css');
 require('../comments/comments');
 
+import { showError } from '../errors/scripts/clientErrors';
+
 const comments = require('../comments/comments.hbs');
 
 (() => {
@@ -51,7 +53,14 @@ function addComment() {
         data,
         type: 'POST'
     }).done(function (result) {
-        document.querySelector('.quest-comments__comments-container')
-            .innerHTML += comments({ comments: [result] });
+        const newComment = $.parseHTML(comments({ comments: [result] }));
+
+        $('.quest-comments__comments-container').append(newComment);
+    }).fail(function (err) {
+        if (err.status === 401) {
+            showError({ text: err.responseText });
+            return;
+        }
+        showError({ text: 'Неизвестная ошибка' });
     });
 }
