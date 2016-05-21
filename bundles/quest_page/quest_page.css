@@ -1,6 +1,7 @@
 @import "../../blocks/quest_page_controls/quest_page_controls.css";
 @import "../../blocks/quest_page_header/quest_page_header.css";
 @import "../../blocks/stages/stages.css";
+@import "../../blocks/stage/stage.css";
 
 body
 {

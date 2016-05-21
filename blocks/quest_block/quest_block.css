@@ -35,20 +35,26 @@
 
 .card-image .fa
 {
-    display: block;
     position: relative;
     top: -245px;
     left: 5px;
+    padding: 6px;
+    border-radius: 20px;
+    margin-bottom: -30px;
+    display: block;
+    width: 30px;
 }
 
 .done-color
 {
     color: #69c83a;
+    background-color: #fff;
 }
 
 .pending-color
 {
-    color: #ff0;
+    color: #cea61a;
+    background-color: #fff;
 }
 
 .card-content
@@ -59,7 +65,7 @@
     flex-direction: column;
 }
 
-.card-content i
+.card-content .fa
 {
     display: block;
     align-self: flex-end;
@@ -194,6 +200,12 @@
 .card-content .quest-block__caption__author
 {
     margin: 0;
+}
+
+.card-content .quest-block__caption__city
+{
+    margin: 5px 0 0;
+    font-weight: 700;
 }
 
 .long-word

@@ -51,6 +51,7 @@ questsSchema.statics.getQuestsData = function (req, query) {
                     doneCount: quest.doneCount,
                     likesCount: quest.likesCount,
                     photo: quest.photo,
+                    city: quest.city,
                     description: quest.description,
                     name: quest.name,
                     id: quest._id
@@ -94,7 +95,6 @@ questsSchema.statics.getQuestsData = function (req, query) {
             return Promise.all(promiseQuests);
         })
         .then(result => {
-            console.log('result ', result);
             let data = {};
 
             data.quests = result.reverse();

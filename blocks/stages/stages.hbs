@@ -2,60 +2,7 @@
     <div class="container-fluid">
         {{#each stages}}
             {{#if this}}
-                <div class="row stage-block">
-                    <div class="stage-caption">
-                        <div class="stage-photo">
-                            <a href="{{ photo }}" target="_blank">
-                                {{#if done}}
-                                    <img src="{{ photo }}" alt="{{ name }}" class="stage-photo__img">
-                                    <div class="check-container">
-                                        <img src="http://vignette2.wikia.nocookie.net/dumbledoresarmyroleplay/images/2/2f/GreenTick.png/revision/latest?cb=20160109171926" class="stage-photo__done-layout__check">
-                                    </div>
-                                {{else}}
-                                    <img src="{{ photo }}" alt="{{ name }}" class="stage-photo__img">
-                                {{/if}}
-                            </a>
-                        </div>
-                        <div class="stage-description long-word">
-                            <div class="stage-description__name">
-                                <h3>{{ name }}</h3>
-                            </div>
-                            <div class="stage-description__description">
-                                <p>{{ description }}</p>
-                            </div>
-                        </div>
-                        <div class="stage-checkin">
-                            {{#if done}}
-                                <button class="btn btn-success" disabled>Выполнено!</button>
-                            {{else}}
-                                {{#if ../started}}
-                                    <button class="btn btn-primary stage-checkin__button checkin">Отметиться</button>
-                                    <input type="hidden" name="stageID" value="{{ _id }}">
-                                    <input type="hidden" name="questID" value="{{ questId }}">
-                                {{else}}
-                                    <button class="btn btn-primary stage-checkin__button" disabled>Отметиться</button>
-                                {{/if}}
-                            {{/if}}
-                        </div>
-                    </div>
-
-                    <section class="stage-stats">
-                        <div class="stage-stats-likes">
-                            <div class="stage-stats-like__img stage-stats-like__img_empty"></div>
-                            <span class="badge stage-stats-count"> {{ likesCount }}</span>
-                        </div>
-                        <div class="stage-stats-dislikes">
-                            <div class="stage-stats-dislike__img stage-stats-dislike__img_empty"></div>
-                            <span class="badge stage-stats-count"> {{ dislikesCount }}</span>
-                        </div>
-                    </section>
-                    <div class="stage-stats__comments">
-                        <span>{{ commentsCount }}</span>
-                    </div>
-                    <div class="btn btn-primary stage-comments__show-button" data-id="{{ _id }}">Комментарии</div>
-                    {{> stage_comments/stage_comments}}
-                </div>
-
+                {{> stage/stage}}
             {{/if}}
         {{/each}}
     </div>
