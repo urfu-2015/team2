@@ -1,0 +1,38 @@
+.comment__wrapper
+{
+    display: flex;
+    margin: 10px 10px;
+}
+
+.comment__avatar
+{
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.comment__content
+{
+    width: 100%;
+    margin-left: 10px;
+}
+
+.comment__text
+{
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px)
+{
+    .comment__avatar
+    {
+        width: 70px;
+        height: 70px;
+        border-radius: 5px;
+        object-fit: cover;
+    }
+}

@@ -1,0 +1,48 @@
+.quest-comments__show-button
+{
+    display: block;
+    width: 120px;
+    margin: 0 auto;
+}
+
+.quest-comments_hidden
+{
+    display: none;
+}
+
+.quest-comments__comments-container
+{
+    margin: 0 auto;
+    width: 60%;
+}
+
+.quest-comments__text
+{
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    height: 300px;
+}
+
+.quest-comments__add-comment
+{
+    width: 60%;
+    margin: 10px auto;
+}
+
+.quest-comments__add-comment-button
+{
+    display: block;
+    width: 180px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px)
+{
+    .quest-comments__text
+    {
+        display: block;
+        width: 100%;
+        height: 150px;
+    }
+}
