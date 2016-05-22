@@ -64,11 +64,13 @@ function getPartOfQuests() {
     }).done(function (result) {
         result.data.quests.forEach((quest => {
             $('.quests-block').append($.parseHTML(questTemplate(quest)));
+
+            likesFunctions.setLikeHandler(
+                document.querySelector('.quests-block').lastElementChild
+            );
         }));
 
         oldDate = result.oldDate;
-
-        likesFunctions.setLikesHundlers();
 
         if (result.isQuestsOver) {
             return;
