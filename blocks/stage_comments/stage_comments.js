@@ -55,6 +55,7 @@ function addComment(e) {
         document.querySelector(`div.stage-comments[data-id="${id}"]` +
             ` .modal-body > .stage-comments__comments-container`)
             .innerHTML += comments({ comments: [result] });
+        document.querySelector(`div.stage-comments[data-id="${id}"] textarea`).value = '';
     }).fail(function (err) {
         if (err.status === 401) {
             showError({ text: err.responseText });

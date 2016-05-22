@@ -50,6 +50,7 @@ function addComment() {
         const newComment = $.parseHTML(comments({ comments: [result] }));
 
         $('.quest-comments__comments-container').append(newComment);
+        document.querySelector('.quest-comments__text').value = '';
     }).fail(function (err) {
         if (err.status === 401) {
             showError({ text: err.responseText });
