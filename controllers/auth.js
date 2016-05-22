@@ -1,4 +1,5 @@
 const pages = require('./pages.js');
+const argv = require('minimist')(process.argv.slice(2));
 
 exports.logout = (req, res) => {
     req.logout();
@@ -6,5 +7,9 @@ exports.logout = (req, res) => {
 };
 
 exports.login = (req, res) => {
-    res.redirect('/');
+    if (argv.NODE_ENV === 'development') {
+        res.redirect('/');
+    } else {
+        res.redirect('https://yahackteam2.herokuapp.com/');
+    }
 };
