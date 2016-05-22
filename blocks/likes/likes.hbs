@@ -1,6 +1,10 @@
 <section class="stats">
     <div class="stats__like">
-        <div class="stats__like-img stats__like-img_empty"></div>
+        {{#if liked}}
+            <div class="stats__like-img stats__like-img_filled"></div>
+        {{else}}
+            <div class="stats__like-img stats__like-img_empty"></div>
+        {{/if}}
         <span class="count-badge stats-count stats__like-count">
             {{#if quest}}{{ quest.likesCount }}{{ else }}{{likesCount}}{{/if}}
         </span>

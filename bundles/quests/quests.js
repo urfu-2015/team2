@@ -1,5 +1,5 @@
 require('./quests.css');
-require('../../blocks/likes/questsPageLikes.js');
+const likesFunctions = require('../../blocks/likes/questsPageLikes.js');
 const questTemplate = require('../../blocks/quest_block/quest_block.hbs');
 
 $(document).ready(function () {
@@ -67,6 +67,8 @@ function getPartOfQuests() {
         }));
 
         oldDate = result.oldDate;
+
+        likesFunctions.setLikesHundlers();
 
         if (result.isQuestsOver) {
             return;

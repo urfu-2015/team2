@@ -108,6 +108,33 @@ questsSchema.statics.getQuestsData = function (req, query, limit) {
             });
             return Promise.all(promiseQuests);
         })
+        .then(quests => {
+            var promiseQuests = quests.map(quest => {
+                if (!req.commonData.user) {
+                    return quest;
+                }
+                return Likes.findOne({
+                    questId: quest.id,
+                    userId: req.commonData.user.mongo_id
+                }).exec()
+                    .then(likeDoc => {
+                        if (!likeDoc) {
+                            return quest;
+                        }
+
+                        let like = likeDoc.toObject();
+
+                        if (like.type) {
+                            quest.liked = true;
+                        } else {
+                            quest.disliked = true;
+                        }
+
+                        return quest;
+                    });
+            });
+            return Promise.all(promiseQuests);
+        })
         .then(result => {
             let data = {};
 
