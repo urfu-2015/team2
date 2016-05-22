@@ -21,6 +21,8 @@ function showComments(e) {
     $(`div.stage-comments[data-id="${id}"]`).modal(); // Активируем модальное окно
     $(`div.stage-comments[data-id="${id}"]`).modal('show');
     $(`div.stage-comments[data-id="${id}"]`).scrollTop(0);
+    let stageName = $(`div.stage-block[data-id="${id}"] .stage-description__name h3`).text();
+    $(`div.stage-comments[data-id="${id}"] .modal-title`).text('Этап "' + stageName + '"');
 
     const data = {
         commentType: 'stage',
