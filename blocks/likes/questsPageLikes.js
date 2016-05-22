@@ -2,28 +2,13 @@ import { showError } from '../errors/scripts/clientErrors';
 
 var pathname = window.location.pathname;
 
-$().ready(function () {
-    // надо запросить, поставил ли этот пользователь лайк к квесту
-    $.ajax({
-        url: pathname + '/stats',
-        type: 'GET'
-    }).done(function (res) {
-        if (!res.questsLikes) {
-            return;
-        }
-        res.questsLikes.forEach(like => {
-            if (like.type) {
-                $('.quest-stats.quest-stats_' + like.questId)
-                    .find('.stats__like-img')
-                    .removeClass('stats__like-img_empty').addClass('stats__like-img_filled');
-            }
-        });
-    }).fail(function (err) {
-        console.error('err');
-    });
-});
+pathname = pathname === '/search' ? '/quests' : pathname;
 
-$('.stats__like-img').click(function () {
+pathname = pathname.startsWith('/user') ? '/quests' : pathname;
+
+$('.stats__like-img').click(likeHandler);
+
+function likeHandler() {
     var $self = $(this);
 
     // если поставили лайк
@@ -51,5 +36,11 @@ $('.stats__like-img').click(function () {
         $self.next().html($likesCount);
         showError({ text: 'Вы должны авторизоваться, чтобы ставить лайки' });
     });
+}
 
-});
+module.exports.setLikeHandler = (element) => {
+    let $like = $(element.querySelector('.stats__like-img'));
+
+    $like.click(likeHandler);
+};
+

@@ -14,8 +14,14 @@ handlebars.registerHelper(layouts(handlebars));
 handlebars.registerPartial('base', fs.readFileSync('./bundles/base.hbs', 'utf8'));
 
 exports.quests = (req, res) => {
-    Quest.getQuestsData(req, {})
+    Quest.getQuestsData(req, {}, 9)
         .then(data => {
+            if (data.quests.length < 9) {
+                data.noMoreQuests = true;
+            } else {
+                data.quests.pop();
+            }
+
             res.render('quests/quests', Object.assign(data, req.commonData));
         })
         .catch(err => {

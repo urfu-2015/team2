@@ -1,29 +1,29 @@
 <article class="container profile-nav">
     <div class="quests-page-container container">
         <div class="quest-page__user-container">
-            <img class="quest-page-user-container__photo" src="{{ user.picture }}" alt="avatar {{user.name.givenName}}">
-            {{#if user.displayName}}
-                <p class="quest-page-user-container__nickname">{{user.displayName}}</p>
+            <img class="quest-page-user-container__photo" src="{{ shownUser.avatar }}" alt="avatar {{shownUser.login}}">
+            {{#if shownUser.displayName}}
+                <p class="quest-page-user-container__nickname">{{shownUser.displayName}}</p>
             {{else}}
-                <p class="quest-page-user-container__nickname">{{user.name}}</p>
+                <p class="quest-page-user-container__nickname">{{shownUser.login}}</p>
             {{/if}}
         </div>
         <div class="quests-page__button-container">
             <ul class="profile-nav-list">
                 {{# if started}}
-                    <li class="profile-nav-list__active"><a href="/user/{{ user.mongo_id }}/Started">Начатые квесты</a></li>
-                    <li><a href="/user/{{ user.mongo_id }}/Done">Пройденные квесты</a></li>
-                    <li><a href="/user/{{ user.mongo_id }}/Created">Мои квесты</a></li>
+                    <li class="profile-nav-list__active"><a href="/user/{{ shownUser._id }}/Started">Начатые квесты</a></li>
+                    <li><a href="/user/{{ shownUser._id }}/Done">Пройденные квесты</a></li>
+                    <li><a href="/user/{{ shownUser._id }}/Created">Мои квесты</a></li>
                 {{/if}}
                 {{#if done}}
-                    <li><a href="/user/{{ user.mongo_id }}/Started">Начатые квесты</a></li>
-                    <li class="profile-nav-list__active"><a href="/user/{{ user.mongo_id }}/Done">Пройденные квесты</a></li>
-                    <li><a href="/user/{{ user.mongo_id }}/Created">Мои квесты</a></li>
+                    <li><a href="/user/{{ shownUser._id }}/Started">Начатые квесты</a></li>
+                    <li class="profile-nav-list__active"><a href="/user/{{ shownUser._id }}/Done">Пройденные квесты</a></li>
+                    <li><a href="/user/{{ shownUser._id }}/Created">Мои квесты</a></li>
                 {{/if}}
                 {{#if created}}
-                    <li><a href="/user/{{ user.mongo_id }}/Started">Начатые квесты</a></li>
-                    <li><a href="/user/{{ user.mongo_id }}/Done">Пройденные квесты</a></li>
-                    <li class="profile-nav-list__active"><a href="/user/{{ user.mongo_id }}/Created">Мои квесты</a></li>
+                    <li><a href="/user/{{ shownUser._id }}/Started">Начатые квесты</a></li>
+                    <li><a href="/user/{{ shownUser._id }}/Done">Пройденные квесты</a></li>
+                    <li class="profile-nav-list__active"><a href="/user/{{ shownUser._id }}/Created">Мои квесты</a></li>
                 {{/if}}
             </ul>
         </div>

@@ -2,6 +2,7 @@
 
 const User = require('../models/user');
 const Quest = require('../models/quests');
+const QuestStatus = require('../models/questsStatus');
 
 exports.createUser = (req, res) => {
     const data = {
@@ -25,15 +26,19 @@ exports.getUser = (req, res) => {
 };
 
 exports.getUserQuests = (req, res) => {
+    let data = {};
+
     if (req.params.qType === 'Started') {
         req.commonData.started = true;
     }
     if (req.params.qType === 'Done') {
         req.commonData.done = true;
     }
+
     User.findUser({ _id: req.params.id })
         .then(users => {
             let user = users.pop();
+            data.shownUser = user;
             return user.getUserQuests(req.params.qType);
         })
         .then(quests => {
@@ -48,12 +53,6 @@ exports.getUserQuests = (req, res) => {
                             name: currentQuest.name,
                             id: currentQuest._id
                         };
-                        if (req.params.qType === 'Started') {
-                            data.started = true;
-                        }
-                        if (req.params.qType === 'Done') {
-                            data.done = true;
-                        }
                         return User.findOne({ _id: currentQuest.author }).exec()
                             .then(userDoc => {
                                 if (!userDoc) {
@@ -68,7 +67,37 @@ exports.getUserQuests = (req, res) => {
             );
             return Promise.all(promiseQuests);
         })
-        .then(quests => res.render('profile/profile', Object.assign({ quests }, req.commonData)))
+        .then(quests => {
+            if (!req.commonData.user) {
+                return quests;
+            }
+
+            var promiseQuests = quests.map(quest => QuestStatus.count(
+                    {
+                        questId: quest.id,
+                        userId: req.commonData.user.mongo_id,
+                        status: req.params.qType
+                    }
+                ).exec()
+                    .then(count => {
+                        if (count > 0) {
+                            if (req.params.qType === 'Started') {
+                                quest.started = true;
+                            }
+                            if (req.params.qType === 'Done') {
+                                quest.done = true;
+                            }
+                        }
+                        return quest;
+                    })
+            );
+            return Promise.all(promiseQuests);
+        })
+        .then(quests => {
+            data.quests = quests;
+
+            res.render('profile/profile', Object.assign(data, req.commonData));
+        })
         .catch(err => {
             console.log(err);
             req.commonData.errors.push({
@@ -79,9 +108,17 @@ exports.getUserQuests = (req, res) => {
 };
 
 exports.getCreatedQuests = (req, res) => {
+    req.commonData.created = true;
+
     Quest.getQuestsData(req, { author: req.params.id })
+        .then((data) => User.findUser({ _id: req.params.id })
+                .then(users => {
+                    let user = users.pop();
+                    data.shownUser = user;
+                    return data;
+                })
+        )
         .then(data => {
-            data.created = true;
             res.render('profile/profile', Object.assign(data, req.commonData));
         })
         .catch(err => {

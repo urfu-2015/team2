@@ -66,3 +66,7 @@ function addComment(e) {
         showError({ text: 'Неизвестная ошибка' });
     });
 }
+
+module.exports.setShowCommentsHandler = (element) => {
+    element.querySelector('.stage-comments__show-button').addEventListener('click', showComments);
+};

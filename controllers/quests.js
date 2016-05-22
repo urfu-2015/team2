@@ -525,6 +525,54 @@ function doneQuest(req, res) {
         });
 }
 
+function sendQuests(req, res) {
+    let query = { $and: [] };
+    let oldDate = req.query.oldDate;
+
+    if (oldDate) {
+        query.$and.push({
+            createdAt: {
+                $lt: new Date(oldDate)
+            }
+        });
+    }
+
+    if (req.query.query) {
+        query.$and.push({ name: { $regex: new RegExp(req.query.query, 'i') } });
+    }
+
+    if (query.$and.length === 0) {
+        query = {};
+    }
+
+    Quest.getQuestsData(req, query, parseInt(req.query.count) + 1)
+        .then(data => {
+            if (data.quests.length === 0) {
+                res.json({
+                    data: {},
+                    oldDate: null,
+                    isQuestsOver: true
+                });
+
+                return;
+            }
+
+            let isQuestsOver = data.quests.length < parseInt(req.query.count) + 1;
+
+            if (data.quests.length > req.query.count) {
+                data.quests.pop();
+            }
+
+            let oldDate = data.quests[data.quests.length - 1].createdAt;
+
+            res.json({
+                data: data,
+                oldDate: oldDate,
+                isQuestsOver: isQuestsOver
+            });
+        });
+}
+
 module.exports = {
     createQuest,
     updateQuest,
@@ -537,5 +585,6 @@ module.exports = {
     getUserLikes,
     handleLike,
     getUserQuestLikes,
-    handleQuestLike
+    handleQuestLike,
+    sendQuests
 };
