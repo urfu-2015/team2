@@ -19,15 +19,14 @@
 .stage-comments__text
 {
     display: block;
-    width: 50%;
-    margin: 10px;
-    height: 200px;
+    width: 100%;
+    margin: 10px auto;
 }
 
 .stage-comments__add-comment
 {
-    width: 60%;
-    margin: 10px 0;
+    width: 100%;
+    margin: 10px auto;
 }
 
 .stage-comments__add-comment-button
@@ -35,15 +34,5 @@
     display: block;
     width: 180px;
     margin: 0 10px;
-}
-
-@media (max-width: 768px)
-{
-    .stage-comments__text
-    {
-        display: block;
-        width: 100%;
-        height: 150px;
-    }
 }
 

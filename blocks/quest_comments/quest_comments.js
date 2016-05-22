@@ -13,16 +13,10 @@ const comments = require('../comments/comments.hbs');
 })();
 
 function showComments() {
-    const commentsWrapperClasses =
-        document.querySelector('.quest-comments__comments-wrapper').classList;
-    const hiddenClassIndex =
-        Array.prototype.indexOf.call(commentsWrapperClasses, 'quest-comments_hidden');
-    if (hiddenClassIndex >= 0) {
-        commentsWrapperClasses.remove('quest-comments_hidden');
-    } else {
-        commentsWrapperClasses.add('quest-comments_hidden');
-        return;
-    }
+    $('#quest-comments').modal(); // Активируем модальное окно
+    $('#quest-comments').modal('show');
+    $('#quest-comments').scrollTop(0);
+
     const id = document.querySelector('#questId').value;
     const data = {
         commentType: 'quest',
@@ -56,6 +50,7 @@ function addComment() {
         const newComment = $.parseHTML(comments({ comments: [result] }));
 
         $('.quest-comments__comments-container').append(newComment);
+        document.querySelector('.quest-comments__text').value = '';
     }).fail(function (err) {
         if (err.status === 401) {
             showError({ text: err.responseText });
