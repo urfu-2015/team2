@@ -1,7 +1,7 @@
 require('./quest_page.css');
 const stagesScripts = require('../../blocks/stages/stages');
 require('../../blocks/stage/stage');
-require('../../blocks/likes/fullQuestLikes.js');
+const likesFunctions = require('../../blocks/likes/fullQuestLikes.js');
 
 require('../../blocks/stages/stages');
 require('../../blocks/quest_page_controls/quest_page_controls');
@@ -10,6 +10,8 @@ require('../../blocks/quest_comments/quest_comments');
 const render = require('../../blocks/quest_page_controls/quest_page_controls.hbs');
 
 $(document).ready(() => {
+    likesFunctions.initLikes();
+
     $('button.begin').on('click', () => {
         let questId = $('#questId').val();
         const data = {

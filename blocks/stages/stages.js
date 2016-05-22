@@ -1,4 +1,5 @@
-require('../stage_comments/stage_comments');
+const stageCommentsFunctions = require('../stage_comments/stage_comments');
+const likesFunctions = require('../../blocks/likes/fullQuestLikes.js');
 
 const geolib = require('geolib');
 const render = require('../stage/stage.hbs');
@@ -63,6 +64,12 @@ function checkinButtonHandler(e) {
                             dislikesCount,
                             commentsCount
                         })));
+
+                        let changedStage = $button.parents('.stage-block').next().get(0);
+
+                        stageCommentsFunctions.setShowCommentsHandler(changedStage);
+                        likesFunctions.setHandlers(changedStage);
+
                         $button.parents('.stage-block').remove();
                         break;
                     default:

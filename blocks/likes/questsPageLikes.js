@@ -4,6 +4,8 @@ var pathname = window.location.pathname;
 
 pathname = pathname === '/search' ? '/quests' : pathname;
 
+pathname = pathname.startsWith('/user') ? '/quests' : pathname;
+
 $('.stats__like-img').click(likeHandler);
 
 function likeHandler() {

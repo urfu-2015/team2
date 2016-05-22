@@ -1,4 +1,5 @@
 require('./profile.css');
+const likesFunctions = require('../../blocks/likes/questsPageLikes.js');
 
 $(document).ready(function () {
     $(document).on('click.card', '.card', function (b) {

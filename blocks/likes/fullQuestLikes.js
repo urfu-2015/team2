@@ -2,7 +2,7 @@ import { showError } from '../errors/scripts/clientErrors';
 
 var pathname = window.location.pathname;
 
-$().ready(function () {
+module.exports.initLikes = () => {
     // надо запросить, поставил ли этот пользователь лайк к квесту или этапу
     // Если поставил, то красим лайк/дизлайк
     $.ajax({
@@ -39,9 +39,11 @@ $().ready(function () {
     }).fail(function (err) {
         console.error('err');
     });
-});
 
-$('.stats__like-img').click(function () {
+    $('.stats__like-img').click(handleLike);
+};
+
+function handleLike() {
     var $self = $(this);
     var likesCount = Number($self.next().text().trim());
     var dislikesCount = Number($self.parents('.stats').find('.stats__dislike-count').text().trim());
@@ -81,9 +83,11 @@ $('.stats__like-img').click(function () {
         showError({ text: 'Вы должны авторизоваться, чтобы ставить лайки' });
     });
 
-});
+}
 
-$('.stats__dislike-img').click(function () {
+$('.stats__dislike-img').click(handleDislike);
+
+function handleDislike() {
     var $self = $(this);
     var $dataId = $self.parents('.stage-stats').data('id');
 
@@ -120,4 +124,9 @@ $('.stats__dislike-img').click(function () {
         $self.next().html(dislikesCount);
         showError({ text: 'Вы должны авторизоваться, чтобы ставить дизлайки' });
     });
-});
+}
+
+module.exports.setHandlers = (element) => {
+    $(element.querySelector('.stats__like-img')).click(handleLike);
+    $(element.querySelector('.stats__dislike-img')).click(handleDislike);
+};
